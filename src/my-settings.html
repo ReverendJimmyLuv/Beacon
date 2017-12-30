@@ -1,0 +1,32 @@
+<!--
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-settings">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+
+                padding: 10px;
+            }
+        </style>
+
+        <div class="card">
+            <div class="circle">!B</div>
+            <h1>Settings</h1>
+            <p>Here we will have settings!</p>
+            <p>Extra paragraph line I didn't want to delete</p>
+        </div>
+    </template>
+
+    <script>
+        class Settings extends Polymer.Element {
+            static get is() { return 'my-settings'; }
+        }
+
+        window.customElements.define(Settings.is, Settings);
+    </script>
+</dom-module>

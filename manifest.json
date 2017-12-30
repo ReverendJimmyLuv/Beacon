@@ -1,7 +1,12 @@
 {
   "name": "Beacon",
+<<<<<<< HEAD
   "short_name": "Beacon",
   "description": "For world domination",
+=======
+  "short_name": "!B",
+  "description": "Find and Be Found",
+>>>>>>> starting-to-delete-things
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
