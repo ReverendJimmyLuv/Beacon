@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "Beacon",
+  "short_name": "!B",
+  "description": "Find and Be Found",
   "icons": [
     {
       "src": "images/manifest/icon-192x192.png",
