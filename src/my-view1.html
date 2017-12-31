@@ -3,6 +3,8 @@
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -22,12 +24,25 @@
       </paper-autocomplete>
     </div>
     <div class="card">
-      <paper-autocomplete id="highlightFirst" class="autocomplete-states" label="How close to you?" highlight-first>
-      </paper-autocomplete>
+      <paper-dropdown-menu label="How Close to You?">
+        <paper-listbox slot="dropdown-content" selected="0">
+          <paper-item>Within 1 Mile</paper-item>
+          <paper-item>Within 5 Miles</paper-item>
+          <paper-item>Within 10 Miles</paper-item>
+          <paper-item>Within 25 Miles</paper-item>
+          <paper-item>Everywhere</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
     </div>
     <div class="card">
-      <paper-autocomplete id="highlightFirst" class="autocomplete-states" label="When do you want it?" highlight-first>
-      </paper-autocomplete>
+      <paper-dropdown-menu label="When do you want it?">
+        <paper-listbox slot="dropdown-content" selected="0">
+          <paper-item>Now</paper-item>
+          <paper-item>Time of Day</paper-item>
+          <paper-item>Days of the Week</paper-item>
+          <paper-item>A Day Later On</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
     </div>
   </template>
 

@@ -16,7 +16,9 @@
     "polymer": "Polymer/polymer#^2.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0",
     "vaadin-combo-box": "^3.0.2",
-    "paper-autocomplete": "^3.3.0"
+    "paper-autocomplete": "^3.3.0",
+    "paper-dropdown-menu": "^2.0.1",
+    "paper-listbox": "^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"
