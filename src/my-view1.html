@@ -5,6 +5,7 @@
 <link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -14,6 +15,14 @@
         display: block;
 
         padding: 10px;
+      }
+      paper-button.orange {
+        background-color: var(--paper-orange-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
       }
     </style>
 
@@ -44,7 +53,16 @@
         </paper-listbox>
       </paper-dropdown-menu>
     </div>
-  </template>
+      <paper-button raised class="orange">
+        <iron-icon icon="icons:save"></iron-icon>
+        Save to Faves
+      </paper-button>
+      <span flex></span>
+      <paper-button raised class="orange">
+        <iron-icon icon="icons:search"></iron-icon>
+        Search Beacons
+      </paper-button>
+      </template>
 
   <script>
     class MyView1 extends Polymer.Element {
