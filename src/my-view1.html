@@ -6,69 +6,86 @@
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
+<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
 
-        padding: 10px;
-      }
-      paper-button.orange {
-        background-color: var(--paper-orange-500);
-        color: white;
-        --paper-button-raised-keyboard-focus: {
-          background-color: var(--paper-pink-a200) !important;
-          color: white !important;
-        };
-      }
-    </style>
+                padding: 10px;
+            }
 
-    <div class="card">
-      <div class="circle">!B</div>
-      <h1>Find</h1>
-      <paper-autocomplete id="highlightFirst" class="autocomplete-states" label="What do you want to find?" highlight-first>
-      </paper-autocomplete>
-    </div>
-    <div class="card">
-      <paper-dropdown-menu label="How Close to You?">
-        <paper-listbox slot="dropdown-content" selected="0">
-          <paper-item>Within 1 Mile</paper-item>
-          <paper-item>Within 5 Miles</paper-item>
-          <paper-item>Within 10 Miles</paper-item>
-          <paper-item>Within 25 Miles</paper-item>
-          <paper-item>Everywhere</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-    </div>
-    <div class="card">
-      <paper-dropdown-menu label="When do you want it?">
-        <paper-listbox slot="dropdown-content" selected="0">
-          <paper-item>Now</paper-item>
-          <paper-item>Time of Day</paper-item>
-          <paper-item>Days of the Week</paper-item>
-          <paper-item>A Day Later On</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-    </div>
-      <paper-button raised class="orange">
-        <iron-icon icon="icons:save"></iron-icon>
-        Save to Faves
-      </paper-button>
-      <span flex></span>
-      <paper-button raised class="orange">
-        <iron-icon icon="icons:search"></iron-icon>
-        Search Beacons
-      </paper-button>
-      </template>
+            paper-button.orange {
+                background-color: var(--paper-orange-500);
+                color: white;
+                --paper-button-raised-keyboard-focus: {
+                    background-color: var(--paper-pink-a200) !important;
+                    color: white !important;
+                };
+            }
+        </style>
 
-  <script>
-    class MyView1 extends Polymer.Element {
-      static get is() { return 'my-view1'; }
-    }
+        <div class="card">
+            <div class="circle">!B</div>
+            <h1>Find</h1>
 
-    window.customElements.define(MyView1.is, MyView1);
-  </script>
+            <vaadin-combo-box items="" label="What do you want to find?"></vaadin-combo-box>
+
+            <paper-autocomplete id="highlightFirst" class="autocomplete-states" label="What do you want to find?"
+                                highlight-first>
+            </paper-autocomplete>
+            <paper-autocomplete readonly="true" label="Unlock more filters"></paper-autocomplete>
+        </div>
+        <div class="card">
+            <paper-dropdown-menu label="How Close to You?">
+                <paper-listbox slot="dropdown-content" selected="0">
+                    <paper-item>Within 1 Mile</paper-item>
+                    <paper-item>Within 5 Miles</paper-item>
+                    <paper-item>Within 10 Miles</paper-item>
+                    <paper-item>Within 25 Miles</paper-item>
+                    <paper-item>Everywhere</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+        </div>
+        <div class="card">
+            <paper-dropdown-menu label="When do you want it?">
+                <paper-listbox slot="dropdown-content" selected="0">
+                    <paper-item>Now</paper-item>
+                    <paper-item>Time of Day</paper-item>
+                    <paper-item>Days of the Week</paper-item>
+                    <paper-item>A Day Later On</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+        </div>
+        <paper-button raised class="orange">
+            <iron-icon icon="icons:save"></iron-icon>
+            Save to Faves
+        </paper-button>
+
+        <paper-button raised class="orange">
+            <iron-icon icon="icons:search"></iron-icon>
+            Search Beacons
+        </paper-button>
+    </template>
+
+    <script>
+        class MyView1 extends Polymer.Element {
+            static get is() {
+                return 'my-view1';
+            }
+            static get properties() {
+                return {
+                    items: {
+                        type: Array, value: () => ['Apple', 'Orange', 'Bear']
+                    }
+                }
+            }
+        }
+
+        window.customElements.define(MyView1.is, MyView1);
+    </script>
 </dom-module>
