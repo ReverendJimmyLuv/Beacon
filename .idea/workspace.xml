@@ -3,8 +3,58 @@
   <component name="ChangeListManager">
     <list default="true" id="44db4e36-e668-44a0-9781-0345098c9b7c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change beforePath="$PROJECT_DIR$/src/my-view1.html" afterPath="$PROJECT_DIR$/src/my-view1.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.bower.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.bower.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.eslintrc.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.eslintrc.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.gitignore" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.stylelintrc" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.stylelintrc" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.travis.yml" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/.travis.yml" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/ISSUE_TEMPLATE.md" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/ISSUE_TEMPLATE.md" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/LICENSE" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/LICENSE" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/README.md" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/README.md" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/analysis.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/analysis.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/bower.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/bower.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/.eslintrc.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/.eslintrc.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-advanced-demos.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-advanced-demos.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-basic-demos.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-basic-demos.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-demo.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-demo.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-filtering-demos.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-filtering-demos.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-item-template-demos.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-item-template-demos.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-objects-demos.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/combo-box-objects-demos.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/demos.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/demos.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/index.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/demo/index.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/doc-imports.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/doc-imports.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/gulpfile.js" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/gulpfile.js" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/index.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/index.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/package.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/package.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/.eslintrc.json" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/.eslintrc.json" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/aria.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/aria.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/common.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/common.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/common.js" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/common.js" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/data-binding.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/data-binding.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/filtering.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/filtering.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/form-input.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/form-input.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/index.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/index.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/item-template.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/item-template.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/keyboard.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/keyboard.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/late-upgrade.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/late-upgrade.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/mock-touch-interactions.js" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/mock-touch-interactions.js" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/overlay-position.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/overlay-position.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/scrolling.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/scrolling.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/selecting-items.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/selecting-items.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/toggling-dropdown.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/toggling-dropdown.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/using-object-values.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/using-object-values.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box-dropdown.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box-dropdown.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box-light.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box-light.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/test/vaadin-combo-box.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-dropdown-wrapper.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-dropdown-wrapper.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-dropdown.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-dropdown.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-item.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-item.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-light.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-light.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-mixin.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-mixin.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-styles.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box-styles.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box.html" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box.html" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/wct.conf.js" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/wct.conf.js" />
+      <change beforePath="$PROJECT_DIR$/bower_components/vaadin-combo-box/yarn.lock" afterPath="$PROJECT_DIR$/bower_components/vaadin-combo-box/yarn.lock" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +69,8 @@
       <file leaf-file-name="my-app.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my-app.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="97" column="18" lean-forward="false" selection-start-line="97" selection-start-column="18" selection-end-line="97" selection-end-column="18" />
+            <state relative-caret-position="688">
+              <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -29,38 +79,8 @@
       <file leaf-file-name="my-view1.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/my-view1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-229">
-              <caret line="43" column="59" lean-forward="true" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vaadin-combo-box.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1794">
-              <caret line="335" column="0" lean-forward="true" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shared-styles.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shared-styles.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bower_components/paper-button/demo/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="100" column="23" lean-forward="false" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+            <state relative-caret-position="200">
+              <caret line="8" column="77" lean-forward="true" selection-start-line="8" selection-start-column="77" selection-end-line="8" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -123,9 +143,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -147,7 +166,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -274,11 +294,12 @@
       <workItem from="1514700657391" duration="105000" />
       <workItem from="1514700817230" duration="7316000" />
       <workItem from="1515183330857" duration="12073000" />
+      <workItem from="1515201480888" duration="280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21169000" />
+    <option name="totallyTimeSpent" value="21449000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -290,8 +311,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -300,20 +320,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.50490636" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.4968778" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.4968778" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32826087" sideWeight="0.49509367" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283208" sideWeight="0.49509367" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16684435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.169378" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -334,14 +354,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/my-app.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -354,7 +366,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -362,7 +373,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -370,47 +380,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my-app.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="18" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/polymer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -434,7 +403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -442,15 +410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -458,6 +417,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -474,7 +440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -482,6 +447,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -490,7 +462,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="18" lean-forward="false" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polymer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -560,7 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -568,7 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -576,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -641,19 +638,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/paper-styles/demo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2329">
-          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/paper-styles/demo/index.html" />
     <entry file="file://$PROJECT_DIR$/polymer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -669,7 +657,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -677,30 +664,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
           <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/paper-button/demo/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="100" column="23" lean-forward="false" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/paper-button/demo/index.html" />
     <entry file="file://$PROJECT_DIR$/src/shared-styles.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/my-app.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="97" column="18" lean-forward="false" selection-start-line="97" selection-start-column="18" selection-end-line="97" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -709,7 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-76">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -717,22 +687,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3825">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box.html" />
+    <entry file="file://$PROJECT_DIR$/src/my-app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="99" column="18" lean-forward="false" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/vaadin-combo-box/vaadin-combo-box.html">
+    <entry file="file://$PROJECT_DIR$/bower_components/vaadin-valo-theme/vaadin-combo-box.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1794">
-          <caret line="335" column="0" lean-forward="true" selection-start-line="335" selection-start-column="0" selection-end-line="335" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my-view1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="43" column="59" lean-forward="true" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
+        <state relative-caret-position="200">
+          <caret line="8" column="77" lean-forward="true" selection-start-line="8" selection-start-column="77" selection-end-line="8" selection-end-column="77" />
           <folding />
         </state>
       </provider>
