@@ -20,7 +20,9 @@
     "paper-dropdown-menu": "^2.0.1",
     "paper-listbox": "^2.0.0",
     "paper-button": "PolymerElements/paper-button#^2.0.0",
-    "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2"
+    "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2",
+    "geo-location": "ebidel/geo-location#^2.0.1",
+    "google-map": "GoogleWebComponents/google-map#^2.0.3"
   },
   "resolutions": {
     "polymer": "^2.0.0"
