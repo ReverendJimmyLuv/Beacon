@@ -2,6 +2,11 @@
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
+<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -12,19 +17,70 @@
 
         padding: 10px;
       }
+      paper-button.orange {
+        background-color: var(--paper-orange-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
     </style>
 
     <div class="card">
       <div class="circle">!B</div>
       <h1>Be Found</h1>
-      <p>Create a Beacon to be found</p>
-      <p>Start adding drop downs, etc</p>
+      <vaadin-combo-box items="[[items]]" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>
+      <p></p>
+      <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
+      <p></p>
+      <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
     </div>
+
+    <div class="card">
+      <paper-dropdown-menu label="How Close to You?">
+        <paper-listbox slot="dropdown-content" selected="0">
+          <paper-item>Within 1 Mile</paper-item>
+          <paper-item>Within 5 Miles</paper-item>
+          <paper-item>Within 10 Miles</paper-item>
+          <paper-item>Within 25 Miles</paper-item>
+          <paper-item>Everywhere</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
+    <div class="card">
+      <paper-dropdown-menu label="When do you want it?">
+        <paper-listbox slot="dropdown-content" selected="0">
+          <paper-item>Now</paper-item>
+          <paper-item>Time of Day</paper-item>
+          <paper-item>Days of the Week</paper-item>
+          <paper-item>A Day Later On</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+    </div>
+    <paper-button raised class="orange">
+      <iron-icon icon="icons:save"></iron-icon>
+      Save to Faves
+    </paper-button>
+
+    <paper-button raised class="orange">
+      <iron-icon icon="icons:search"></iron-icon>
+      Search Beacons
+    </paper-button>
   </template>
 
   <script>
     class MyView2 extends Polymer.Element {
       static get is() { return 'my-view2'; }
+
+        static get properties() {
+            return {
+                items: {
+                    type: Array,
+                    value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
+                }
+            };
+        }
     }
 
     window.customElements.define(MyView2.is, MyView2);
