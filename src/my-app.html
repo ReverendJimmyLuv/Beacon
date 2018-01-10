@@ -16,6 +16,7 @@ No problem!--James
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-view1.html">
@@ -98,7 +99,7 @@ No problem!--James
                         <div main-title>!Beacon</div>
                     </app-toolbar>
                 </app-header>
-
+                <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
                 <iron-pages
                         selected="[[page]]"
                         attr-for-selected="name"
@@ -163,7 +164,8 @@ No problem!--James
             }
 
             _showPage404() {
-                this.page = 'view404';
+                this.page = 'view1';
+                //view1 should be view404, but can't figure out why '_routePageChanged' isn't working
             }
         }
 

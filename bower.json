@@ -23,7 +23,8 @@
     "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2",
     "geo-location": "ebidel/geo-location#^2.0.1",
     "google-map": "GoogleWebComponents/google-map#^2.0.3",
-    "paper-item": "PolymerElements/paper-item#^2.0.0"
+    "paper-item": "PolymerElements/paper-item#^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.0.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"
