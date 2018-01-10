@@ -99,7 +99,14 @@ No problem!--James
                         <div main-title>!Beacon</div>
                     </app-toolbar>
                 </app-header>
+
                 <geo-location latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+                <!--only keep <ul> html on next 4 lines while building for testing-->
+                <ul>
+                    <li>Current Geo-Location</li>
+                    <li>Latitude: [[latitude]]</li>
+                    <li>Longitude: [[longitude]]</li>
+                </ul>
                 <iron-pages
                         selected="[[page]]"
                         attr-for-selected="name"

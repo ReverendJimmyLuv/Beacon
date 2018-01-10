@@ -2,31 +2,48 @@
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view3">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
 
-        padding: 10px;
-      }
-    </style>
+                padding: 10px;
+            }
+            google-map {
+                height: 600px;
+            }
+        </style>
 
-    <div class="card">
-      <div class="circle">!B</div>
-      <h1>Saved Beacons</h1>
-      <p>Here the Saved Beacons will populate</p>
-      <p>Extra paragraph line I didn't want to delete</p>
-    </div>
-  </template>
+        <div class="card">
+            <div class="circle">!B</div>
+            <h1>Saved Beacons</h1>
+            <p>Here the Saved Beacons will populate</p>
+            <p>Extra paragraph line I didn't want to delete</p>
+        </div>
 
-  <script>
-    class MyView3 extends Polymer.Element {
-      static get is() { return 'my-view3'; }
-    }
+        <div class="card">
+            <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+            <!-- TODO: change the API key to your own. NOTE! I did this and this is our API below -James -->
+            <google-map latitude="[[latitude]]" longitude="[[longitude]]"
+                        api-key="AIzaSyDIrc0FXKY_kuVEP-woU-I4MzYQJDKrj1k">
+                <google-map-marker slot="markers" latitude="[[latitude]]" longitude="[[longitude]]"></google-map-marker>
+            </google-map>
+        </div>
+    </template>
 
-    window.customElements.define(MyView3.is, MyView3);
-  </script>
+    <script>
+        class MyView3 extends Polymer.Element {
+            static get is() {
+                return 'my-view3';
+            }
+        }
+
+        window.customElements.define(MyView3.is, MyView3);
+    </script>
 </dom-module>
