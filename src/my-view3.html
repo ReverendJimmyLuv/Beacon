@@ -30,6 +30,11 @@
         <div class="card">
             <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
             <!-- TODO: change the API key to your own. NOTE! I did this and this is our API below -James -->
+            <ul>
+                <li>Current Geo-Location</li>
+                <li>Latitude: [[latitude]]</li>
+                <li>Longitude: [[longitude]]</li>
+            </ul>
             <google-map latitude="[[latitude]]" longitude="[[longitude]]"
                         api-key="AIzaSyDIrc0FXKY_kuVEP-woU-I4MzYQJDKrj1k">
                 <google-map-marker slot="markers" latitude="[[latitude]]" longitude="[[longitude]]"></google-map-marker>

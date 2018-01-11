@@ -33,15 +33,18 @@
       <div class="circle">!B</div>
       <h1>Be Found</h1>
       <vaadin-combo-box items="[[items]]" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>
-      <p></p>
+      <!--<vaadin-combo-box id="befound1" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>-->
+      <p>Selected value: "[[befound1]]"</p>
+      <!--<p></p>-->
       <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
-      <p></p>
+      <!--<p></p>-->
       <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
     </div>
 
     <div class="card">
+      <p>"[[myDistance]]" is selected.</p>
       <paper-dropdown-menu label="How Close to You?">
-        <paper-listbox slot="dropdown-content" selected="0">
+        <paper-listbox slot="dropdown-content" selected="{{myDistance}}" fallback-selection="0">
           <paper-item>Within 1 Mile</paper-item>
           <paper-item>Within 5 Miles</paper-item>
           <paper-item>Within 10 Miles</paper-item>
@@ -51,8 +54,9 @@
       </paper-dropdown-menu>
     </div>
     <div class="card">
+      <p>"[[myTime]]" is selected.</p>
       <paper-dropdown-menu label="When do you want it?">
-        <paper-listbox slot="dropdown-content" selected="0">
+        <paper-listbox slot="dropdown-content" selected="{{myTime}}" fallback-selection="0">
           <paper-item>Now</paper-item>
           <paper-item>Time of Day</paper-item>
           <paper-item>Days of the Week</paper-item>
@@ -62,12 +66,12 @@
     </div>
     <paper-button raised class="orange">
       <iron-icon icon="icons:save"></iron-icon>
-      Save to Faves
+      !Save to Faves
     </paper-button>
 
     <paper-button raised class="orange">
       <iron-icon icon="icons:search"></iron-icon>
-      Search Beacons
+      !Create Beacon
     </paper-button>
   </template>
 
@@ -83,6 +87,7 @@
                 }
             };
         }
+
     }
 
     window.customElements.define(MyView2.is, MyView2);
