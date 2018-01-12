@@ -2,29 +2,34 @@ header{
     position: fixed;
     width: 100%;
     top: 0px;
+    background-color: white;
     z-index: 10;
+    height: 10%;
 }
 .home{
-    position: relative;
-    vertical-align: center;
-    horiz-align: center;
+    text-align: center;
 }
 .page{
     position: relative;
-    top: 100px;
+    top: 10%;
+    box-sizing: border-box;
+    padding: 5%;
+    text-align: center;
+    width: 100%;
+
 }
 footer{
     position: fixed;
     width: 100%;
     bottom: 0px;
+    background-color: white;
     z-index: 9;
+    height: 10%;
 }
 .power{
-    position: relative;
-    right: 10px;
+    float: right;
 }
 .help{
-    position: relative;
-    left: 10px;
+    float: left;
 }
 
