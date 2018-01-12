@@ -33,7 +33,7 @@
       <div class="circle">!B</div>
       <h1>Be Found</h1>
       <vaadin-combo-box
-              label="What do you want to be found?"
+              label="Create Beacon!"
               items="[[befoundlist]]"
               value="Your Profile"
               allow-custom-value>
@@ -47,9 +47,9 @@
     </div>
 
     <div class="card">
-      <p>"[[myDistance]]" is selected.</p>
+      <p>"[[foundDistance]]" is selected.</p>
       <paper-dropdown-menu label="How Close to You?">
-        <paper-listbox slot="dropdown-content" selected="{{myDistance}}" fallback-selection="0">
+        <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
           <paper-item>Within 1 Mile</paper-item>
           <paper-item>Within 5 Miles</paper-item>
           <paper-item>Within 10 Miles</paper-item>
@@ -59,9 +59,9 @@
       </paper-dropdown-menu>
     </div>
     <div class="card">
-      <p>"[[myTime]]" is selected.</p>
+      <p>"[[foundTime]]" is selected.</p>
       <paper-dropdown-menu label="When do you want it?">
-        <paper-listbox slot="dropdown-content" selected="{{myTime}}" fallback-selection="0">
+        <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
           <paper-item>Now</paper-item>
           <paper-item>Time of Day</paper-item>
           <paper-item>Days of the Week</paper-item>
