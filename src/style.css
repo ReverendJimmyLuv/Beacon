@@ -1,0 +1,30 @@
+header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 10;
+}
+.home{
+    position: relative;
+    vertical-align: center;
+    horiz-align: center;
+}
+.page{
+    position: relative;
+    top: 100px;
+}
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 9;
+}
+.power{
+    position: relative;
+    right: 10px;
+}
+.help{
+    position: relative;
+    left: 10px;
+}
+
