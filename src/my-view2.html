@@ -32,7 +32,12 @@
     <div class="card">
       <div class="circle">!B</div>
       <h1>Be Found</h1>
-      <vaadin-combo-box items="[[items]]" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>
+      <vaadin-combo-box
+              label="What do you want to be found?"
+              items="[[befoundlist]]"
+              value="Your Profile"
+              allow-custom-value>
+      </vaadin-combo-box>
       <!--<vaadin-combo-box id="befound1" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>-->
       <p>Selected value: "[[befound1]]"</p>
       <!--<p></p>-->
@@ -81,7 +86,7 @@
 
         static get properties() {
             return {
-                items: {
+                befoundlist: {
                     type: Array,
                     value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
                 }
