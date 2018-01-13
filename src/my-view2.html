@@ -9,6 +9,7 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -31,19 +32,21 @@
 
     <div class="card">
       <div class="circle">!B</div>
+
       <h1>Be Found</h1>
+
+      <p>Selected value: {{befound1}}</p>
       <vaadin-combo-box
-              label="What do you want to be found?"
+              label="Create a Beacon!"
               items="[[befoundlist]]"
-              value="Your Profile"
+              value="{{befound1}}"
               allow-custom-value>
       </vaadin-combo-box>
-      <!--<vaadin-combo-box id="befound1" label="What do you want to be found?" allow-custom-value></vaadin-combo-box>-->
-      <p>Selected value: "[[befound1]]"</p>
-      <!--<p></p>-->
+
       <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
-      <!--<p></p>-->
+
       <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
+
     </div>
 
     <div class="card">
@@ -68,7 +71,13 @@
           <paper-item>A Day Later On</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
+
+      <div hidden>
+        <vaadin-date-picker></vaadin-date-picker>
+      </div>
+
     </div>
+
     <paper-button raised class="orange">
       <iron-icon icon="icons:save"></iron-icon>
       !Save to Faves
@@ -88,8 +97,9 @@
             return {
                 befoundlist: {
                     type: Array,
-                    value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
+                    value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
                 }
+                /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
             };
         }
 
