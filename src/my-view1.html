@@ -36,7 +36,6 @@
         <div class="card">
             <div class="circle">!B</div>
             <h1>Find</h1>
-<<<<<<< HEAD
 
             <p>Selected value: {{find1}}</p>
             <vaadin-combo-box
@@ -46,10 +45,6 @@
                     allow-custom-value>
             </vaadin-combo-box>
 
-=======
-            <vaadin-combo-box items="[[findlist]]" label="Find Beacons!" allow-custom-value></vaadin-combo-box>
-            <!--<p></p>-->
->>>>>>> 9967d1ea63cddeb843fe572b943ad2071ad931b8
             <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
 
             <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
@@ -57,8 +52,9 @@
         </div>
 
         <div class="card">
+
+            <p>[[findDistance]] is selected.</p>
             <paper-dropdown-menu label="How Close to You?">
-                <p>"[[findDistance]]" is selected.</p>
                 <paper-listbox slot="dropdown-content" selected="{{findDistance}}" fallback-selection="0">
                     <paper-item>Within 1 Mile</paper-item>
                     <paper-item>Within 5 Miles</paper-item>
@@ -67,10 +63,13 @@
                     <paper-item>Everywhere</paper-item>
                 </paper-listbox>
             </paper-dropdown-menu>
+
         </div>
+
         <div class="card">
+
+            <p>[[findTime]] is selected.</p>
             <paper-dropdown-menu label="When do you want it?">
-                <p>"[[findTime]]" is selected.</p>
                 <paper-listbox slot="dropdown-content" selected="{{findTime}}" fallback-selection="0">
                     <paper-item>Now</paper-item>
                     <paper-item>Time of Day</paper-item>
@@ -78,7 +77,9 @@
                     <paper-item>A Day Later On</paper-item>
                 </paper-listbox>
             </paper-dropdown-menu>
+
         </div>
+
         <paper-button raised class="orange">
             <iron-icon icon="icons:save"></iron-icon>
             !Save to Faves

@@ -35,15 +35,11 @@
 
       <h1>Be Found</h1>
 
-      <p>Selected value: {{befound1}}</p>
+      <p>Selected value: {{found1}}</p>
       <vaadin-combo-box
-<<<<<<< HEAD
-              label="Create a Beacon!"
-=======
               label="Create Beacon!"
->>>>>>> 9967d1ea63cddeb843fe572b943ad2071ad931b8
-              items="[[befoundlist]]"
-              value="{{befound1}}"
+              items="[[foundlist]]"
+              value="{{found1}}"
               allow-custom-value>
       </vaadin-combo-box>
 
@@ -54,7 +50,8 @@
     </div>
 
     <div class="card">
-      <p>"[[foundDistance]]" is selected.</p>
+
+      <p>[[foundDistance]] is selected.</p>
       <paper-dropdown-menu label="How Close to You?">
         <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
           <paper-item>Within 1 Mile</paper-item>
@@ -64,9 +61,11 @@
           <paper-item>Everywhere</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
+
     </div>
+
     <div class="card">
-      <p>"[[foundTime]]" is selected.</p>
+      <p>[[foundTime]] is selected.</p>
       <paper-dropdown-menu label="When do you want it?">
         <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
           <paper-item>Now</paper-item>
@@ -99,7 +98,7 @@
 
         static get properties() {
             return {
-                befoundlist: {
+                foundlist: {
                     type: Array,
                     value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
                 }
