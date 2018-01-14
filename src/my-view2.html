@@ -75,8 +75,8 @@
         </paper-listbox>
       </paper-dropdown-menu>
 
-      <div hidden>
-        <vaadin-date-picker></vaadin-date-picker>
+      <div hidden$="[[laterday]]">
+        <vaadin-date-picker label="What day?"></vaadin-date-picker>
       </div>
 
     </div>
@@ -101,6 +101,16 @@
                 foundlist: {
                     type: Array,
                     value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
+                },
+                loading: {
+                    type: Boolean,
+                    notify: true,
+                    value: false
+                },
+                laterday: {
+                    type: Boolean,
+                    notify: true,
+                    value: true
                 }
                 /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
             };
