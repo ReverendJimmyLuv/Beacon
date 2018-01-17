@@ -1,6 +1,6 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/beacon-app.html",
   "fragments": [
     "src/beacon-find.html",
     "src/beacon-befound.html",
