@@ -24,7 +24,6 @@ Sweet--James
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="beacon-icons.html">
 
-<link rel="import" href="beacon-login.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
 
 <link rel="lazy-import" href="beacon-find.html">
@@ -32,6 +31,7 @@ Sweet--James
 <link rel="lazy-import" href="beacon-savedbeacons.html">
 <link rel="lazy-import" href="beacon-404.html">
 <link rel="lazy-import" href="beacon-settings.html">
+<link rel="lazy-import" href="beacon-login.html">
 
 <dom-module id="beacon-app">
     <template>
@@ -75,7 +75,7 @@ Sweet--James
         </style>
 
         <firebase-app
-                id="firebase"
+                name="beacon"
                 auth-domain="beacon-1515553602130.firebaseapp.com"
                 database-url="https://beacon-1515553602130.firebaseio.com/"
                 api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
@@ -112,7 +112,11 @@ Sweet--James
                     <app-toolbar>
                         <paper-icon-button icon="beacon-icons:menu" drawer-toggle></paper-icon-button>
                         <div main-title>!Beacon</div>
-                        <beacon-login></beacon-login>
+                        <span>
+                            <a name="login" href="[[rootPath]]login">
+                                <paper-icon-button icon="beacon-icons:account-circle" title="Sign in"></paper-icon-button>
+                            </a>
+                        </span>
                     </app-toolbar>
                 </app-header>
 
@@ -133,6 +137,7 @@ Sweet--James
                     <beacon-savedbeacons name="savedbeacons"></beacon-savedbeacons>
                     <beacon-settings name="settings"></beacon-settings>
                     <beacon-404 name="404"></beacon-404>
+                    <beacon-login name="login"></beacon-login>
                 </iron-pages>
             </app-header-layout>
         </app-drawer-layout>
