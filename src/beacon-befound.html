@@ -11,6 +11,12 @@
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="beacon-icons.html">
+
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
 <dom-module id="beacon-befound">
     <template>
@@ -30,6 +36,13 @@
             }
         </style>
 
+        <firebase-auth user="{{user}}"></firebase-auth>
+        <firebase-query
+            id="query"
+            path="/users/[[user.uid]]/befounds"
+            data="{{befounds}}">
+        </firebase-query>
+
         <div class="card">
             <div class="circle">!B</div>
 
@@ -37,6 +50,7 @@
 
             <p>Selected value: {{found1}}</p>
             <vaadin-combo-box
+                    id="found1"
                     label="Create Beacon!"
                     items="[[foundlist]]"
                     value="{{found1}}"
@@ -52,7 +66,7 @@
         <div class="card">
 
             <p>[[foundDistance]] is selected.</p>
-            <paper-dropdown-menu label="How Close to You?">
+            <paper-dropdown-menu id="foundDistance" label="How Close to You?">
                 <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
                     <paper-item>Within 1 Mile</paper-item>
                     <paper-item>Within 5 Miles</paper-item>
@@ -66,7 +80,7 @@
 
         <div class="card">
             <p>[[foundTime]] is selected.</p>
-            <paper-dropdown-menu label="When do you want it?">
+            <paper-dropdown-menu id="foundTime" label="When do you want it?">
                 <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
                     <paper-item>Now</paper-item>
                     <paper-item>Time of Day</paper-item>
@@ -78,16 +92,15 @@
             <div hidden$="[[laterday]]">
                 <vaadin-date-picker label="What day?"></vaadin-date-picker>
             </div>
-
         </div>
 
         <paper-button raised class="orange">
-            <iron-icon icon="icons:save"></iron-icon>
+            <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save to Faves
         </paper-button>
 
-        <paper-button raised class="orange">
-            <iron-icon icon="icons:search"></iron-icon>
+        <paper-button raised class="orange" on-tap="search">
+            <iron-icon icon="beacon-icons:search"></iron-icon>
             !Create Beacon
         </paper-button>
     </template>
@@ -114,6 +127,12 @@
                     }
                     /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
                 };
+            }
+
+            search () {
+                this.$.query.ref.push({
+                  content: this.$.found1.value
+                });
             }
 
         }
