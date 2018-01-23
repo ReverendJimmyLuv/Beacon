@@ -44,9 +44,9 @@
         </firebase-query>
 
         <div class="card">
-            <div class="circle">!B</div>
+            <img src="../images/manifest/beaconWhite.png" height="62" width="62">
 
-            <h1>Be Found</h1>
+            <h1 style="font-size:200%">Be Found</h1>
 
             <p>Selected value: {{found1}}</p>
             <vaadin-combo-box
@@ -61,9 +61,25 @@
 
             <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
 
+            <p>Selected value: {{foundDistance}}</p>
+            <vaadin-combo-box
+                    id="foundDistance"
+                    label="How Close to You?"
+                    items="[[distancelist]]"
+                    value="{{foundDistance}}">
+            </vaadin-combo-box>
+
+            <p>Selected value: {{foundTime}}</p>
+            <vaadin-combo-box
+                    id="foundTime"
+                    label="When do you want it?"
+                    items="[[timelist]]"
+                    value="{{foundTime}}">
+            </vaadin-combo-box>
+
         </div>
 
-        <div class="card">
+        <!--<div class="card">
 
             <p>[[foundDistance]] is selected.</p>
             <paper-dropdown-menu id="foundDistance" label="How Close to You?">
@@ -92,7 +108,7 @@
             <div hidden$="[[laterday]]">
                 <vaadin-date-picker label="What day?"></vaadin-date-picker>
             </div>
-        </div>
+        </div>-->
 
         <paper-button raised class="orange">
             <iron-icon icon="beacon-icons:save"></iron-icon>
@@ -114,6 +130,14 @@
                     foundlist: {
                         type: Array,
                         value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
+                    },
+                    distancelist: {
+                        type: Array,
+                        value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere']
+                    },
+                    timelist: {
+                        type: Array,
+                        value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On']
                     },
                     loading: {
                         type: Boolean,

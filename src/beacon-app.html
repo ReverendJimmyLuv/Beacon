@@ -97,7 +97,9 @@ Sweet--James
         <app-drawer-layout fullbleed narrow="{{narrow}}">
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-                <app-toolbar>!Beacon</app-toolbar>
+                <app-toolbar>
+                    <img src="../images/manifest/beaconWhite.png" height="42" width="42">
+                </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
                     <a name="find" href="[[rootPath]]find">Find</a>
                     <a name="befound" href="[[rootPath]]befound">Be Found</a>
@@ -112,10 +114,14 @@ Sweet--James
                 <app-header slot="header" condenses reveals effects="waterfall">
                     <app-toolbar>
                         <paper-icon-button icon="beacon-icons:menu" drawer-toggle></paper-icon-button>
-                        <div main-title>!Beacon</div>
+                        <div main-title style="font-size:150%">!Beacon</div>
                         <span>
                             <a name="login" href="[[rootPath]]login">
-                                <paper-icon-button icon="beacon-icons:account-circle" title="Sign in"></paper-icon-button>
+                                <paper-icon-button
+                                        icon="beacon-icons:account-circle"
+                                        title="Sign in"
+                                        style="color:white">
+                                </paper-icon-button>
                             </a>
                         </span>
                     </app-toolbar>
