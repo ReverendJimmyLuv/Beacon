@@ -26,7 +26,8 @@
     "paper-item": "PolymerElements/paper-item#^2.0.0",
     "iron-icons": "PolymerElements/iron-icons#^2.0.1",
     "paper-search": "Collaborne/paper-search#^2.0.9",
-    "geo-query-input": "jifalops/geo-query-input#^1.0.2"
+    "geo-query-input": "jifalops/geo-query-input#^1.0.2",
+    "iron-demo-helpers": "^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"
