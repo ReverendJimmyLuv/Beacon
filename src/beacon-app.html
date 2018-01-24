@@ -25,7 +25,7 @@ Sweet--James
 <link rel="import" href="beacon-icons.html">
 
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
-<link rel="import" href="../bower_components/login-fire/login-fire.html">
+
 
 <link rel="lazy-import" href="beacon-find.html">
 <link rel="lazy-import" href="beacon-befound.html">
@@ -36,6 +36,14 @@ Sweet--James
 
 <dom-module id="beacon-app">
     <template>
+
+        <firebase-app
+                id="firebase"
+                auth-domain="beacon-1515553602130.firebaseapp.com"
+                database-url="https://beacon-1515553602130.firebaseio.com"
+                api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
+        </firebase-app>
+
         <style>
             :host {
                 --app-primary-color: orange;
@@ -74,13 +82,6 @@ Sweet--James
                 font-weight: bold;
             }
         </style>
-
-        <firebase-app
-                id="firebase"
-                auth-domain="beacon-1515553602130.firebaseapp.com"
-                database-url="https://beacon-1515553602130.firebaseio.com/"
-                api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
-        </firebase-app>
 
         <app-location
                 route="{{route}}"

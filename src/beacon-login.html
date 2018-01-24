@@ -1,9 +1,9 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/login-fire/login-fire.html">
+<!--<link rel="import" href="../bower_components/login-fire/login-fire.html">
 <link rel="import" href="../bower_components/login-fire/login-fire-social.html">
 <link rel="import" href="../bower_components/login-fire/login-fire-form.html">
-<link rel="import" href="../bower_components/login-fire/login-fire-button.html">
+<link rel="import" href="../bower_components/login-fire/login-fire-button.html">-->
 
 <dom-module id="beacon-login">
     <template>
@@ -29,8 +29,9 @@
         <firebase-auth
                 id="auth"
                 user="{{user}}"
-                status-known="{{statusKnown}}"
-                provider="google">
+
+                provider="google"
+                on-error="handleError">
         </firebase-auth>
 
 
