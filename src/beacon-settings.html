@@ -4,7 +4,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-settings">
+<dom-module id="beacon-settings">
     <template>
         <style include="shared-styles">
             :host {
@@ -15,18 +15,20 @@
         </style>
 
         <div class="card">
-            <div class="circle">!B</div>
-            <h1>Settings</h1>
+
+            <img src="../images/manifest/beaconwhite.png" height="62" width="62">
+
+            <h1 style="font-size:200%">Settings</h1>
             <p>Here we will have settings!</p>
             <p>Extra paragraph line I didn't want to delete</p>
         </div>
     </template>
 
     <script>
-        class Settings extends Polymer.Element {
-            static get is() { return 'my-settings'; }
+        class BeaconSettings extends Polymer.Element {
+            static get is() { return 'beacon-settings'; }
         }
 
-        window.customElements.define(Settings.is, Settings);
+        window.customElements.define(BeaconSettings.is, BeaconSettings);
     </script>
 </dom-module>
