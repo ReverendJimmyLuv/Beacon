@@ -18,21 +18,18 @@
         <div class="card">
             <login-fire
                 app-name="beacon"
-                providers="google,facebook,twitter,github,anonymous"
-                debug
-                no-sign-out>
+                providers="google,anonymous"
                 user="{{user}}"
-                signed-in="{{signedIn}}"
+                signed-in="{{signedIn}}">
             </login-fire>
         </div>
 
-        <firebase-auth
+        <!--<firebase-auth
                 id="auth"
                 user="{{user}}"
-
                 provider="google"
                 on-error="handleError">
-        </firebase-auth>
+        </firebase-auth>-->
 
 
 
@@ -40,8 +37,8 @@
             <h1>Welcome [[user.displayName]]</h1>
         </template>
 
-        <paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
-        <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign out</paper-button>
+        <!--<paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
+        <paper-button raised on-tap="_signOut" hidden$="[[!user]]">Sign out</paper-button>-->
 
     </template>
 
@@ -67,6 +64,15 @@
             }
             logout () {
                 return this.$.auth.signOut();
+            }
+            _signOut () {
+                return this.$('login-fire').signOut();
+                // or
+                // this.$$('login-fire-button').signOut();
+                // or
+                // this.$$('login-fire-social').signOut();
+                // or
+                // this.$$('login-fire-form').signOut();
             }
         }
 
