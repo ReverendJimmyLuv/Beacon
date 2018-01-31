@@ -30,7 +30,8 @@
     "vaadin-date-picker": "vaadin/vaadin-date-picker#^2.0.7",
     "polymerfire": "firebase/polymerfire#^2.2.1",
     "login-fire": "convoo/login-fire#^1.0.0",
-    "iron-demo-helpers": "^2.0.0"
+    "iron-demo-helpers": "^2.0.0",
+    "swipe-action": "vguillou/swipe-action#^1.0.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"
