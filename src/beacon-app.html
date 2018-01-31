@@ -21,16 +21,29 @@ Sweet--James
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
-<link rel="import" href="my-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="beacon-icons.html">
+
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html">
+
 
 <link rel="lazy-import" href="beacon-find.html">
 <link rel="lazy-import" href="beacon-befound.html">
 <link rel="lazy-import" href="beacon-savedbeacons.html">
 <link rel="lazy-import" href="beacon-404.html">
 <link rel="lazy-import" href="beacon-settings.html">
+<link rel="lazy-import" href="beacon-login.html">
 
 <dom-module id="beacon-app">
     <template>
+
+        <firebase-app
+                name="beacon"
+                auth-domain="beacon-1515553602130.firebaseapp.com"
+                database-url="https://beacon-1515553602130.firebaseio.com"
+                api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
+        </firebase-app>
+
         <style>
             :host {
                 --app-primary-color: orange;
@@ -85,7 +98,9 @@ Sweet--James
         <app-drawer-layout fullbleed narrow="{{narrow}}">
             <!-- Drawer content -->
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-                <app-toolbar>!Beacon</app-toolbar>
+                <app-toolbar>
+                    <img src="../images/manifest/beaconwhite.png" height="42" width="42">
+                </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
                     <a name="find" href="[[rootPath]]find">Find</a>
                     <a name="befound" href="[[rootPath]]befound">Be Found</a>
@@ -99,8 +114,17 @@ Sweet--James
 
                 <app-header slot="header" condenses reveals effects="waterfall">
                     <app-toolbar>
-                        <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-                        <div main-title>!Beacon</div>
+                        <paper-icon-button icon="beacon-icons:menu" drawer-toggle></paper-icon-button>
+                        <div main-title style="font-size:150%">!Beacon</div>
+                        <span>
+                            <a name="login" href="[[rootPath]]login">
+                                <paper-icon-button
+                                        icon="beacon-icons:account-circle"
+                                        title="Sign In"
+                                        style="color:white">
+                                </paper-icon-button>
+                            </a>
+                        </span>
                     </app-toolbar>
                 </app-header>
 
@@ -121,6 +145,7 @@ Sweet--James
                     <beacon-savedbeacons name="savedbeacons"></beacon-savedbeacons>
                     <beacon-settings name="settings"></beacon-settings>
                     <beacon-404 name="404"></beacon-404>
+                    <beacon-login name="login"></beacon-login>
                 </iron-pages>
             </app-header-layout>
         </app-drawer-layout>
