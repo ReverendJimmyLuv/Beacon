@@ -6,31 +6,205 @@
     <meta charset="UTF-8">
     <title>Template</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="import" href="../bower_components/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 </head>
 <body>
-    <header>
-        <iframe src="header.html" width="100%" frameborder="0"></iframe>
-    </header>
-    <div class="page">
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
-        <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
+<header>
+    <iframe src="header.html" width="100%" frameborder="0"></iframe>
+</header>
+<custom-style>
+    <style is="custom-style">
+        paper-toggle-button {
+            --paper-toggle-button-checked-bar-color:  green;
+            --paper-toggle-button-checked-button-color: white;
+            --paper-toggle-button-unchecked-bar-color: red;
+            --paper-toggle-button-unchecked-button-color: white;
+        }
+    </style>
+</custom-style>
+<div class="page">
+    <div class="space">
+        <div class="cardHead">
+            <h1>Integration Settings</h1>
+        </div>
+        <table id="t1">
+            <tr>
+                <th class="cola"></th>
+                <th class="colb">Pull</th>
+                <th class="colc"></th>
+                <th class="cold"></th>
+                <td class="cole">Push</td>
+                <td class="colf"></td>
+            </tr>
+        </table>
     </div>
+    <div class="space2">
+        <table id="t2">
+            <tr>
+                <th class="cola">
+                    <img src="../images/114x114/chat.png" height="54" width="54"/>
+                </th>
+                <th class="colb">
+                    <paper-toggle-button class="chatPull"></paper-toggle-button>
+                </th>
+                <th class="colc">
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th class="cold">
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th class="cole">
+                    <paper-toggle-button class="chatPush"></paper-toggle-button>
+                </th>
+                <th class="colf">
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/email.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="emailPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="emailPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/facebook.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="facebookPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="facebookPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/linkedin.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="linkedinPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="linkedinPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/instagram.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="instagramPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="instagramPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/pinterest.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="pinterestPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="pinterestPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/twitter.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="twitterPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="twitterPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <img src="../images/114x114/googleplus.png" height="54" width="54"/>
+                </th>
+                <th>
+                    <paper-toggle-button class="googleplusPull"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+                <th>
+                    <img src="../images/114x114/beaconColor.png" height="54" width="54">
+                </th>
+                <th>
+                    <paper-toggle-button class="googleplusPush"></paper-toggle-button>
+                </th>
+                <th>
+                    <iron-icon icon="icons:send" style="color: rgb(237, 125, 49)"></iron-icon>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
     <footer>
         <iframe src="footer.html" width="100%" frameborder="0"></iframe>
     </footer>

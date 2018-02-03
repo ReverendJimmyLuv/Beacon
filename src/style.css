@@ -91,11 +91,10 @@ footer{
 }
 h1{
     text-align: left;
-    color:rgb(237, 125, 49);
+    color: rgb(237, 125, 49);
     font-family: Arial;
     font-weight: bold;
     font-size: large;
-    text-decoration: underline;
     padding-left: 5px;
     z-index: 7;
 }
@@ -105,14 +104,56 @@ table#t1{
     padding-top: 54px;
     width: 100%;
     text-align: left;
+    color: rgb(237, 125, 49);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: large;
     background-color: white;
+    table-layout: fixed;
+    z-index: 6;
 }
 table#t2{
     width: 100%;
     text-align: left;
     padding-top: 5px;
+    table-layout: fixed;
+    z-index: 5;
 }
 paper-toggle-button {
     margin-left: 10px;
     margin-right: 10px;
+}
+.cola{
+    width: 16.667%;
+}
+.colb{
+    width: 16.667%;
+}
+.colc{
+    width: 16.667%;
+}
+.cold{
+    width: 16.667%;
+}
+.cole{
+    width: 16.667%;
+}
+.colf{
+    width: 16.667%;
+}
+.col1{
+    width: 25%;
+    background-color: white;
+}
+.col2{
+    width: 25%;
+    background-color: white;
+}
+.col3{
+    width: 25%;
+    background-color: white;
+}
+.col4{
+    width: 25%;
+    background-color: white;
 }
