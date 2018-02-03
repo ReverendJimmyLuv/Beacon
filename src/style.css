@@ -32,6 +32,17 @@ a:link, a:visited{
     box-shadow: 0 2px 2px 0 rgba(237, 125, 49, 0.14), 0 1px 5px 0 rgba(237, 125, 49, 0.12), 0 3px 1px -2px rgba(237, 125, 49, 0.2);
     text-align: center;
 }
+.cardHead {
+    color: #757575;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(237, 125, 49, 0.14), 0 1px 5px 0 rgba(237, 125, 49, 0.12), 0 3px 1px -2px rgba(237, 125, 49, 0.2);
+    text-align: left;
+    position: fixed;
+    float: top;
+    width: 100%;
+    z-index: 8;
+}
 footer{
     position: fixed;
     background-color: white;
@@ -73,5 +84,35 @@ footer{
     padding-bottom: 4%;
 }
 .space{
-    padding-top: 100px;
+    padding-top: 92px;
+}
+.space2{
+    padding-top: 108px;
+}
+h1{
+    text-align: left;
+    color:rgb(237, 125, 49);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+    padding-left: 5px;
+    z-index: 7;
+}
+table#t1{
+    position: fixed;
+    float: top;
+    padding-top: 54px;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+}
+table#t2{
+    width: 100%;
+    text-align: left;
+    padding-top: 5px;
+}
+paper-toggle-button {
+    margin-left: 10px;
+    margin-right: 10px;
 }
