@@ -1,4 +1,4 @@
-header{
+header {
     position: fixed;
     background-color: white;
     width: 100%;
@@ -6,17 +6,17 @@ header{
     top: 0px;
     z-index: 10;
 }
-.home{
+.home {
     text-align: center;
 }
-.page{
+.page {
     position: relative;
     padding-top: 4%;
     padding-right: 2%;
     padding-left: 2%;
     padding-bottom: 4%;
 }
-a:link, a:visited{
+a:link, a:visited {
     text-decoration: none;
     color:rgb(237, 125, 49);
     font-family: Arial;
@@ -43,7 +43,7 @@ a:link, a:visited{
     width: 100%;
     z-index: 8;
 }
-footer{
+footer {
     position: fixed;
     background-color: white;
     width: 100%;
@@ -51,45 +51,45 @@ footer{
     bottom: 0px;
     z-index: 9;
 }
-.power{
+.power {
     position: relative;
     float: right;
     padding-right: 2%;
 }
-.results{
+.results {
     position: relative;
     float: right;
     padding-right: 2%;
 }
-.help{
+.help {
     position: relative;
     float: left;
 }
-.save{
+.save {
     position: relative;
     float: left;
 }
-.find{
+.find {
     text-align: center;
     margin-bottom: 4%;
     padding-top: 5%;
 }
-.homeTrue{
+.homeTrue {
     text-align: center;
     vertical-align: center;
 }
-.beFound{
+.beFound {
     text-align: center;
     margin-top: 4%;
     padding-bottom: 4%;
 }
-.space{
+.space {
     padding-top: 92px;
 }
-.space2{
+.space2 {
     padding-top: 108px;
 }
-h1{
+h1 {
     text-align: left;
     color: rgb(237, 125, 49);
     font-family: Arial;
@@ -98,7 +98,15 @@ h1{
     padding-left: 5px;
     z-index: 7;
 }
-table#t1{
+h2 {
+    text-align: left;
+    color: rgb(237, 125, 49);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: medium;
+    padding-left: 5px;
+}
+table#t1 {
     position: fixed;
     float: top;
     padding-top: 54px;
@@ -112,7 +120,7 @@ table#t1{
     table-layout: fixed;
     z-index: 6;
 }
-table#t2{
+table#t2 {
     width: 100%;
     text-align: left;
     padding-top: 5px;
@@ -123,37 +131,45 @@ paper-toggle-button {
     margin-left: 10px;
     margin-right: 10px;
 }
-.cola{
+.colA {
     width: 16.667%;
 }
-.colb{
+.colB {
     width: 16.667%;
 }
-.colc{
+.colC {
     width: 16.667%;
 }
-.cold{
+.colD {
     width: 16.667%;
 }
-.cole{
+.colE {
     width: 16.667%;
 }
-.colf{
+.colF {
     width: 16.667%;
 }
-.col1{
+.col1 {
     width: 25%;
     background-color: white;
 }
-.col2{
+.col2 {
     width: 25%;
     background-color: white;
 }
-.col3{
+.col3 {
     width: 25%;
     background-color: white;
 }
-.col4{
+.col4 {
     width: 25%;
     background-color: white;
+}
+paper-panel {
+    text-align: left;
+    color: rgb(237, 125, 49);
+    font-family: Arial;
+    font-weight: bold;
+    font-size: medium;
+    padding-left: 5px;
 }
