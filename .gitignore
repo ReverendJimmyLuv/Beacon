@@ -3,4 +3,3 @@ build/
 node_modules/
 *.xml
 *.iml
-firebase-debug.log
