@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<<link rel="import" href="../bower_components/login-fire/login-fire.html">
+<link rel="import" href="../bower_components/login-fire/login-fire.html">
 <!--<link rel="import" href="../bower_components/login-fire/login-fire-social.html">
 <link rel="import" href="../bower_components/login-fire/login-fire-form.html">
 <link rel="import" href="../bower_components/login-fire/login-fire-button.html">-->
@@ -37,8 +37,8 @@
             <h1>Welcome [[user.displayName]]</h1>
         </template>
 
-        <!--<paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
-        <paper-button raised on-tap="_signOut" hidden$="[[!user]]">Sign out</paper-button>-->
+        <!--<paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>-->
+        <paper-button raised on-tap="_signOut" hidden$="[[!user]]">Sign out</paper-button>
 
     </template>
 
