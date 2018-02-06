@@ -26,7 +26,6 @@
 
                 padding: 10px;
             }
-
             paper-button.orange {
                 background-color: var(--paper-orange-500);
                 color: white;
@@ -39,111 +38,92 @@
 
         <firebase-auth user="{{user}}"></firebase-auth>
         <firebase-query
-                id="query"
-                path="/users/[[user.uid]]/befounds"
-                data="{{befounds}}">
+            id="query"
+            path="/users/[[user.uid]]/befounds"
+            data="{{befounds}}">
         </firebase-query>
-        <template is="dom-bind">
-            <div class="card">
-                <img src="../images/manifest/beaconwhite.png" height="62" width="62">
 
-                <h1 style="font-size:200%">Be Found</h1>
+        <div class="card">
+            <img src="../images/manifest/beaconwhite.png" height="62" width="62">
 
-                <p>Selected value: {{found1}}</p>
-                <vaadin-combo-box
-                        id="found1"
-                        label="Create Beacon!"
-                        items="[[foundlist]]"
-                        value="{{found1}}"
-                        allow-custom-value>
-                </vaadin-combo-box>
+            <h1 style="font-size:200%">Be Found</h1>
 
-                <vaadin-combo-box
-                        id="found2"
-                        label="Unlock more filters"
-                        items=""
-                        value="{{found2}}"
-                        disabled>
-                </vaadin-combo-box>
+            <p>Selected value: {{found1}}</p>
+            <vaadin-combo-box
+                    id="found1"
+                    label="Create Beacon!"
+                    items="[[foundlist]]"
+                    value="{{found1}}"
+                    allow-custom-value>
+            </vaadin-combo-box>
 
-                <vaadin-combo-box
-                        id="found3"
-                        label="Unlock more filters"
-                        items=""
-                        value="{{found3}}"
-                        disabled>
-                </vaadin-combo-box>
+            <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
 
-                <p>Selected value: {{foundDistance}}</p>
-                <vaadin-combo-box
-                        id="foundDistance"
-                        label="How Close to You?"
-                        items="[[distancelist]]"
-                        value="{{foundDistance}}">
-                </vaadin-combo-box>
+            <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
 
-                <p>Selected value: {{foundTime}}</p>
-                <vaadin-combo-box
-                        id="foundTime"
-                        label="When do you want it?"
-                        items="[[timelist]]"
-                        value="{{foundTime}}">
-                </vaadin-combo-box>
+            <p>Selected value: {{foundDistance}}</p>
+            <vaadin-combo-box
+                    id="foundDistance"
+                    label="How Close to You?"
+                    items="[[distancelist]]"
+                    value="{{foundDistance}}">
+            </vaadin-combo-box>
 
+            <p>Selected value: {{foundTime}}</p>
+            <vaadin-combo-box
+                    id="foundTime"
+                    label="When do you want it?"
+                    items="[[timelist]]"
+                    value="{{foundTime}}">
+            </vaadin-combo-box>
+
+        </div>
+
+        <!--<div class="card">
+
+            <p>[[foundDistance]] is selected.</p>
+            <paper-dropdown-menu id="foundDistance" label="How Close to You?">
+                <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
+                    <paper-item>Within 1 Mile</paper-item>
+                    <paper-item>Within 5 Miles</paper-item>
+                    <paper-item>Within 10 Miles</paper-item>
+                    <paper-item>Within 25 Miles</paper-item>
+                    <paper-item>Everywhere</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+
+        </div>
+
+        <div class="card">
+            <p>[[foundTime]] is selected.</p>
+            <paper-dropdown-menu id="foundTime" label="When do you want it?">
+                <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
+                    <paper-item>Now</paper-item>
+                    <paper-item>Time of Day</paper-item>
+                    <paper-item>Days of the Week</paper-item>
+                    <paper-item>A Day Later On</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+
+            <div hidden$="[[laterday]]">
+                <vaadin-date-picker label="What day?"></vaadin-date-picker>
             </div>
+        </div>-->
 
-            <!--<div class="card">
+        <paper-button raised class="orange">
+            <iron-icon icon="beacon-icons:save"></iron-icon>
+            !Save to Faves
+        </paper-button>
 
-                <p>[[foundDistance]] is selected.</p>
-                <paper-dropdown-menu id="foundDistance" label="How Close to You?">
-                    <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
-                        <paper-item>Within 1 Mile</paper-item>
-                        <paper-item>Within 5 Miles</paper-item>
-                        <paper-item>Within 10 Miles</paper-item>
-                        <paper-item>Within 25 Miles</paper-item>
-                        <paper-item>Everywhere</paper-item>
-                    </paper-listbox>
-                </paper-dropdown-menu>
-
-            </div>
-
-            <div class="card">
-                <p>[[foundTime]] is selected.</p>
-                <paper-dropdown-menu id="foundTime" label="When do you want it?">
-                    <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
-                        <paper-item>Now</paper-item>
-                        <paper-item>Time of Day</paper-item>
-                        <paper-item>Days of the Week</paper-item>
-                        <paper-item>A Day Later On</paper-item>
-                    </paper-listbox>
-                </paper-dropdown-menu>
-
-                <div hidden$="[[laterday]]">
-                    <vaadin-date-picker label="What day?"></vaadin-date-picker>
-                </div>
-            </div>-->
-
-            <paper-button raised class="orange">
-                <iron-icon icon="beacon-icons:save"></iron-icon>
-                !Save to Faves
-            </paper-button>
-
-            <paper-button id="createBeacon" raised class="orange" on-tap="createBeacon">
-                <iron-icon icon="beacon-icons:search"></iron-icon>
-                !Create Beacon
-            </paper-button>
-            <input name="beFound" value="[[found1]] [[found2]] [[found3]] [[foundDistance]] [[foundTime]]" hidden>
-            <template>
-                <p class="content">[[befounds.content]]</p>
-            </template>
-        </template>
+        <paper-button raised class="orange" on-tap="search">
+            <iron-icon icon="beacon-icons:search"></iron-icon>
+            !Create Beacon
+        </paper-button>
     </template>
 
     <script>
         class BeaconBeFound extends Polymer.Element {
-            static get is() {
-                return 'beacon-befound';
-            }
+            static get is() { return 'beacon-befound'; }
 
             static get properties() {
                 return {
@@ -151,7 +131,6 @@
                         type: Array,
                         value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
                     },
-                    /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
                     distancelist: {
                         type: Array,
                         value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere']
@@ -169,16 +148,14 @@
                         type: Boolean,
                         notify: true,
                         value: true
-                    },
-                    befounds: {
-                        type: Object
                     }
+                    /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
                 };
             }
 
-            createBeacon() {
+            search () {
                 this.$.query.ref.push({
-                    content: this.$.beFound.value
+                  content: this.$.found1.value
                 });
             }
 
