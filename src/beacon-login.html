@@ -51,21 +51,20 @@
             static get properties() {
                 return {
                     user: {
-                        type: Object
+                        type: Object,
                     },
                     statusKnown: {
-                        type: Object
-                    }
-                }
-
-            }
+                        type: Object,
+                    },
+                };
+    }
             login() {
                 return this.$.auth.signInWithPopup();
             }
-            logout () {
+            logout() {
                 return this.$.auth.signOut();
             }
-            _signOut () {
+            _signOut() {
                 return this.$('login-fire').signOut();
                 // or
                 // this.$$('login-fire-button').signOut();
@@ -79,6 +78,5 @@
         window.customElements.define(BeaconLogin.is, BeaconLogin);
     </script>
 </dom-module>
-
 
 
