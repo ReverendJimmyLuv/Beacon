@@ -1,3 +1,4 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/login-fire/login-fire.html">
@@ -9,8 +10,8 @@
     <template>
 
         <!--This shouldn't be needed here, it is already called on beacon-app.html
-            <firebase-app
-                id="firebase"
+        <firebase-app
+                id="beacon"
                 auth-domain="beacon-1515553602130.firebaseapp.com"
                 database-url="https://beacon-1515553602130.firebaseio.com/"
                 api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
@@ -21,7 +22,8 @@
                 app-name="beacon"
                 providers="google,anonymous"
                 user="{{user}}"
-                signed-in="{{signedIn}}">
+                signed-in="{{signedIn}}"
+                debug>
             </login-fire>
         </div>
 
@@ -39,7 +41,7 @@
         </template>
 
         <!--<paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>-->
-        <paper-button raised on-tap="_signOut" hidden$="[[!user]]">Sign out</paper-button>
+        <!--<paper-button raised on-tap="_signOut" hidden$="[[!user]]">Sign out</paper-button>-->
 
     </template>
 
@@ -65,8 +67,9 @@
             logout() {
                 return this.$.auth.signOut();
             }
+
             _signOut() {
-                return this.$('login-fire').signOut();
+                return this.shadowRoot.querySelector('login-fire').signOut();
                 // or
                 // this.$$('login-fire-button').signOut();
                 // or
