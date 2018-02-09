@@ -26,6 +26,7 @@
 
                 padding: 10px;
             }
+
             paper-button.orange {
                 background-color: var(--paper-orange-500);
                 color: white;
@@ -38,9 +39,9 @@
 
         <firebase-auth user="{{user}}"></firebase-auth>
         <firebase-query
-            id="query"
-            path="/users/[[user.uid]]/befounds"
-            data="{{befounds}}">
+                id="query"
+                path="/users/[[user.uid]]/befounds"
+                data="{{befounds}}">
         </firebase-query>
 
         <div class="card">
@@ -136,39 +137,40 @@
 
     <script>
         class BeaconBeFound extends Polymer.Element {
-            static get is() { return 'beacon-befound'; }
+            static get is() {
+                return 'beacon-befound';
+            }
 
             static get properties() {
                 return {
                     foundlist: {
                         type: Array,
-                        value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group']
+                        value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'],
                     },
                     distancelist: {
                         type: Array,
-                        value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere']
+                        value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere'],
                     },
                     timelist: {
                         type: Array,
-                        value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On']
+                        value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On'],
                     },
                     loading: {
                         type: Boolean,
                         notify: true,
-                        value: false
+                        value: false,
                     },
                     laterday: {
                         type: Boolean,
                         notify: true,
-                        value: true
-                    }
-                    /* old code: value: () => ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'] */
+                        value: true,
+                    },
                 };
             }
 
-            search () {
+            search() {
                 this.$.query.ref.push({
-                  content: this.$.found1.value
+                    content: this.$.found1.value,
                 });
             }
 
