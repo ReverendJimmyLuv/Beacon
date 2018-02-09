@@ -17,7 +17,8 @@
         </div>
 
         <template is="dom-if" if="[[user]]">
-            <h1>Welcome [[user.displayName]]</h1>
+            <h1>Welcome [[user.displayName]]!</h1>
+            <img src="[[user.photoURL]]">
         </template>
 
     </template>

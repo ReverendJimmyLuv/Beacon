@@ -38,11 +38,18 @@
         </style>
 
         <firebase-auth user="{{user}}"></firebase-auth>
-        <firebase-query
+        <!--<firebase-query
                 id="query"
                 path="/users/[[user.uid]]/befounds"
                 data="{{befounds}}">
-        </firebase-query>
+        </firebase-query>-->
+
+        <firebase-document
+                id="befound"
+                app-name="beacon"
+                path="/users/[[userId]]/beacons/befounds/[[befoundId]]"
+                data="{{befound}}">
+        </firebase-document>
 
         <div class="card">
             <img src="../images/manifest/beaconwhite.png" height="62" width="62">
@@ -169,7 +176,7 @@
             }
 
             search() {
-                this.$.query.ref.push({
+                this.$.befound.ref.push({
                     content: this.$.found1.value,
                 });
             }
