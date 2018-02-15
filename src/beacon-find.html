@@ -1,17 +1,15 @@
 <!--
 -->
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/google-map/google-map.html">
-<link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="beacon-icons.html">
 
@@ -34,6 +32,14 @@
             }
         </style>
 
+        <firebase-auth user="{{user}}"></firebase-auth>
+
+        <firebase-query
+                id="query"
+                path="/users/[[user.uid]]/beacons/findBeacons"
+                data="{{findBeaconData}}">
+        </firebase-query>
+
         <div class="card">
 
             <img src="../images/manifest/beaconwhite.png" height="62" width="62">
@@ -42,21 +48,36 @@
 
             <p>Selected value: {{find1}}</p>
             <vaadin-combo-box
+                    id="find1"
                     label="Find Beacons!"
-                    items="[[findlist]]"
+                    items="[[findList]]"
                     value="{{find1}}"
                     allow-custom-value>
             </vaadin-combo-box>
 
-            <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
+            <!--<input id="find1" name="find1" value="{{find1}}" hidden>-->
 
-            <vaadin-combo-box items="" label="Unlock more filters" disabled></vaadin-combo-box>
+            <vaadin-combo-box
+                    id="find2"
+                    label="Unlock more filters"
+                    items=""
+                    value="{{find2}}"
+                    disabled>
+            </vaadin-combo-box>
+
+            <vaadin-combo-box
+                    id="find3"
+                    label="Unlock more filters"
+                    items=""
+                    value="{{find3}}"
+                    disabled>
+            </vaadin-combo-box>
 
             <p>Selected value: {{findDistance}}</p>
             <vaadin-combo-box
                     id="findDistance"
                     label="How Close to You?"
-                    items="[[distancelist]]"
+                    items="[[distanceList]]"
                     value="{{findDistance}}">
             </vaadin-combo-box>
 
@@ -64,47 +85,18 @@
             <vaadin-combo-box
                     id="findTime"
                     label="When do you want it?"
-                    items="[[timelist]]"
+                    items="[[timeList]]"
                     value="{{findTime}}">
             </vaadin-combo-box>
 
         </div>
 
-        <!--<div class="card">
-
-            <p>[[findDistance]] is selected.</p>
-            <paper-dropdown-menu label="How Close to You?">
-                <paper-listbox slot="dropdown-content" selected="{{findDistance}}" fallback-selection="0">
-                    <paper-item>Within 1 Mile</paper-item>
-                    <paper-item>Within 5 Miles</paper-item>
-                    <paper-item>Within 10 Miles</paper-item>
-                    <paper-item>Within 25 Miles</paper-item>
-                    <paper-item>Everywhere</paper-item>
-                </paper-listbox>
-            </paper-dropdown-menu>
-
-        </div>
-
-        <div class="card">
-
-            <p>[[findTime]] is selected.</p>
-            <paper-dropdown-menu label="When do you want it?">
-                <paper-listbox slot="dropdown-content" selected="{{findTime}}" fallback-selection="0">
-                    <paper-item>Now</paper-item>
-                    <paper-item>Time of Day</paper-item>
-                    <paper-item>Days of the Week</paper-item>
-                    <paper-item>A Day Later On</paper-item>
-                </paper-listbox>
-            </paper-dropdown-menu>
-
-        </div>-->
-
         <paper-button raised class="orange">
             <iron-icon icon="beacon-icons:save"></iron-icon>
-            !Save to Faves
+            !Save Beacon to Favorites
         </paper-button>
 
-        <paper-button raised class="orange">
+        <paper-button raised class="orange" on-tap="searchFindBeacons">
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Search Beacons
         </paper-button>
@@ -119,20 +111,25 @@
 
             static get properties() {
                 return {
-                    findlist: {
+                    findList: {
                         type: Array,
                         value: ['All Beacons', 'Party', 'Babysitter', 'Garage Sale', 'Study Group'],
                     },
-                    distancelist: {
+                    distanceList: {
                         type: Array,
                         value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere'],
                     },
-                    timelist: {
+                    timeList: {
                         type: Array,
                         value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On'],
                     },
 
                 };
+            }
+            searchFindBeacons() {
+                this.$.query.ref.push({
+                    content: this.$.find1.value
+                });
             }
         }
 
