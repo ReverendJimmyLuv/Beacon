@@ -10,10 +10,12 @@
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="beacon-icons.html">
 
-<link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
+
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
@@ -37,26 +39,33 @@
             }
         </style>
 
-        <firebase-auth user="{{user}}"></firebase-auth>
-        <!--<firebase-query
-                id="query"
-                path="/users/[[user.uid]]/befounds"
-                data="{{befounds}}">
-        </firebase-query>-->
+        <firebase-auth user="{{user}}" app-name="beacon"></firebase-auth>
 
-        <firebase-document
+        <firebase-query
+                app-name="beacon"
+                id="befound"
+                path="/users/[[user.uid]]/beacons/beFoundBeacons"
+                data="{{beFoundBeacons}}">
+        </firebase-query>
+
+        <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+
+        <input id="latitude" value="{{latitude}}" hidden>
+        <input id="longitude" value="{{longitude}}" hidden>
+
+        <!--<firebase-document
                 id="befound"
                 app-name="beacon"
                 path="/users/[[userId]]/beacons/befounds/[[befoundId]]"
                 data="{{befound}}">
-        </firebase-document>
+        </firebase-document>-->
 
         <div class="card">
             <img src="../images/manifest/beaconwhite.png" height="62" width="62">
 
             <h1 style="font-size:200%">Be Found</h1>
 
-            <p>Selected value: {{found1}}</p>
+            <!--<p>Selected value: {{found1}}</p>-->
             <vaadin-combo-box
                     id="found1"
                     label="Create Beacon!"
@@ -81,7 +90,15 @@
                     disabled>
             </vaadin-combo-box>
 
-            <p>Selected value: {{foundDistance}}</p>
+            <paper-input
+                    id="beFoundDescription"
+                    label="Beacon Description"
+                    value="{{beFoundDescription}}"
+                    char-counter maxlength="140">
+            </paper-input>
+
+
+            <!--<p>Selected value: {{foundDistance}}</p>-->
             <vaadin-combo-box
                     id="foundDistance"
                     label="How Close to You?"
@@ -89,7 +106,7 @@
                     value="{{foundDistance}}">
             </vaadin-combo-box>
 
-            <p>Selected value: {{foundTime}}</p>
+            <!--<p>Selected value: {{foundTime}}</p>-->
             <vaadin-combo-box
                     id="foundTime"
                     label="When do you want it?"
@@ -136,7 +153,7 @@
             !Save to Faves
         </paper-button>
 
-        <paper-button raised class="orange" on-tap="search">
+        <paper-button raised class="orange" on-tap="createBeacon">
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Create Beacon
         </paper-button>
@@ -172,12 +189,43 @@
                         notify: true,
                         value: true,
                     },
+                    found1: {
+                        type: Object,
+                    },
+                    found2: {
+                        type: Object,
+                    },
+                    found3: {
+                        type: Object,
+                    },
+                    beFoundDescription: {
+                        type: String,
+                    },
+                    foundDistance: {
+                        type: Object,
+                    },
+                    foundTime: {
+                        type: Object,
+                    },
+                    latitude: {
+                        type: Number,
+                    },
+                    longitude: {
+                        type: Number,
+                    },
                 };
             }
 
-            search() {
+            createBeacon() {
                 this.$.befound.ref.push({
-                    content: this.$.found1.value,
+                    found1: this.$.found1.value,
+                    found2: this.$.found2.value,
+                    found3: this.$.found3.value,
+                    beFoundDescription: this.$.beFoundDescription.value,
+                    foundDistance: this.$.foundDistance.value,
+                    foundTime: this.$.foundTime.value,
+                    latitude: this.$.latitude.value,
+                    longitude: this.$.longitude.value
                 });
             }
 

@@ -38,7 +38,7 @@
         <firebase-query
                 app-name="beacon"
                 id="query"
-                path="/users/[[user.uid]]/beacons"
+                path="/users/[[user.uid]]/beacons/findBeacons"
                 data="{{findBeacons}}">
         </firebase-query>
 
@@ -48,7 +48,7 @@
 
             <h1 style="font-size:200%">Find</h1>
 
-            <p>Selected value: {{find1}}</p>
+            <!--<p>Selected value: {{find1}}</p>-->
             <vaadin-combo-box
                     id="find1"
                     label="Find Beacons!"
@@ -56,8 +56,6 @@
                     value="{{find1}}"
                     allow-custom-value>
             </vaadin-combo-box>
-
-            <!--<input id="find1" name="find1" value="{{find1}}" hidden>-->
 
             <vaadin-combo-box
                     id="find2"
@@ -75,7 +73,7 @@
                     disabled>
             </vaadin-combo-box>
 
-            <p>Selected value: {{findDistance}}</p>
+            <!--<p>Selected value: {{findDistance}}</p>-->
             <vaadin-combo-box
                     id="findDistance"
                     label="How Close to You?"
@@ -83,7 +81,7 @@
                     value="{{findDistance}}">
             </vaadin-combo-box>
 
-            <p>Selected value: {{findTime}}</p>
+            <!--<p>Selected value: {{findTime}}</p>-->
             <vaadin-combo-box
                     id="findTime"
                     label="When do you want it?"
@@ -128,12 +126,27 @@
                     find1: {
                         type: Object,
                     },
-
+                    find2: {
+                        type: Object,
+                    },
+                    find3: {
+                        type: Object,
+                    },
+                    findDistance: {
+                        type: Object,
+                    },
+                    findTime: {
+                        type: Object,
+                    },
                 };
             }
             searchFindBeacons() {
                 this.$.query.ref.push({
-                    content: this.$.find1.value
+                    find1: this.$.find1.value,
+                    find2: this.$.find2.value,
+                    find3: this.$.find3.value,
+                    findDistance: this.$.findDistance.value,
+                    findTime: this.$.findTime.value
                 });
             }
         }
