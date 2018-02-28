@@ -14,7 +14,6 @@
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="beacon-icons.html">
 
-
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
@@ -157,6 +156,10 @@
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Create Beacon
         </paper-button>
+
+        <template is="dom-if" if="[[beaconCreated]]">
+            <h1>You did it!  Beacon Created!  Now just sit back and Be Found.</h1>
+        </template>
     </template>
 
     <script>
@@ -179,7 +182,7 @@
                         type: Array,
                         value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On'],
                     },
-                    loading: {
+                    /*loading: {
                         type: Boolean,
                         notify: true,
                         value: false,
@@ -188,6 +191,11 @@
                         type: Boolean,
                         notify: true,
                         value: true,
+                    },*/
+                    beaconCreated: {
+                        type: Boolean,
+                        notify: true,
+                        value: false,
                     },
                     found1: {
                         type: Object,
@@ -227,6 +235,13 @@
                     latitude: this.$.latitude.value,
                     longitude: this.$.longitude.value
                 });
+                this.$.found1.value = null;
+                this.$.found2.value = null;
+                this.$.found3.value = null;
+                this.$.beFoundDescription.value = null;
+                this.$.foundDistance.value = null;
+                this.$.foundTime.value = null;
+                this.set.$.beaconCreated.value = true;
             }
 
         }
