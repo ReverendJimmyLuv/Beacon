@@ -157,9 +157,9 @@
             !Create Beacon
         </paper-button>
 
-        <template is="dom-if" if="[[beaconCreated]]">
+        <div hidden$="{{beaconCreated}}">
             <h1>You did it!  Beacon Created!  Now just sit back and Be Found.</h1>
-        </template>
+        </div>
     </template>
 
     <script>
@@ -195,7 +195,7 @@
                     beaconCreated: {
                         type: Boolean,
                         notify: true,
-                        value: false,
+                        value: true,
                     },
                     found1: {
                         type: Object,
@@ -241,7 +241,7 @@
                 this.$.beFoundDescription.value = null;
                 this.$.foundDistance.value = null;
                 this.$.foundTime.value = null;
-                this.set.$.beaconCreated.value = true;
+                this.beaconCreated = false;
             }
 
         }
