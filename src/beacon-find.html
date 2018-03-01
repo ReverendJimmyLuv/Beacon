@@ -38,7 +38,8 @@
         <firebase-query
                 app-name="beacon"
                 id="query"
-                path="/users/[[user.uid]]/beacons/findBeacons"
+                path="/users"
+                equalTo="{{find1}}"
                 data="{{findBeacons}}">
         </firebase-query>
 
@@ -100,6 +101,10 @@
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Search Beacons
         </paper-button>
+
+        <div>
+            <h1>{{findBeacons}}</h1>
+        </div>
 
     </template>
 
