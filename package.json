@@ -13,6 +13,7 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "bower": "^1.8.2"
+    "bower": "^1.8.2",
+    "geopoint": "^1.0.1"
   }
 }
