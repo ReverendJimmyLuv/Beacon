@@ -39,7 +39,6 @@
                 app-name="beacon"
                 id="query"
                 path="/users"
-                equalTo="{{find1}}"
                 data="{{findBeacons}}">
         </firebase-query>
 
@@ -49,7 +48,6 @@
 
             <h1 style="font-size:200%">Find</h1>
 
-            <!--<p>Selected value: {{find1}}</p>-->
             <vaadin-combo-box
                     id="find1"
                     label="Find Beacons!"
@@ -74,7 +72,8 @@
                     disabled>
             </vaadin-combo-box>
 
-            <!--<p>Selected value: {{findDistance}}</p>-->
+            <br>
+
             <vaadin-combo-box
                     id="findDistance"
                     label="How Close to You?"
@@ -82,7 +81,8 @@
                     value="{{findDistance}}">
             </vaadin-combo-box>
 
-            <!--<p>Selected value: {{findTime}}</p>-->
+            <br>
+
             <vaadin-combo-box
                     id="findTime"
                     label="When do you want it?"
@@ -102,8 +102,22 @@
             !Search Beacons
         </paper-button>
 
-        <div>
-            <h1>{{findBeacons}}</h1>
+        <br>
+
+        <div class="card">
+            <p>Selected value: {{find1}}</p>
+            <p>Selected value: {{findDistance}}</p>
+            <p>Selected value: {{findTime}}</p>
+            <p>{{findBeacons}}</p>
+        </div>
+
+        <div class="card">
+            <template is="dom-repeat" items="{{ _makeArray(findBeacons) }}" as="data">
+                <div class="profile card">
+                    {{data.$key}}
+                    {{data.find1}}
+                </div>
+            </template>
         </div>
 
     </template>
@@ -145,6 +159,11 @@
                     },
                 };
             }
+
+            _makeArray(items) {
+                return Object.keys(items).map(function (key) { return items[key];});
+            }
+
             searchFindBeacons() {
                 this.$.query.ref.push({
                     find1: this.$.find1.value,
