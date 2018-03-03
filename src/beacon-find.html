@@ -111,12 +111,19 @@
             <p>{{findBeacons}}</p>
         </div>
 
+        <!--{{ _makeArray(findBeacons) }}-->
+        <!--{{data.beacons}}
+        {{data.beFoundBeacons}}
+        {{data.found1}}-->
+
         <div class="card">
-            <template is="dom-repeat" items="{{ _makeArray(findBeacons) }}" as="data">
+            <template is="dom-repeat" items="[[findBeacons]]" as="data">
                 <div class="profile card">
                     {{data.$key}}
-                    {{data.find1}}
                 </div>
+                <template is="dom-repeat" items="{{item.found1}}">
+                    <span>{{item.beFoundDescription}}</span>
+                </template>
             </template>
         </div>
 
