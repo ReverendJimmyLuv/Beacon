@@ -38,6 +38,7 @@
         <firebase-query
                 app-name="beacon"
                 id="query"
+                equalTo="[[find1]]"
                 path="/users"
                 data="{{findBeacons}}">
         </firebase-query>
@@ -117,13 +118,15 @@
         {{data.found1}}-->
 
         <div class="card">
-            <template is="dom-repeat" items="[[findBeacons]]" as="data">
+            <template is="dom-repeat" items="[[findBeacons]]">
                 <div class="profile card">
-                    {{data.$key}}
+                    {{item.$key}}
+                    {{item.find1}}
+                    {{item.found1}}
                 </div>
-                <template is="dom-repeat" items="{{item.found1}}">
+                <!--<template is="dom-repeat" items="{{item.found1}}">
                     <span>{{item.beFoundDescription}}</span>
-                </template>
+                </template>-->
             </template>
         </div>
 
