@@ -19,7 +19,7 @@
         <style include="shared-styles">
             :host {
                 display: block;
-
+                background-color: #f8c945;
                 padding: 10px;
             }
 
@@ -34,16 +34,15 @@
         </style>
 
         <firebase-auth user="{{user}}" app-name="beacon"></firebase-auth>
-
+        <!--app-name="beacon"-->
+        <!--equalTo="{{find1}}"-->
         <firebase-query
-                app-name="beacon"
                 id="query"
-                equalTo="[[find1]]"
                 path="/users"
                 data="{{findBeacons}}">
         </firebase-query>
 
-        <div class="card">
+        <div class="card" style="background-color: #FFFFFF">
 
             <img src="../images/manifest/beaconwhite.png" height="62" width="62">
 
@@ -93,36 +92,61 @@
 
         </div>
 
-        <paper-button raised class="orange">
+        <!--style="color: #000000; background-color:#ffffff"-->
+
+        <paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save Beacon to Favorites
         </paper-button>
 
-        <paper-button raised class="orange" on-tap="searchFindBeacons">
+        <paper-button raised class="custom beeqin" on-tap="searchFindBeacons">
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Search Beacons
         </paper-button>
 
+        <style is="custom-style">
+            /*paper-button.custom {
+                --paper-button-ink-color: #000000;
+                --paper-button-flat-keyboard-focus: {
+                    background-color: #FFFFFF;
+                    color: #F8C945 !important;
+                };
+                --paper-button-raised-keyboard-focus: {
+                    background-color: #000000 !important;
+                    color: #F8C945 !important;
+                };
+            }*/
+
+            paper-button.beeqin {
+                background-color: #000000;
+                color: #F8C945;
+            }
+
+            paper-button.beeqin[active] {
+                background-color: #F29737;
+                color: #000000;
+            }
+        </style>
+
         <br>
 
-        <div class="card">
-            <p>Selected value: {{find1}}</p>
-            <p>Selected value: {{findDistance}}</p>
-            <p>Selected value: {{findTime}}</p>
+        <div class="card" style="background-color: #FFFFFF">
+            <p>Selected value: [[find1]]</p>
+            <p>Selected value: [[findDistance]]</p>
+            <p>Selected value: [[findTime]]</p>
             <p>{{findBeacons}}</p>
         </div>
 
-        <!--{{ _makeArray(findBeacons) }}-->
-        <!--{{data.beacons}}
+        <!--{{ _makeArray(findBeacons) }}
+        {{data.beacons}}
         {{data.beFoundBeacons}}
         {{data.found1}}-->
 
-        <div class="card">
+        <div class="card" style="background-color: #FFFFFF">
             <template is="dom-repeat" items="[[findBeacons]]">
                 <div class="profile card">
                     {{item.$key}}
-                    {{item.find1}}
-                    {{item.found1}}
+                    {{item.value}}
                 </div>
                 <!--<template is="dom-repeat" items="{{item.found1}}">
                     <span>{{item.beFoundDescription}}</span>
