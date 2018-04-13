@@ -8,7 +8,6 @@ Yes?--James
 I totally did it.--James
 Sweet--James
 -->
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -23,10 +22,7 @@ Sweet--James
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="beacon-icons.html">
-
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
-
-
 <link rel="lazy-import" href="beacon-find.html">
 <link rel="lazy-import" href="beacon-befound.html">
 <link rel="lazy-import" href="beacon-savedbeacons.html">
@@ -46,15 +42,14 @@ Sweet--James
         <style>
             :host {
                 --app-primary-color: #000000;
-                --app-secondary-color: #f8c945;
-
+                --app-secondary-color: #F8C945;
                 display: block;
             }
 
             app-drawer {
                 --app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
                 --app-drawer-content-container: {
-                    background-color: #000000;
+                    background-color: #F8C945;
                 }
             }
 
@@ -63,7 +58,7 @@ Sweet--James
             }
 
             app-header {
-                color: #f8c945;
+                color: #F8C945;
                 background-color: var(--app-primary-color);
             }
 
@@ -79,12 +74,12 @@ Sweet--James
                 display: block;
                 padding: 0 16px;
                 text-decoration: none;
-                color: var(--app-secondary-color);
+                color: var(--app-primary-color);
                 line-height: 40px;
             }
 
             .drawer-list a.iron-selected {
-                color: black;
+                color: #FFFFFF;
                 font-weight: bold;
             }
         </style>
