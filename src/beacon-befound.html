@@ -145,15 +145,39 @@
             </div>
         </div>-->
 
-        <paper-button raised class="orange">
+        <paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
-            !Save to Faves
+            !Save Beeqin to Favorites
         </paper-button>
 
-        <paper-button raised class="orange" on-tap="createBeacon">
+        <paper-button raised class="custom beeqin" on-tap="createBeacon">
             <iron-icon icon="beacon-icons:search"></iron-icon>
-            !Create Beacon
+            !Create Beeqin
         </paper-button>
+
+        <style is="custom-style">
+            /*paper-button.custom {
+                --paper-button-ink-color: #000000;
+                --paper-button-flat-keyboard-focus: {
+                    background-color: #FFFFFF;
+                    color: #F8C945 !important;
+                };
+                --paper-button-raised-keyboard-focus: {
+                    background-color: #000000 !important;
+                    color: #F8C945 !important;
+                };
+            }*/
+
+            paper-button.beeqin {
+                background-color: #000000;
+                color: #F8C945;
+            }
+
+            paper-button.beeqin[active] {
+                background-color: #F29737;
+                color: #000000;
+            }
+        </style>
 
         <div hidden$="{{beaconCreated}}">
             <h1>You did it!  Beacon Created!  Now just sit back and Be Found.</h1>
