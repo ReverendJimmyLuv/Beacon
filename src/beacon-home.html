@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="beacon-home">
+    <template style="background-color: #F297737">
+        <style>
+            :host {
+                display: block;
+                background-color: #F29737;
+                padding: 10px 20px;
+            }
+        </style>
+
+        <custom-style>
+            <style is="custom-style">
+                .flex-center-justified {
+                    @apply --layout-horizontal;
+                    @apply --layout-center-justified;
+                }
+            </style>
+        </custom-style>
+
+        <div class="container flex-center-justified">
+            <img src="../images/manifest/find.png" height="256" width="256">
+        </div>
+        <br>
+        <div class="container flex-center-justified">
+        <img src="../images/manifest/beaconwhite.png" height="256" width="256">
+        </div>
+        <br>
+        <div class="container flex-center-justified">
+        <img src="../images/manifest/befound.png" height="256" width="256">
+        </div>
+
+
+    </template>
+
+    <script>
+        class BeaconHome extends Polymer.Element {
+            static get is() { return 'beacon-home'; }
+            static get properties() {
+                return {
+                    // This shouldn't be neccessary, but the Analyzer isn't picking up
+                    // Polymer.Element#rootPath
+                    rootPath: String,
+                };
+            }
+        }
+
+        window.customElements.define(BeaconHome.is, BeaconHome);
+    </script>
+</dom-module>

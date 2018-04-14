@@ -34,11 +34,12 @@
         </style>
 
         <firebase-auth user="{{user}}" app-name="beacon"></firebase-auth>
-        <!--app-name="beacon"-->
-        <!--equalTo="{{find1}}"-->
+
         <firebase-query
+                app-name="beacon"
                 id="query"
-                path="/users"
+                equalTo="{{find1}}"
+                path="/beFoundBeacons"
                 data="{{findBeacons}}">
         </firebase-query>
 
@@ -130,24 +131,37 @@
 
         <br>
 
-        <div class="card" style="background-color: #FFFFFF">
-            <p>Selected value: [[find1]]</p>
-            <p>Selected value: [[findDistance]]</p>
-            <p>Selected value: [[findTime]]</p>
+        <!--<div class="card" style="background-color: #FFFFFF">
+            <p>Selected value: {{find1}}}</p>
+            <p>Selected value: {{findDistance}}}</p>
+            <p>Selected value: {{findTime}}</p>
             <p>{{findBeacons}}</p>
+        </div>-->
+
+        <div id="card">
+            <div id="results">
+                <ul id="results-list">
+                    <template is="dom-repeat" items="[[findBeacons]]" as="result">
+                        <li>
+                            <p class="content">[[result.found1]]</p>
+                            <p class="content">[[result.found2]]</p>
+                            <p class="content">[[result.found2]]</p>
+                            <p class="content">[[result.foundDistance]]</p>
+                            <p class="content">[[result.foundTime]]</p>
+                            <p class="content">[[result.latitude]]</p>
+                            <p class="content">[[result.longitude]]</p>
+                        </li>
+                    </template>
+                </ul>
+            </div>
         </div>
 
-        <!--{{ _makeArray(findBeacons) }}
-        {{data.beacons}}
-        {{data.beFoundBeacons}}
-        {{data.found1}}-->
-
-        <div class="card" style="background-color: #FFFFFF">
+        <!--<div class="card" style="background-color: #FFFFFF">
             <template is="dom-repeat" items="[[findBeacons]]">
                 <div class="profile card">
                     {{item.$key}}
                     {{item.value}}
-                </div>
+                </div>-->
                 <!--<template is="dom-repeat" items="{{item.found1}}">
                     <span>{{item.beFoundDescription}}</span>
                 </template>-->

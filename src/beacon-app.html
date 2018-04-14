@@ -32,10 +32,11 @@ Sweet--James
 
 <dom-module id="beacon-app">
     <template>
-        <!--name="beacon"-->
+
         <firebase-app
+                name="beacon"
                 auth-domain="beacon-1515553602130.firebaseapp.com"
-                database-url="https://beacon-1515553602130.firebaseio.com/"
+                database-url="https://beacon-1515553602130.firebaseio.com"
                 api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
         </firebase-app>
 
@@ -103,9 +104,10 @@ Sweet--James
                     <img src="../images/manifest/beaconwhite.png" height="42" width="42">
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                    <a name="home" href="[[rootPath]]home">Home</a>
                     <a name="find" href="[[rootPath]]find">Find</a>
                     <a name="befound" href="[[rootPath]]befound">Be Found</a>
-                    <a name="savedbeacons" href="[[rootPath]]savedbeacons">Saved Beacons</a>
+                    <a name="savedbeacons" href="[[rootPath]]savedbeacons">Saved Beeqins</a>
                     <a name="settings" href="[[rootPath]]settings">Settings</a>
                 </iron-selector>
             </app-drawer>
@@ -141,6 +143,7 @@ Sweet--James
                         attr-for-selected="name"
                         fallback-selection="404"
                         role="main">
+                    <beacon-home name="home"></beacon-home>
                     <beacon-find name="find"></beacon-find>
                     <beacon-befound name="befound"></beacon-befound>
                     <beacon-savedbeacons name="savedbeacons"></beacon-savedbeacons>
@@ -182,7 +185,7 @@ Sweet--James
             _routePageChanged(page) {
                 // If no page was found in the route data, page will be an empty string.
                 // Default to 'view1' in that case.
-                this.page = page || 'find';
+                this.page = page || 'home';
 
                 // Close a non-persistent drawer when the page & route are changed.
                 if (!this.$.drawer.persistent) {
