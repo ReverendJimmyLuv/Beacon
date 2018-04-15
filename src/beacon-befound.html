@@ -36,10 +36,9 @@
             }
         </style>
 
-        <firebase-auth user="{{user}}" app-name="beacon"></firebase-auth>
+        <firebase-auth user="{{user}}"></firebase-auth>
 
         <firebase-query
-                app-name="beacon"
                 id="befound"
                 path="/beFoundBeacons"
                 data="{{beFoundBeacons}}">
@@ -180,10 +179,6 @@
 
             static get properties() {
                 return {
-                    /*user: {
-                        type: Object,
-                        value: user.uid,
-                    },*/
                     foundlist: {
                         type: Array,
                         value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'],
@@ -240,7 +235,7 @@
 
             createBeacon() {
                 this.$.befound.ref.push({
-                    /*user: this.user.value,*/
+                    user: this.user.uid,
                     found1: this.$.found1.value,
                     found2: this.$.found2.value,
                     found3: this.$.found3.value,

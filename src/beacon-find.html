@@ -33,10 +33,9 @@
             }
         </style>
 
-        <firebase-auth user="{{user}}" app-name="beacon"></firebase-auth>
+        <firebase-auth user="{{user}}"></firebase-auth>
 
         <firebase-query
-                app-name="beacon"
                 id="query"
                 equalTo="{{find1}}"
                 path="/beFoundBeacons"
@@ -146,6 +145,7 @@
                             <p class="content">[[result.found1]]</p>
                             <p class="content">[[result.found2]]</p>
                             <p class="content">[[result.found2]]</p>
+                            <p class="content">[[result.beFoundDescription]]</p>
                             <p class="content">[[result.foundDistance]]</p>
                             <p class="content">[[result.foundTime]]</p>
                             <p class="content">[[result.latitude]]</p>
