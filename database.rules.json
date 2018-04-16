@@ -1,7 +1,7 @@
 // These rules grant access to a node matching the authenticated
 // user's ID from the Firebase auth token
 //previous .read rule was - ".read": "$uid === auth.uid",
-{
+/*{
   "rules": {
     "users": {
       "$uid": {
@@ -9,5 +9,11 @@
         ".write": "$uid === auth.uid"
       }
     }
+  }
+}*/
+{
+  "rules": {
+    ".read": true,
+    ".write": true
   }
 }

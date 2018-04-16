@@ -32,12 +32,12 @@
                 };
             }
         </style>
-
+        <!--app-name="beacon"-->
         <firebase-auth user="{{user}}"></firebase-auth>
-
+        <!--app-name="beacon"-->
+        <!--equalTo="{{find1}}"-->
         <firebase-query
-                id="query"
-                equalTo="{{find1}}"
+                id="findQuery"
                 path="/beFoundBeacons"
                 data="{{findBeacons}}">
         </firebase-query>
@@ -104,6 +104,18 @@
             !Search Beeqins
         </paper-button>
 
+
+        <!--<template is="dom-if" if="{{searchResults}}">
+            <div class="card" style="background-color: #FFFFFF">
+                <template is="dom-repeat" items="[[findBeacons]]">
+                    <div class="profile card">
+                        {{item.$key}}
+                        {{item.value}}
+                    </div>
+                </template>
+            </div>
+        </template>-->
+
         <style is="custom-style">
             /*paper-button.custom {
                 --paper-button-ink-color: #000000;
@@ -129,13 +141,28 @@
         </style>
 
         <br>
+        <div hidden$="{{searchResults}}">
+            <div class="card">
+                <div id="find-beacons">
+                    <ul id="find-results">
+                        <template is="dom-repeat" items="[[findBeacons]]" as="result">
+                            <li>
+                                <p class="content">[[result.found1]]</p>
+                                <p class="content">[[result.found2]]</p>
+                                <p class="content">[[result.found3]]</p>
+                                <p class="content">[[result.beFoundDescription]]</p>
+                                <p class="content">[[result.foundDistance]]</p>
+                                <p class="content">[[result.foundTime]]</p>
+                                <p class="content">[[result.latitude]]</p>
+                                <p class="content">[[result.longitude]]</p>
+                                <p class="content">[[result.user]]</p>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        <!--<div class="card" style="background-color: #FFFFFF">
-            <p>Selected value: {{find1}}}</p>
-            <p>Selected value: {{findDistance}}}</p>
-            <p>Selected value: {{findTime}}</p>
-            <p>{{findBeacons}}</p>
-        </div>-->
 
         <div id="card">
             <div id="results">
@@ -144,28 +171,17 @@
                         <li>
                             <p class="content">[[result.found1]]</p>
                             <p class="content">[[result.found2]]</p>
-                            <p class="content">[[result.found2]]</p>
+                            <p class="content">[[result.found3]]</p>
                             <p class="content">[[result.beFoundDescription]]</p>
                             <p class="content">[[result.foundDistance]]</p>
                             <p class="content">[[result.foundTime]]</p>
                             <p class="content">[[result.latitude]]</p>
                             <p class="content">[[result.longitude]]</p>
+                            <p class="content">[[result.user]]</p>
                         </li>
                     </template>
                 </ul>
             </div>
-        </div>
-
-        <!--<div class="card" style="background-color: #FFFFFF">
-            <template is="dom-repeat" items="[[findBeacons]]">
-                <div class="profile card">
-                    {{item.$key}}
-                    {{item.value}}
-                </div>-->
-                <!--<template is="dom-repeat" items="{{item.found1}}">
-                    <span>{{item.beFoundDescription}}</span>
-                </template>-->
-            </template>
         </div>
 
     </template>
@@ -205,21 +221,24 @@
                     findTime: {
                         type: Object,
                     },
+                    searchResults: {
+                        type: Boolean,
+                        notify: true,
+                        value: true,
+                    },
                 };
             }
 
-            _makeArray(items) {
-                return Object.keys(items).map(function (key) { return items[key];});
-            }
+            /*var ref = firebase.database.ref('beFoundBeacons');*/
 
             searchFindBeacons() {
-                this.$.query.ref.push({
-                    find1: this.$.find1.value,
-                    find2: this.$.find2.value,
-                    find3: this.$.find3.value,
-                    findDistance: this.$.findDistance.value,
-                    findTime: this.$.findTime.value
-                });
+                /*firebase.database.ref('beFoundBeacons').orderByChild('found1').equalsTo(this.$.find1).on('child_added', function(snap) {
+                    console.log(snap.val());
+                });*/
+
+                /*var beFoundBeaconsRef = ref.child('beFoundBeacons');*/
+                /*this.$.findQuery.ref.child.equalTo(this.$.find1);*/
+                this.searchResults = false;
             }
         }
 
