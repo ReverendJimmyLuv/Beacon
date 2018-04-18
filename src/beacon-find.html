@@ -36,8 +36,11 @@
         <firebase-auth user="{{user}}"></firebase-auth>
         <!--app-name="beacon"-->
         <!--equalTo="{{find1}}"-->
+
         <firebase-query
                 id="findQuery"
+                order-by-child="found1"
+                equal-to="{{find1}}"
                 path="/beFoundBeacons"
                 data="{{findBeacons}}">
         </firebase-query>
@@ -103,18 +106,6 @@
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Search Beeqins
         </paper-button>
-
-
-        <!--<template is="dom-if" if="{{searchResults}}">
-            <div class="card" style="background-color: #FFFFFF">
-                <template is="dom-repeat" items="[[findBeacons]]">
-                    <div class="profile card">
-                        {{item.$key}}
-                        {{item.value}}
-                    </div>
-                </template>
-            </div>
-        </template>-->
 
         <style is="custom-style">
             /*paper-button.custom {
@@ -229,15 +220,7 @@
                 };
             }
 
-            /*var ref = firebase.database.ref('beFoundBeacons');*/
-
             searchFindBeacons() {
-                /*firebase.database.ref('beFoundBeacons').orderByChild('found1').equalsTo(this.$.find1).on('child_added', function(snap) {
-                    console.log(snap.val());
-                });*/
-
-                /*var beFoundBeaconsRef = ref.child('beFoundBeacons');*/
-                /*this.$.findQuery.ref.child.equalTo(this.$.find1);*/
                 this.searchResults = false;
             }
         }
