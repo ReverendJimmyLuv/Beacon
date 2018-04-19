@@ -46,15 +46,18 @@
                 data="{{findBeacons}}">
         </firebase-query>
 
+        <div style="position: absolute; left: 50%">
+            <a href="[[rootPath]]home">
+                <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
+            </a>
+        </div>
         <div class="card" style="background-color: #FFFFFF">
-
-            <img src="../images/manifest/glyph_webicon.png" height="62" width="62">
 
             <h1 style="font-size:200%">Find</h1>
 
             <vaadin-combo-box
                     id="find1"
-                    label="Find Beacons!"
+                    label="Find Beeqins!"
                     items="[[findList]]"
                     value="{{find1}}"
                     allow-custom-value>

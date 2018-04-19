@@ -14,13 +14,20 @@
                 height: 100%;
             }
         </style>
+
+        <div style="position: absolute; left: 50%">
+            <a href="[[rootPath]]home">
+                <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
+            </a>
+        </div>
+
         <!--app-name="beacon"-->
         <div class="card">
             <login-fire
-                providers="google,anonymous"
-                user="{{user}}"
-                signed-in="{{signedIn}}"
-                debug>
+                    providers="google,anonymous"
+                    user="{{user}}"
+                    signed-in="{{signedIn}}"
+                    debug>
             </login-fire>
         </div>
 
@@ -46,7 +53,8 @@
                         type: Object,
                     },
                 };
-    }
+            }
+
             /* login() {
                 return this.$.auth.signInWithPopup();
             }

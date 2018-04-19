@@ -58,16 +58,19 @@
                 path="/users/[[userId]]/beacons/befounds/[[befoundId]]"
                 data="{{befound}}">
         </firebase-document>-->
-
+        <div style="position: absolute; left: 50%">
+            <a href="[[rootPath]]home">
+                <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
+            </a>
+        </div>
         <div class="card">
-            <img src="../images/manifest/glyph_webicon.png" height="62" width="62">
 
             <h1 style="font-size:200%">Be Found</h1>
 
             <!--<p>Selected value: {{found1}}</p>-->
             <vaadin-combo-box
                     id="found1"
-                    label="Create Beacon!"
+                    label="Create Beeqin!"
                     items="[[foundlist]]"
                     value="{{found1}}"
                     allow-custom-value>
@@ -91,7 +94,7 @@
 
             <paper-input
                     id="beFoundDescription"
-                    label="Beacon Description"
+                    label="Beeqin Description"
                     value="{{beFoundDescription}}"
                     char-counter maxlength="140">
             </paper-input>
