@@ -32,7 +32,8 @@
     "login-fire": "convoo/login-fire#^1.0.0",
     "iron-demo-helpers": "^2.0.0",
     "paper-progress": "PolymerElements/paper-progress#^2.0.1",
-    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1"
+    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1",
+    "paper-dialog": "PolymerElements/paper-dialog#^2.1.1"
   },
   "resolutions": {
     "polymer": "^2.0.0"

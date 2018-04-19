@@ -16,6 +16,8 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+
 
 <dom-module id="beacon-befound">
     <template>
@@ -24,6 +26,7 @@
                 display: block;
                 background-color: #F29737;
                 padding: 10px;
+                height: 100%;
             }
 
             paper-button.orange {
@@ -57,7 +60,7 @@
         </firebase-document>-->
 
         <div class="card">
-            <img src="../images/manifest/beaconwhite.png" height="62" width="62">
+            <img src="../images/manifest/glyph_webicon.png" height="62" width="62">
 
             <h1 style="font-size:200%">Be Found</h1>
 
@@ -166,9 +169,15 @@
             }
         </style>
 
-        <div hidden$="{{beaconCreated}}">
-            <h1>You did it!  Beacon Created!  Now just sit back and Be Found.</h1>
-        </div>
+        <paper-dialog opened$="{{beaconCreated}}">
+                <h2>Beacon Created!</h2>
+        </paper-dialog>
+
+        <!--<div hidden$="{{beaconCreated}}">
+            <paper-dialog>
+                <h2>You did it! Beacon Created! Now just sit back and Be Found.</h2>
+            </paper-dialog>
+        </div>-->
     </template>
 
     <script>
@@ -204,7 +213,7 @@
                     beaconCreated: {
                         type: Boolean,
                         notify: true,
-                        value: true,
+                        value: false,
                     },
                     found1: {
                         type: Object,
@@ -251,7 +260,7 @@
                 this.$.beFoundDescription.value = null;
                 this.$.foundDistance.value = null;
                 this.$.foundTime.value = null;
-                this.beaconCreated = false;
+                this.beaconCreated = true;
             }
 
         }

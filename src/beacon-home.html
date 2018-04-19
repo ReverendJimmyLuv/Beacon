@@ -1,13 +1,17 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
 
 <dom-module id="beacon-home">
-    <template style="background-color: #F297737">
+    <template>
         <style>
             :host {
                 display: block;
                 background-color: #F29737;
                 padding: 10px 20px;
+                height: 100%;
             }
+
         </style>
 
         <custom-style>
@@ -18,17 +22,24 @@
                 }
             </style>
         </custom-style>
-
+        <br>
+        <br>
         <div class="container flex-center-justified">
-            <img src="../images/manifest/find.png" height="114" width="114">
+            <a href="[[rootPath]]find">
+                <img src="../images/manifest/findtransparent.png" height="114" width="114">
+            </a>
         </div>
         <br>
         <div class="container flex-center-justified">
-        <img src="../images/manifest/beaconwhite.png" height="114" width="114">
+            <a href="[[rootPath]]home">
+                <img src="../images/manifest/horizontal_logo.png" height="95" width="144">
+            </a>
         </div>
         <br>
         <div class="container flex-center-justified">
-        <img src="../images/manifest/befound.png" height="114" width="114">
+            <a href="[[rootPath]]befound">
+                <img src="../images/manifest/befoundtransparent.png" height="114" width="114">
+            </a>
         </div>
 
 
@@ -36,7 +47,10 @@
 
     <script>
         class BeaconHome extends Polymer.Element {
-            static get is() { return 'beacon-home'; }
+            static get is() {
+                return 'beacon-home';
+            }
+
             static get properties() {
                 return {
                     // This shouldn't be neccessary, but the Analyzer isn't picking up
