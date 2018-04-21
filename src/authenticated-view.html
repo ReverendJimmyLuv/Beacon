@@ -11,7 +11,6 @@
 </authenticated-view>-->
 
 
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 
@@ -52,14 +51,14 @@
 
             _pageChanged(page, auth) {
                 if (page === this.name) {
-                    if (auth) {
-                        if (auth.isAnonymous) {
-                            this.set('route.path', 'login');
-                        } else {
-                            var resolvedPageUrl = this.resolveUrl('beacon-' + page + '.html');
-                            Polymer.importHref(resolvedPageUrl, null, null, true);
-                        }
+                    if (auth === null) {
+                        /*if (auth.isAnonymous) {*/
+                        this.set('route.path', 'login');
+                    } else {
+                        var resolvedPageUrl = this.resolveUrl('beacon-' + page + '.html');
+                        Polymer.importHref(resolvedPageUrl, null, null, true);
                     }
+                    /*}*/
                 }
             }
         }

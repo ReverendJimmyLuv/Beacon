@@ -41,7 +41,10 @@
 
         <firebase-auth user="{{user}}"></firebase-auth>
 
-        <paper-dialog opened$="[[!user]]">
+        <paper-dialog opened$="[[!user]]"
+                      style="background-color: #F8C945"
+                      no-cancel-on-esc-key="true"
+                      no-cancel-on-outside-click="true">
             <h2>You must login to create Beeqin</h2>
         </paper-dialog>
 

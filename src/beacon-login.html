@@ -3,6 +3,7 @@
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../src/login-fire-changed-paths/login-fire.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 <dom-module id="beacon-login">
     <template>
@@ -21,12 +22,18 @@
             </a>
         </div>
 
-        <!--app-name="beacon"-->
+        <paper-dialog opened$="[[!user]]"
+                      style="background-color: #F8C945"
+                      no-cancel-on-esc-key="true"
+                      no-cancel-on-outside-click="true">
+            <h2>You must login to create a Beeqin</h2>
+        </paper-dialog>
+
         <div class="card">
             <login-fire
                     providers="google,anonymous"
                     user="{{user}}"
-                    signed-in="{{signedIn}}"
+                    signed-in="{{isSignedIn}}"
                     redirect="true"
                     debug>
             </login-fire>
