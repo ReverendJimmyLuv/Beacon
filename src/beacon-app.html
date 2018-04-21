@@ -106,7 +106,7 @@ Sweet--James
             <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
                 <app-toolbar>
                     <a href="[[rootPath]]home">
-                    <img src="../images/manifest/glyph_webicon.png" height="42" width="42">
+                        <img src="../images/manifest/glyph_webicon.png" height="42" width="42">
                     </a>
                 </app-toolbar>
                 <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
@@ -153,7 +153,9 @@ Sweet--James
                         role="main">
                     <beacon-home name="home"></beacon-home>
                     <beacon-find name="find"></beacon-find>
-                    <beacon-befound name="befound"></beacon-befound>
+                    <authenticated-view name="befound" page="[[page]]" auth="[[user]]" route="{{route}}">
+                        <beacon-befound name="befound" route="{{route}}"></beacon-befound>
+                    </authenticated-view>
                     <beacon-savedbeacons name="savedbeacons"></beacon-savedbeacons>
                     <beacon-settings name="settings"></beacon-settings>
                     <beacon-404 name="404"></beacon-404>
@@ -192,7 +194,7 @@ Sweet--James
 
             _routePageChanged(page) {
                 // If no page was found in the route data, page will be an empty string.
-                // Default to 'view1' in that case.
+                // Default to 'home' in that case.
                 this.page = page || 'home';
 
                 // Close a non-persistent drawer when the page & route are changed.

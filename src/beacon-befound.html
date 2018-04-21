@@ -38,9 +38,13 @@
                 };
             }
         </style>
-        <!--app-name="beacon"-->
+
         <firebase-auth user="{{user}}"></firebase-auth>
-        <!--app-name="beacon"-->
+
+        <paper-dialog opened$="[[!user]]">
+            <h2>You must login to create Beeqin</h2>
+        </paper-dialog>
+
         <firebase-query
                 id="befound"
                 path="/beFoundBeacons"
@@ -52,12 +56,6 @@
         <input id="latitude" value="{{latitude}}" hidden>
         <input id="longitude" value="{{longitude}}" hidden>
 
-        <!--<firebase-document
-                id="befound"
-                app-name="beacon"
-                path="/users/[[userId]]/beacons/befounds/[[befoundId]]"
-                data="{{befound}}">
-        </firebase-document>-->
         <div style="position: absolute; left: 50%">
             <a href="[[rootPath]]home">
                 <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
