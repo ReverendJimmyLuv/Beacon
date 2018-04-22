@@ -21,9 +21,10 @@ Sweet--James
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="authenticated-view.html">
-<link rel="import" href="beacon-icons.html">
+<link rel="import" href="../src/authenticated-view.html">
+<link rel="import" href="../src/beacon-icons.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="lazy-import" href="beacon-home.html">
 <link rel="lazy-import" href="beacon-find.html">
 <link rel="lazy-import" href="beacon-befound.html">
 <link rel="lazy-import" href="beacon-savedbeacons.html">
@@ -40,7 +41,7 @@ Sweet--James
                 api-key="AIzaSyCQWuwquWNPK759yM7a_JUF02MV5Xd9Fpo">
         </firebase-app>
 
-        <firebase-auth user="{{user}}" signed-in="{{isSignedIn}}"></firebase-auth>
+        <firebase-auth user="{{user}}"></firebase-auth>
 
         <style>
             :host {

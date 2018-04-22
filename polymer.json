@@ -10,7 +10,8 @@
   ],
   "sources": [
     "src/**/*",
-    "images/**/*"
+    "images/**/*",
+    "bower.json"
   ],
   "extraDependencies": [
     "manifest.json",

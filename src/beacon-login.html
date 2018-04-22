@@ -23,25 +23,23 @@
         </div>
 
         <paper-dialog opened$="[[!user]]"
-                      style="background-color: #F8C945"
-                      no-cancel-on-esc-key="true"
-                      no-cancel-on-outside-click="true">
-            <h2>You must login to create a Beeqin</h2>
+                      style="background-color: #F8C945">
+            <h2>You must login to</h2>
+            <h2>create a Beeqin</h2>
         </paper-dialog>
 
         <div class="card">
             <login-fire
                     providers="google,anonymous"
                     user="{{user}}"
-                    signed-in="{{isSignedIn}}"
-                    redirect="true"
+                    signed-in="{{SignedIn}}"
                     debug>
             </login-fire>
         </div>
 
         <template is="dom-if" if="[[user]]">
             <h1>Welcome [[user.displayName]]!</h1>
-            <img src="[[user.photoURL]]">
+            <img src="[[user.photoURL]]" height="144" width="144">
         </template>
 
     </template>
