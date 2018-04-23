@@ -16,6 +16,8 @@
             }
         </style>
 
+        <firebase-auth id="auth" user="{{user}}"></firebase-auth>
+
         <div style="position: absolute; left: 50%">
             <a href="[[rootPath]]home">
                 <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
@@ -37,6 +39,13 @@
             </login-fire>
         </div>
 
+        <!--<firebase-document
+                id="login"
+                path="/users"
+                ref="{{ref}}"
+                data="{{users}}">
+        </firebase-document>-->
+
         <template is="dom-if" if="[[user]]">
             <h1>Welcome [[user.displayName]]!</h1>
             <img src="[[user.photoURL]]" height="144" width="144">
@@ -52,14 +61,72 @@
 
             static get properties() {
                 return {
+                    auth: {
+                        type: Object,
+                        reflectToAttribute: true,
+                        observer: '_loginChanged',
+                    },
                     user: {
                         type: Object,
+                        notify: true,
+                        observer: '_userChanged'
                     },
                     statusKnown: {
                         type: Object,
                     },
                 };
             }
+
+            static get observers() {
+                return [
+                    /*'_loginChanged(auth)',*/
+                ];
+            }
+
+            _userChanged(user) {
+                firebase.auth().onAuthStateChanged(function (user) {
+                    /*app.user = user;*/
+                    console.log("Hi!");
+                    if (user) {
+                        var loginQueueRef = firebase.database().ref('/users/userWriteable/loginQueue');
+                        var userLoginRef = loginQueueRef.child(user.uid);
+                        console.log(userLoginRef.toString(), user);
+                        userLoginRef.set({
+                            name: user.displayName,
+                            email: user.email,
+                            uid: user.uid,
+                            emailVerified: user.emailVerified,
+                            photoUrl: user.photoURL
+                        })
+                            .catch(function (e) {
+                                console.log('login error', e);
+                            });
+                    }
+                });
+            }
+
+            /*_loginChanged(auth) {
+                var loginsRef = this.$.login.ref.child('userWriteable/loginQueue');
+                var accountsRef = this.$.login.ref.child('userReadable/accounts');
+                var adminEmails = ['jameshmadsen@gmail.com'];
+
+                loginsRef.on('child_added', function (snap) {
+                    console.log('Login queue received', snap.val());
+                    var user = snap.val();
+                    var userRef = snap.ref;
+
+                    if (~adminEmails.indexOf(user.email)) {
+                        user.isAdmin = true;
+                    }
+                    user.lastLogin = Date.now();
+
+                    accountsRef.child(user.uid).update(user)
+                        .then(function () {
+                            return userRef.remove();
+                        });
+                });
+            }*/
+
 
             /* login() {
                 return this.$.auth.signInWithPopup();

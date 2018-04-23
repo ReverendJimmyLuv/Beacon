@@ -158,7 +158,9 @@ Sweet--James
                     <authenticated-view name="befound" page="[[page]]" auth="[[user]]" route="{{route}}">
                         <beacon-befound name="befound" route="{{route}}"></beacon-befound>
                     </authenticated-view>
-                    <beacon-savedbeacons name="savedbeacons"></beacon-savedbeacons>
+                    <authenticated-view name="savedbeacons" page="[[page]]" auth="[[user]]" route="{{route}}">
+                        <beacon-savedbeacons name="savedbeacons" route="{{route}}"></beacon-savedbeacons>
+                    </authenticated-view>
                     <beacon-settings name="settings"></beacon-settings>
                     <beacon-404 name="404"></beacon-404>
                     <beacon-login name="login"></beacon-login>
