@@ -16,7 +16,7 @@
             }
         </style>
 
-        <firebase-auth id="auth" user="{{user}}"></firebase-auth>
+        <firebase-auth id="auth" user="{{user}}" on-user-changed="_userChanged"></firebase-auth>
 
         <div style="position: absolute; left: 50%">
             <a href="[[rootPath]]home">
@@ -39,13 +39,6 @@
             </login-fire>
         </div>
 
-        <!--<firebase-document
-                id="login"
-                path="/users"
-                ref="{{ref}}"
-                data="{{users}}">
-        </firebase-document>-->
-
         <template is="dom-if" if="[[user]]">
             <h1>Welcome [[user.displayName]]!</h1>
             <img src="[[user.photoURL]]" height="144" width="144">
@@ -61,15 +54,10 @@
 
             static get properties() {
                 return {
-                    auth: {
-                        type: Object,
-                        reflectToAttribute: true,
-                        observer: '_loginChanged',
-                    },
                     user: {
                         type: Object,
                         notify: true,
-                        observer: '_userChanged'
+                        /*observer: '_userChanged'*/
                     },
                     statusKnown: {
                         type: Object,
@@ -77,16 +65,8 @@
                 };
             }
 
-            static get observers() {
-                return [
-                    /*'_loginChanged(auth)',*/
-                ];
-            }
-
-            _userChanged(user) {
+            _userChanged() {
                 firebase.auth().onAuthStateChanged(function (user) {
-                    /*app.user = user;*/
-                    console.log("Hi!");
                     if (user) {
                         var loginQueueRef = firebase.database().ref('/users/userWriteable/loginQueue');
                         var userLoginRef = loginQueueRef.child(user.uid);
@@ -103,11 +83,10 @@
                             });
                     }
                 });
-            }
 
-            /*_loginChanged(auth) {
-                var loginsRef = this.$.login.ref.child('userWriteable/loginQueue');
-                var accountsRef = this.$.login.ref.child('userReadable/accounts');
+                var ref = firebase.database().ref('/users');
+                var loginsRef = ref.child('userWriteable/loginQueue');
+                var accountsRef = ref.child('userReadable/accounts');
                 var adminEmails = ['jameshmadsen@gmail.com'];
 
                 loginsRef.on('child_added', function (snap) {
@@ -125,25 +104,7 @@
                             return userRef.remove();
                         });
                 });
-            }*/
-
-
-            /* login() {
-                return this.$.auth.signInWithPopup();
             }
-            logout() {
-                return this.$.auth.signOut();
-            }
-
-            _signOut() {
-                return this.shadowRoot.querySelector('login-fire').signOut();
-                // or
-                // this.$$('login-fire-button').signOut();
-                // or
-                // this.$$('login-fire-social').signOut();
-                // or
-                // this.$$('login-fire-form').signOut();
-            }*/
         }
 
         window.customElements.define(BeaconLogin.is, BeaconLogin);
