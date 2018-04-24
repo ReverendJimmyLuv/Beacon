@@ -1,0 +1,99 @@
+<link rel="import" href="color.html">
+
+<link rel="import" href="../vaadin-progress-bar/src/vaadin-progress-bar.html">
+
+<dom-module id="material-progress-bar" theme-for="vaadin-progress-bar">
+  <template>
+    <style>
+      :host {
+        height: 4px;
+        margin: 8px 0;
+      }
+
+      [part="bar"] {
+        background-color: var(--material-divider-color);
+      }
+
+      [part="value"] {
+        background-color: var(--material-primary-color);
+        transform: none;
+        width: calc(var(--vaadin-progress-value) * 100%);
+        min-width: 0.25em;
+        will-change: width;
+        transition: 0.2s width;
+      }
+
+      /* Indeterminate mode */
+
+      :host([indeterminate]) [part="value"] {
+        --material-progress-indeterminate-progress-bar-background: var(--material-primary-color);
+        width: 30%;
+        background-color: var(--material-progress-indeterminate-progress-bar-background);
+        overflow: hidden;
+        will-change: transform;
+        animation: running-progress 4s linear infinite;
+      }
+
+      @-webkit-keyframes running-progress {
+        0% {
+          margin-left: 0;
+          margin-right: 100%;
+          width: 0%;
+        }
+
+        37.5% {
+          margin-left: 0;
+          margin-right: 40%;
+          width: 60%;
+        }
+
+        62.5% {
+          margin-left: 40%;
+          margin-right: 0;
+          width: 60%;
+        }
+
+        100% {
+          margin-left: 100%;
+          margin-right: 0;
+          width: 0%;
+        }
+      }
+
+      @keyframes running-progress {
+        0% {
+          margin-left: 0;
+          margin-right: 100%;
+          width: 0%;
+        }
+
+        37.5% {
+          margin-left: 0;
+          margin-right: 40%;
+          width: 60%;
+        }
+
+        62.5% {
+          margin-left: 40%;
+          margin-right: 0;
+          width: 60%;
+        }
+
+        100% {
+          margin-left: 100%;
+          margin-right: 0;
+          width: 0%;
+        }
+      }
+
+      /* Error color */
+
+      :host([theme~="error"]) [part="value"],
+      :host([theme~="error"]) [part="value"]::before {
+        background-color: var(--material-error-color);
+        --material-progress-indeterminate-progress-bar-background: var(--material-error-color);
+      }
+
+    </style>
+  </template>
+</dom-module>

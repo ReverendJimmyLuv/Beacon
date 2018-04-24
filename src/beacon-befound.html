@@ -7,7 +7,8 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
-<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!--<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">-->
+<link rel="import" href="../src/vaadin-material-theme-master/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="shared-styles.html">
@@ -65,20 +66,21 @@
                 <img src="../images/manifest/horizontal_logo.png" height="57" width="86">
             </a>
         </div>
+
         <div class="card">
 
-            <h1 style="font-size:200%">Be Found</h1>
+            <h1 style="font-size:200%">Be Found/ Create Beeqin</h1>
 
-            <!--<p>Selected value: {{found1}}</p>-->
             <vaadin-combo-box
                     id="found1"
-                    label="Create Beeqin!"
+                    label="Create Beeqin!  What would you like to be found?"
                     items="[[foundlist]]"
                     value="{{found1}}"
-                    allow-custom-value>
+                    allow-custom-value
+                    style="width: 360px">
             </vaadin-combo-box>
 
-            <vaadin-combo-box
+            <!--<vaadin-combo-box
                     id="found2"
                     label="Unlock more filters"
                     items=""
@@ -86,13 +88,14 @@
                     disabled>
             </vaadin-combo-box>
 
+
             <vaadin-combo-box
                     id="found3"
                     label="Unlock more filters"
                     items=""
                     value="{{found3}}"
                     disabled>
-            </vaadin-combo-box>
+            </vaadin-combo-box>-->
 
             <paper-input
                     id="beFoundDescription"
@@ -101,8 +104,6 @@
                     char-counter maxlength="140">
             </paper-input>
 
-
-            <!--<p>Selected value: {{foundDistance}}</p>-->
             <vaadin-combo-box
                     id="foundDistance"
                     label="How Close to You?"
@@ -110,7 +111,6 @@
                     value="{{foundDistance}}">
             </vaadin-combo-box>
 
-            <!--<p>Selected value: {{foundTime}}</p>-->
             <vaadin-combo-box
                     id="foundTime"
                     label="When do you want it?"
@@ -120,44 +120,12 @@
 
         </div>
 
-        <!--OLD CODE
-            <div class="card">
-
-            <p>[[foundDistance]] is selected.</p>
-            <paper-dropdown-menu id="foundDistance" label="How Close to You?">
-                <paper-listbox slot="dropdown-content" selected="{{foundDistance}}" fallback-selection="0">
-                    <paper-item>Within 1 Mile</paper-item>
-                    <paper-item>Within 5 Miles</paper-item>
-                    <paper-item>Within 10 Miles</paper-item>
-                    <paper-item>Within 25 Miles</paper-item>
-                    <paper-item>Everywhere</paper-item>
-                </paper-listbox>
-            </paper-dropdown-menu>
-
-        </div>
-
-        <div class="card">
-            <p>[[foundTime]] is selected.</p>
-            <paper-dropdown-menu id="foundTime" label="When do you want it?">
-                <paper-listbox slot="dropdown-content" selected="{{foundTime}}" fallback-selection="0">
-                    <paper-item>Now</paper-item>
-                    <paper-item>Time of Day</paper-item>
-                    <paper-item>Days of the Week</paper-item>
-                    <paper-item>A Day Later On</paper-item>
-                </paper-listbox>
-            </paper-dropdown-menu>
-
-            <div hidden$="[[laterday]]">
-                <vaadin-date-picker label="What day?"></vaadin-date-picker>
-            </div>
-        </div>-->
-
         <paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save Beeqin to Favorites
         </paper-button>
 
-        <paper-button raised class="custom beeqin" on-tap="createBeacon">
+        <paper-button raised class="custom beeqin" on-tap="_createBeacon">
             <iron-icon icon="beacon-icons:search"></iron-icon>
             !Create Beeqin
         </paper-button>
@@ -175,14 +143,10 @@
         </style>
 
         <paper-dialog opened$="{{beaconCreated}}">
-                <h2>Beacon Created!</h2>
+            <h2>Beacon Created!</h2>
         </paper-dialog>
 
-        <!--<div hidden$="{{beaconCreated}}">
-            <paper-dialog>
-                <h2>You did it! Beacon Created! Now just sit back and Be Found.</h2>
-            </paper-dialog>
-        </div>-->
+
     </template>
 
     <script>
@@ -195,7 +159,8 @@
                 return {
                     foundlist: {
                         type: Array,
-                        value: ['Your Profile', 'Your Business', 'Your Listing', 'Garage Sale', 'Study Group'],
+                        value: ['Your Profile', 'Your Business/ Service', 'For Sale/ Listing',
+                            'Group Hangout', 'Garage Sale', 'Study Group'],
                     },
                     distancelist: {
                         type: Array,
@@ -203,7 +168,7 @@
                     },
                     timelist: {
                         type: Array,
-                        value: ['Now', 'Time of Day', 'Days of the Week', 'A Day Later On'],
+                        value: ['Always On', 'Custom'],
                     },
                     /*loading: {
                         type: Boolean,
@@ -247,7 +212,7 @@
                 };
             }
 
-            createBeacon() {
+            _createBeacon() {
                 this.$.befound.ref.push({
                     user: this.user.uid,
                     found1: this.$.found1.value,

@@ -1,0 +1,53 @@
+<link rel="import" href="color.html">
+<link rel="import" href="font-icons.html">
+
+<link rel="import" href="../../src/vaadin-material-theme-master/vaadin-combo-box.html">
+<link rel="import" href="../../src/vaadin-material-theme-master/vaadin-text-field.html">
+<link rel="import" href="../../src/vaadin-material-theme-master/vaadin-combo-box-dropdown.html">
+<link rel="import" href="../../src/vaadin-material-theme-master/vaadin-combo-box-item.html">
+
+<dom-module id="material-combo-box" theme-for="vaadin-combo-box">
+  <template>
+    <style>
+      :host {
+        outline: none;
+      }
+
+      [part$="button"] {
+        flex: none;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 24px;
+        text-align: center;
+        color: var(--material-disabled-text-color);
+        transition: 0.2s color;
+      }
+
+      [part$="button"]::before {
+        font-family: "material-icons";
+      }
+
+      [part="toggle-button"]::before {
+        content: "\e5cf";
+      }
+
+      [part="clear-button"]::before {
+        content: "\e5cd";
+      }
+
+      /* Read-only */
+
+      :host([readonly]) [part="toggle-button"] {
+        display: none;
+      }
+
+      /* Disabled */
+
+      :host([disabled]) [part$="button"] {
+        color: var(--material-disabled-color);
+      }
+
+    </style>
+  </template>
+</dom-module>
