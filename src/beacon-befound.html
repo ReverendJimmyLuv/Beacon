@@ -7,8 +7,13 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
-<!--<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">-->
-<link rel="import" href="../src/vaadin-material-theme-master/vaadin-combo-box.html">
+<link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
+<!--<link rel="import" href="../src/vaadin-material-theme-master/vaadin-combo-box.html">
+<link rel="import" href="../src/vaadin-material-theme-master/vaadin-text-field.html">-->
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
+<link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-group.html">
+<link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-button.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="shared-styles.html">
@@ -37,6 +42,10 @@
                     background-color: var(--paper-pink-a200) !important;
                     color: white !important;
                 };
+            }
+
+            .hide {
+                display: none;
             }
         </style>
 
@@ -67,18 +76,61 @@
             </a>
         </div>
 
+
         <div class="card">
 
             <h1 style="font-size:200%">Be Found/ Create Beeqin</h1>
 
-            <vaadin-combo-box
-                    id="found1"
+            <vaadin-radio-group id="coreType" value="{{coreType}}" on-value-changed="_identifyCoreBeFoundType">
+                <vaadin-radio-button value="Your Profile" id="coreType1">Your Profile</vaadin-radio-button>
+                <vaadin-radio-button value="Your Business or Service" id="coreType2">Your Business or Service
+                </vaadin-radio-button>
+                <vaadin-radio-button value="Classified Ad" id="coreType3">Classified Ad</vaadin-radio-button>
+                <vaadin-radio-button value="Group Hangout" id="coreType4">Group Hangout</vaadin-radio-button>
+                <vaadin-radio-button value="Custom" id="coreType5">Custom</vaadin-radio-button>
+                <!--<vaadin-radio-button value="Garage Sale">Garage Sale</vaadin-radio-button>
+                <vaadin-radio-button value="Study Group">Study Group</vaadin-radio-button>-->
+            </vaadin-radio-group>
+
+            <!--<vaadin-combo-box
+                    id="coreType"
                     label="Create Beeqin!  What would you like to be found?"
                     items="[[foundlist]]"
-                    value="{{found1}}"
+                    value="{{coreType}}"
                     allow-custom-value
                     style="width: 360px">
-            </vaadin-combo-box>
+            </vaadin-combo-box>-->
+
+            <div id="coreType1Div" class="hide">
+                <vaadin-text-field style="width: 20em" label="First Name" id="firstName"></vaadin-text-field>
+                <vaadin-text-field style="width: 20em" label="Last Name" id="lastName"></vaadin-text-field>
+                <br>
+                <vaadin-text-area style="width: 20em; min-height: 100px" label="Headline"
+                                  id="headline"></vaadin-text-area>
+                <br>
+                <vaadin-text-field style="width: 20em" label="Education" id="education"></vaadin-text-field>
+                <br>
+                <vaadin-text-field style="width: 20em" label="Industry" id="industry"></vaadin-text-field>
+                <br>
+                <vaadin-text-area style="width: 20em; min-height: 200px" label="Summary"
+                                  id="summary"></vaadin-text-area>
+            </div>
+
+            <div id="coreType2Div" class="hide">
+                <vaadin-text-field label="Business or Service Name"></vaadin-text-field>
+            </div>
+
+            <div id="coreType3Div" class="hide">
+                <vaadin-text-field label="Classified Ad"></vaadin-text-field>
+            </div>
+
+            <div id="coreType4Div" class="hide">
+                <vaadin-text-field label="Group Hangout"></vaadin-text-field>
+            </div>
+
+            <div id="coreType5Div" class="hide">
+                <vaadin-text-field label="Custom"></vaadin-text-field>
+            </div>
 
             <!--<vaadin-combo-box
                     id="found2"
@@ -97,41 +149,45 @@
                     disabled>
             </vaadin-combo-box>-->
 
-            <paper-input
+            <!--<paper-input
                     id="beFoundDescription"
                     label="Beeqin Description"
                     value="{{beFoundDescription}}"
                     char-counter maxlength="140">
-            </paper-input>
-
+            </paper-input>-->
+            <br>
             <vaadin-combo-box
                     id="foundDistance"
-                    label="How Close to You?"
+                    label="How Far to Broadcast?"
                     items="[[distancelist]]"
                     value="{{foundDistance}}">
             </vaadin-combo-box>
-
             <vaadin-combo-box
                     id="foundTime"
                     label="When do you want it?"
                     items="[[timelist]]"
                     value="{{foundTime}}">
             </vaadin-combo-box>
-
+            <br>
+            <div style="position: relative">
+                <paper-button raised class="custom beeqin" on-tap="_createBeacon">
+                    <iron-icon icon="beacon-icons:search"></iron-icon>
+                    !Create Beeqin
+                </paper-button>
+            </div>
         </div>
 
-        <paper-button toggles raised class="custom beeqin">
+        <!--<paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save Beeqin to Favorites
-        </paper-button>
+        </paper-button>-->
 
-        <paper-button raised class="custom beeqin" on-tap="_createBeacon">
-            <iron-icon icon="beacon-icons:search"></iron-icon>
-            !Create Beeqin
-        </paper-button>
 
         <style is="custom-style">
             paper-button.beeqin {
+                position: absolute;
+                bottom: 0;
+                right: 0;
                 background-color: #000000;
                 color: #F8C945;
             }
@@ -159,31 +215,15 @@
                 return {
                     foundlist: {
                         type: Array,
-                        value: ['Your Profile', 'Your Business/ Service', 'For Sale/ Listing',
-                            'Group Hangout', 'Garage Sale', 'Study Group'],
+                        value: ['Your Profile', 'Your Business or Service', 'Classified Ad', 'Group Hangout', 'Custom', 'Garage Sale', 'Study Group'],
                     },
                     distancelist: {
                         type: Array,
-                        value: ['Within 1 Mile', 'Within 5 Miles', 'Within 10 Miles', 'Within 25 Miles', 'Everywhere'],
+                        value: ['Out 1 Mile', 'Out 5 Miles', 'Out 10 Miles', 'Out 25 Miles'],
                     },
                     timelist: {
                         type: Array,
                         value: ['Always On', 'Custom'],
-                    },
-                    /*loading: {
-                        type: Boolean,
-                        notify: true,
-                        value: false,
-                    },
-                    laterday: {
-                        type: Boolean,
-                        notify: true,
-                        value: true,
-                    },*/
-                    beaconCreated: {
-                        type: Boolean,
-                        notify: true,
-                        value: false,
                     },
                     found1: {
                         type: Object,
@@ -209,13 +249,96 @@
                     longitude: {
                         type: Number,
                     },
+                    beaconCreated: {
+                        type: Boolean,
+                        notify: true,
+                        value: false,
+                    },
+                    coreType: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType1: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType2: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType3: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType4: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType5: {
+                        type: Object,
+                        notify: true,
+                    },
+                    coreType1Div: {
+                        type: Object,
+                    },
+                    coreType2Div: {
+                        type: Object,
+                    },
+                    coreType3Div: {
+                        type: Object,
+                    },
+                    coreType4Div: {
+                        type: Object,
+                    },
+                    coreType5Div: {
+                        type: Object,
+                    },
                 };
+            }
+
+            _identifyCoreBeFoundType() {
+                if (this.$.coreType1.checked === false) {
+                    this.$.coreType1Div.style.display = 'none';
+                }
+                if (this.$.coreType2.checked === false) {
+                    this.$.coreType2Div.style.display = 'none';
+                }
+                if (this.$.coreType3.checked === false) {
+                    this.$.coreType3Div.style.display = 'none';
+                }
+                if (this.$.coreType4.checked === false) {
+                    this.$.coreType4Div.style.display = 'none';
+                }
+                if (this.$.coreType5.checked === false) {
+                    this.$.coreType5Div.style.display = 'none';
+                }
+                if (this.$.coreType1.checked === true) {
+                    console.log("Your Profile");
+                    this.$.coreType1Div.style.display = 'block';
+
+                } else if (this.$.coreType2.checked === true) {
+                    console.log("Your Business or Service");
+                    this.$.coreType2Div.style.display = 'block';
+
+                } else if (this.$.coreType3.checked === true) {
+                    console.log("Classified Ad");
+                    this.$.coreType3Div.style.display = 'block';
+
+                } else if (this.$.coreType4.checked === true) {
+                    console.log("Group Hangout");
+                    this.$.coreType4Div.style.display = 'block';
+
+                } else {
+                    console.log("Custom");
+                    this.$.coreType5Div.style.display = 'block';
+
+                }
             }
 
             _createBeacon() {
                 this.$.befound.ref.push({
                     user: this.user.uid,
-                    found1: this.$.found1.value,
+                    coreType: this.$.coreType.value,
                     found2: this.$.found2.value,
                     found3: this.$.found3.value,
                     beFoundDescription: this.$.beFoundDescription.value,
@@ -224,7 +347,7 @@
                     latitude: this.$.latitude.value,
                     longitude: this.$.longitude.value
                 });
-                this.$.found1.value = null;
+                this.$.coreType.value = null;
                 this.$.found2.value = null;
                 this.$.found3.value = null;
                 this.$.beFoundDescription.value = null;
