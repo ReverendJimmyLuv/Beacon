@@ -102,18 +102,32 @@
             </vaadin-combo-box>-->
 
             <div id="coreType1Div" class="hide">
-                <vaadin-text-field style="width: 20em" label="First Name" id="firstName"></vaadin-text-field>
-                <vaadin-text-field style="width: 20em" label="Last Name" id="lastName"></vaadin-text-field>
+                <vaadin-text-field style="width: 17em" label="First Name" id="firstName"></vaadin-text-field>
+                <vaadin-text-field style="width: 17em" label="Last Name" id="lastName"></vaadin-text-field>
                 <br>
-                <vaadin-text-area style="width: 20em; min-height: 100px" label="Headline"
+                <vaadin-text-area style="width: 17em; min-height: 100px" label="Headline"
                                   id="headline"></vaadin-text-area>
                 <br>
-                <vaadin-text-field style="width: 20em" label="Education" id="education"></vaadin-text-field>
+                <vaadin-text-field style="width: 17em" label="Education" id="education"></vaadin-text-field>
                 <br>
-                <vaadin-text-field style="width: 20em" label="Industry" id="industry"></vaadin-text-field>
+                <vaadin-text-field style="width: 17em" label="Industry" id="industry"></vaadin-text-field>
                 <br>
-                <vaadin-text-area style="width: 20em; min-height: 200px" label="Summary"
+                <vaadin-text-area style="width: 17em; min-height: 200px" label="Summary"
                                   id="summary"></vaadin-text-area>
+                <br>
+                <vaadin-combo-box
+                        id="foundDistance"
+                        label="How Far to Broadcast?"
+                        items="[[distancelist]]"
+                        value="{{foundDistance}}">
+                </vaadin-combo-box>
+                <vaadin-combo-box
+                        id="foundTime"
+                        label="When do you want it?"
+                        items="[[timelist]]"
+                        value="{{foundTime}}">
+                </vaadin-combo-box>
+                <br>
             </div>
 
             <div id="coreType2Div" class="hide">
@@ -155,19 +169,7 @@
                     value="{{beFoundDescription}}"
                     char-counter maxlength="140">
             </paper-input>-->
-            <br>
-            <vaadin-combo-box
-                    id="foundDistance"
-                    label="How Far to Broadcast?"
-                    items="[[distancelist]]"
-                    value="{{foundDistance}}">
-            </vaadin-combo-box>
-            <vaadin-combo-box
-                    id="foundTime"
-                    label="When do you want it?"
-                    items="[[timelist]]"
-                    value="{{foundTime}}">
-            </vaadin-combo-box>
+
             <br>
             <div style="position: relative">
                 <paper-button raised class="custom beeqin" on-tap="_createBeacon">
