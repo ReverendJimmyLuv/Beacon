@@ -1,15 +1,13 @@
 <!--
 -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<!--<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">-->
+<!--<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">-->
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<!--<link rel="import" href="../bower_components/paper-item/paper-item.html">-->
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">
+<!--<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">-->
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
-<!--<link rel="import" href="../src/vaadin-material-theme-master/vaadin-combo-box.html">
-<link rel="import" href="../src/vaadin-material-theme-master/vaadin-text-field.html">-->
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
 <link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-group.html">
@@ -20,8 +18,8 @@
 <link rel="import" href="beacon-icons.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<!--<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
+<!--<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">-->
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 
 
@@ -46,6 +44,20 @@
 
             .hide {
                 display: none;
+            }
+        </style>
+        <style is="custom-style">
+            paper-button.beeqin {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background-color: #000000;
+                color: #F8C945;
+            }
+
+            paper-button.beeqin[active] {
+                background-color: #F29737;
+                color: #000000;
             }
         </style>
 
@@ -102,32 +114,35 @@
             </vaadin-combo-box>-->
 
             <div id="coreType1Div" class="hide">
-                <vaadin-text-field style="width: 17em" label="First Name" id="firstName"></vaadin-text-field>
-                <vaadin-text-field style="width: 17em" label="Last Name" id="lastName"></vaadin-text-field>
-                <br>
-                <vaadin-text-area style="width: 17em; min-height: 100px" label="Headline"
+                <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
+                <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
                                   id="headline"></vaadin-text-area>
-                <br>
-                <vaadin-text-field style="width: 17em" label="Education" id="education"></vaadin-text-field>
-                <br>
-                <vaadin-text-field style="width: 17em" label="Industry" id="industry"></vaadin-text-field>
-                <br>
-                <vaadin-text-area style="width: 17em; min-height: 200px" label="Summary"
+                <vaadin-text-field style="width: 100%" label="Education" id="education"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
+                <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
                                   id="summary"></vaadin-text-area>
-                <br>
                 <vaadin-combo-box
+                        style="width: 17em; padding-right: 10px"
                         id="foundDistance"
                         label="How Far to Broadcast?"
                         items="[[distancelist]]"
                         value="{{foundDistance}}">
                 </vaadin-combo-box>
                 <vaadin-combo-box
+                        style="width: 17em; padding-bottom: 150px"
                         id="foundTime"
-                        label="When do you want it?"
+                        label="When do you want to broadcast?"
                         items="[[timelist]]"
                         value="{{foundTime}}">
                 </vaadin-combo-box>
                 <br>
+                <div style="position: relative">
+                    <paper-button raised class="custom beeqin" on-tap="_createBeacon">
+                        <iron-icon icon="beacon-icons:search"></iron-icon>
+                        !Create Beeqin
+                    </paper-button>
+                </div>
             </div>
 
             <div id="coreType2Div" class="hide">
@@ -169,36 +184,12 @@
                     value="{{beFoundDescription}}"
                     char-counter maxlength="140">
             </paper-input>-->
-
-            <br>
-            <div style="position: relative">
-                <paper-button raised class="custom beeqin" on-tap="_createBeacon">
-                    <iron-icon icon="beacon-icons:search"></iron-icon>
-                    !Create Beeqin
-                </paper-button>
-            </div>
         </div>
 
         <!--<paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save Beeqin to Favorites
         </paper-button>-->
-
-
-        <style is="custom-style">
-            paper-button.beeqin {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                background-color: #000000;
-                color: #F8C945;
-            }
-
-            paper-button.beeqin[active] {
-                background-color: #F29737;
-                color: #000000;
-            }
-        </style>
 
         <paper-dialog opened$="{{beaconCreated}}">
             <h2>Beacon Created!</h2>
