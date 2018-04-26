@@ -5,17 +5,33 @@
 <link rel="import" href="../bower_components/google-map/google-map.html">
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
-<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="shared-styles.html">-->
 
 <dom-module id="beacon-savedbeacons">
     <template>
-        <style include="shared-styles">
+        <style>
             :host {
                 display: block;
                 background-color: #F29737;
                 padding: 10px;
-                height: 100%;
+                min-height: 100%;
             }
+
+            .card {
+                margin: 24px;
+                padding: 16px;
+                color: #757575;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
+
+            h1 {
+                margin: 16px 0;
+                color: #212121;
+                font-size: 22px;
+            }
+
             google-map {
                 height: 600px;
             }
@@ -36,7 +52,7 @@
 
         <div class="card">
             <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
-            <!-- TODO: change the API key to your own. NOTE! I did this and this is our API below -James -->
+            <!-- TODO: This is our API below -James -->
             <ul>
                 <li>Current Geo-Location</li>
                 <li>Latitude: [[latitude]]</li>

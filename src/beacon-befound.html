@@ -6,7 +6,6 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <!--<link rel="import" href="../bower_components/paper-item/paper-item.html">-->
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
-<!--<link rel="import" href="../bower_components/vaadin-valo-theme/vaadin-combo-box.html">-->
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
 <link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-area.html">
@@ -14,7 +13,7 @@
 <link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-button.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
-<link rel="import" href="shared-styles.html">
+<!--<link rel="import" href="shared-styles.html">-->
 <link rel="import" href="beacon-icons.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
@@ -25,41 +24,58 @@
 
 <dom-module id="beacon-befound">
     <template>
-        <style include="shared-styles">
+        <style>
             :host {
                 display: block;
                 background-color: #F29737;
                 padding: 10px;
-                height: 100%;
+                min-height: 100%;
             }
 
-            paper-button.orange {
+            .card {
+                margin: 24px;
+                padding: 16px;
+                color: #757575;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
+
+            h1 {
+                margin: 16px 0;
+                color: #212121;
+                font-size: 22px;
+            }
+
+            /*paper-button.orange {
                 background-color: var(--paper-orange-500);
                 color: white;
                 --paper-button-raised-keyboard-focus: {
                     background-color: var(--paper-pink-a200) !important;
                     color: white !important;
                 };
-            }
+            }*/
 
             .hide {
                 display: none;
             }
         </style>
-        <style is="custom-style">
-            paper-button.beeqin {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                background-color: #000000;
-                color: #F8C945;
-            }
+        <custom-style>
+            <style is="custom-style">
+                paper-button.beeqin {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    background-color: #000000;
+                    color: #F8C945;
+                }
 
-            paper-button.beeqin[active] {
-                background-color: #F29737;
-                color: #000000;
-            }
-        </style>
+                paper-button.beeqin[active] {
+                    background-color: #F29737;
+                    color: #000000;
+                }
+            </style>
+        </custom-style>
 
         <firebase-auth user="{{user}}"></firebase-auth>
 
@@ -114,34 +130,68 @@
             </vaadin-combo-box>-->
 
             <div id="coreType1Div" class="hide">
-                <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
-                <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
-                <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
-                                  id="headline"></vaadin-text-area>
-                <vaadin-text-field style="width: 100%" label="Education" id="education"></vaadin-text-field>
-                <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
-                <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
-                                  id="summary"></vaadin-text-area>
-                <vaadin-combo-box
-                        style="width: 17em; padding-right: 10px"
-                        id="foundDistance"
-                        label="How Far to Broadcast?"
-                        items="[[distancelist]]"
-                        value="{{foundDistance}}">
-                </vaadin-combo-box>
-                <vaadin-combo-box
-                        style="width: 17em; padding-bottom: 150px"
-                        id="foundTime"
-                        label="When do you want to broadcast?"
-                        items="[[timelist]]"
-                        value="{{foundTime}}">
-                </vaadin-combo-box>
-                <br>
-                <div style="position: relative">
-                    <paper-button raised class="custom beeqin" on-tap="_createBeacon">
-                        <iron-icon icon="beacon-icons:search"></iron-icon>
-                        !Create Beeqin
-                    </paper-button>
+                <hr>
+                <vaadin-radio-group id="yourProfileType" value="{{yourProfileType}}"
+                                    on-value-changed="_identifyYourProfileType">
+                    <vaadin-radio-button value="Personal Profile" id="personalProfile">Personal Profile
+                    </vaadin-radio-button>
+                    <vaadin-radio-button value="Professional Profile" id="professionalProfile">Professional Profile
+                    </vaadin-radio-button>
+                </vaadin-radio-group>
+                <div id="personalProfileDiv" class="hide">
+                    <vaadin-text-field label="Personal Profile Beeqin"></vaadin-text-field>
+                </div>
+                <div id="professionalProfileDiv" class="hide">
+                    <strong>These fields are here as suggestions for your Professional Profile. Any fields left
+                        blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
+                    <hr>
+                    <i>Add upload image option here</i>
+                    <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
+                                       id="displayName"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="Phone Number" id="phoneNumber"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="Email Address" id="emailAddress"></vaadin-text-field>
+                    <vaadin-radio-group id="messagePermission" value="{{messagePermission}}">
+                        <p>Would you like people to be able to message you in app for this Beeqin?</p>
+                        <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
+                        <vaadin-radio-button value="No">No</vaadin-radio-button>
+                    </vaadin-radio-group>
+                    <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
+                                      id="headline"></vaadin-text-area>
+                    <vaadin-text-field style="width: 100%" label="Education" id="education"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
+                    <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
+                                      id="summary"></vaadin-text-area>
+                    <vaadin-text-field style="width: 100%" label="Website or Social Media links"
+                                       id="links"></vaadin-text-field>
+                    <vaadin-radio-group id="linkBeeqins" value="{{linkBeeqins}}">
+                        <p>Would you like to link any of your other saved Beeqins to this one?</p>
+                        <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
+                        <vaadin-radio-button value="No">No</vaadin-radio-button>
+                    </vaadin-radio-group>
+                    <br>
+                    <vaadin-combo-box
+                            style="width: 17em; padding-right: 10px"
+                            id="foundDistance"
+                            label="How Far to Broadcast?"
+                            items="[[distancelist]]"
+                            value="{{foundDistance}}">
+                    </vaadin-combo-box>
+                    <vaadin-combo-box
+                            style="width: 17em; padding-bottom: 150px"
+                            id="foundTime"
+                            label="When do you want to broadcast?"
+                            items="[[timelist]]"
+                            value="{{foundTime}}">
+                    </vaadin-combo-box>
+                    <br>
+                    <div style="position: relative">
+                        <paper-button raised class="custom beeqin" on-tap="_createBeacon">
+                            <iron-icon icon="beacon-icons:search"></iron-icon>
+                            !Create Beeqin
+                        </paper-button>
+                    </div>
                 </div>
             </div>
 
@@ -286,6 +336,20 @@
                     coreType5Div: {
                         type: Object,
                     },
+                    personalProfile: {
+                        type: Object,
+                        notify: true,
+                    },
+                    professionalProfile: {
+                        type: Object,
+                        notify: true,
+                    },
+                    personalProfileDiv: {
+                        type: Object,
+                    },
+                    professionalProfileDiv: {
+                        type: Object,
+                    },
                 };
             }
 
@@ -324,7 +388,23 @@
                 } else {
                     console.log("Custom");
                     this.$.coreType5Div.style.display = 'block';
+                }
+            }
 
+            _identifyYourProfileType() {
+                if (this.$.personalProfile.checked === false) {
+                    this.$.personalProfileDiv.style.display = 'none';
+                }
+                if (this.$.professionalProfile.checked === false) {
+                    this.$.professionalProfileDiv.style.display = 'none';
+                }
+                if (this.$.personalProfile.checked === true) {
+                    console.log("Personal Profile");
+                    this.$.personalProfileDiv.style.display = 'block';
+                }
+                if (this.$.professionalProfile.checked === true) {
+                    console.log("Your Profile");
+                    this.$.professionalProfileDiv.style.display = 'block';
                 }
             }
 
