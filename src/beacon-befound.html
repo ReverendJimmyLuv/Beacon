@@ -12,10 +12,13 @@
 <link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-group.html">
 <link rel="import" href="../bower_components/vaadin-radio-button/vaadin-radio-button.html">
 <link rel="import" href="../bower_components/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../bower_components/vaadin-upload/vaadin-upload.html">
+<link rel="import" href="../bower_components/vaadin-progress-bar/vaadin-progress-bar.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <!--<link rel="import" href="shared-styles.html">-->
 <link rel="import" href="beacon-icons.html">
 <link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-storage-multiupload.html">
 <link rel="import" href="../bower_components/polymerfire/firebase-query.html">
 <!--<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
 <!--<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">-->
@@ -92,6 +95,24 @@
                 path="/beFoundBeacons"
                 data="{{beFoundBeacons}}">
         </firebase-query>
+        <!--<firebase-storage-multiupload
+                id="fs"
+                path="/users/[[user.uid]]/images"
+                files="[[imgToStorage]]"
+                upload-tasks="{{uploadTasks}}"
+                ref="{{ref}}">
+        </firebase-storage-multiupload>
+        <template is="dom-repeat" items="[[uploadTasks]]">
+            <firebase-storage-upload-task
+                    task="[[item]]"
+                    bytes-transferred="{{item.bytesTransferred}}"
+                    total-bytes="{{item.totalBytes}}"
+                    state="{{item.state}}"
+                    download-url="{{item.downloadUrl}}"
+                    metadata="{{item.metadata}}"
+                    path="{{item.path}}">
+            </firebase-storage-upload-task>-->
+        </template>
 
         <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
@@ -145,6 +166,15 @@
                     <strong>These fields are here as suggestions for your Professional Profile. Any fields left
                         blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
                     <hr>
+                    <vaadin-upload
+                            target="gs://beacon-1515553602130.appspot.com/users/[[user.uid]]/images"
+                            max-files="1"
+                            accept="image/jpeg, image/png, image/gif"
+                            max-file-size="4000000"
+                            files="{{imgToStorage}}"
+                            on-files-changed="_onFileUpload">
+                        <vaadin-progress-bar></vaadin-progress-bar>
+                    </vaadin-upload>
                     <i>Add upload image option here</i>
                     <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
                                        id="displayName"></vaadin-text-field>
@@ -350,9 +380,18 @@
                     professionalProfileDiv: {
                         type: Object,
                     },
+                    imgToStorage: {
+                        type: Array,
+                        notify: true,
+                        value: [],
+                    },
+                    ref: {
+                        type: String,
+                    },
                 };
             }
 
+            //identify which core type of Beeqin was selected in radio button
             _identifyCoreBeFoundType() {
                 if (this.$.coreType1.checked === false) {
                     this.$.coreType1Div.style.display = 'none';
@@ -391,6 +430,7 @@
                 }
             }
 
+            //identify which profile type was selected in radio buttons
             _identifyYourProfileType() {
                 if (this.$.personalProfile.checked === false) {
                     this.$.personalProfileDiv.style.display = 'none';
@@ -407,6 +447,15 @@
                     this.$.professionalProfileDiv.style.display = 'block';
                 }
             }
+
+            //fill imgToStorage Arrary to be uploaded img
+            _onFileUpload(e) {
+                console.log(ref);
+                this.$.imgToStorage = e.target.$.imgToStorage;
+                console.log(this.files)
+            }
+
+            //create beeqin and push to firebase.  need to adjust to a preview view first
 
             _createBeacon() {
                 this.$.befound.ref.push({

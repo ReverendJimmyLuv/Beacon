@@ -35,7 +35,9 @@
     "paper-dialog": "^2.1.1",
     "vaadin-text-field": "^2.0.1",
     "vaadin-radio-button": "^1.0.0",
-    "vaadin-lumo-styles": "vaadin/vaadin-lumo-styles#^1.0.0"
+    "vaadin-lumo-styles": "vaadin/vaadin-lumo-styles#^1.0.0",
+    "vaadin-upload": "vaadin/vaadin-upload#^4.0.0",
+    "vaadin-progress-bar": "vaadin/vaadin-progress-bar#^1.0.0"
   },
   "resolutions": {
     "polymer": "^2.6.0",
