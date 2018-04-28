@@ -95,13 +95,12 @@
                 path="/beFoundBeacons"
                 data="{{beFoundBeacons}}">
         </firebase-query>
-        <!--<firebase-storage-multiupload
-                id="fs"
+        <firebase-storage-multiupload
+                id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
-                files="[[imgToStorage]]"
-                upload-tasks="{{uploadTasks}}"
-                ref="{{ref}}">
+                upload-tasks="{{uploadTasks}}">
         </firebase-storage-multiupload>
+
         <template is="dom-repeat" items="[[uploadTasks]]">
             <firebase-storage-upload-task
                     task="[[item]]"
@@ -111,8 +110,9 @@
                     download-url="{{item.downloadUrl}}"
                     metadata="{{item.metadata}}"
                     path="{{item.path}}">
-            </firebase-storage-upload-task>-->
+            </firebase-storage-upload-task>
         </template>
+
 
         <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
@@ -167,15 +167,16 @@
                         blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
                     <hr>
                     <vaadin-upload
-                            target="gs://beacon-1515553602130.appspot.com/users/[[user.uid]]/images"
+                            id="vaadinUpload"
                             max-files="1"
-                            accept="image/jpeg, image/png, image/gif"
+                            accept="image/*"
+                            files="{{profileImg}}"
                             max-file-size="4000000"
-                            files="{{imgToStorage}}"
                             on-files-changed="_onFileUpload">
                         <vaadin-progress-bar></vaadin-progress-bar>
+                        <span><img src="[[profileIMG]]"></span>
                     </vaadin-upload>
-                    <i>Add upload image option here</i>
+
                     <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
                                        id="displayName"></vaadin-text-field>
                     <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
@@ -380,13 +381,14 @@
                     professionalProfileDiv: {
                         type: Object,
                     },
-                    imgToStorage: {
+                    vaadinUpload: {
                         type: Array,
                         notify: true,
                         value: [],
                     },
-                    ref: {
-                        type: String,
+                    user: {
+                        type: Object,
+                        notify: true,
                     },
                 };
             }
@@ -443,20 +445,17 @@
                     this.$.personalProfileDiv.style.display = 'block';
                 }
                 if (this.$.professionalProfile.checked === true) {
-                    console.log("Your Profile");
+                    console.log("Professional Profile");
                     this.$.professionalProfileDiv.style.display = 'block';
                 }
             }
 
-            //fill imgToStorage Arrary to be uploaded img
+            //fill upload image
             _onFileUpload(e) {
-                console.log(ref);
-                this.$.imgToStorage = e.target.$.imgToStorage;
-                console.log(this.files)
+                this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
             }
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
-
             _createBeacon() {
                 this.$.befound.ref.push({
                     user: this.user.uid,
