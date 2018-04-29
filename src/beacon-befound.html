@@ -103,6 +103,7 @@
 
         <template is="dom-repeat" items="[[uploadTasks]]">
             <firebase-storage-upload-task
+                    id="firebaseUploadTask"
                     task="[[item]]"
                     bytes-transferred="{{item.bytesTransferred}}"
                     total-bytes="{{item.totalBytes}}"
@@ -141,15 +142,6 @@
                 <vaadin-radio-button value="Study Group">Study Group</vaadin-radio-button>-->
             </vaadin-radio-group>
 
-            <!--<vaadin-combo-box
-                    id="coreType"
-                    label="Create Beeqin!  What would you like to be found?"
-                    items="[[foundlist]]"
-                    value="{{coreType}}"
-                    allow-custom-value
-                    style="width: 360px">
-            </vaadin-combo-box>-->
-
             <div id="coreType1Div" class="hide">
                 <hr>
                 <vaadin-radio-group id="yourProfileType" value="{{yourProfileType}}"
@@ -159,6 +151,8 @@
                     <vaadin-radio-button value="Professional Profile" id="professionalProfile">Professional Profile
                     </vaadin-radio-button>
                 </vaadin-radio-group>
+
+                <!--Professional Profile Fields-->
                 <div id="personalProfileDiv" class="hide">
                     <vaadin-text-field label="Personal Profile Beeqin"></vaadin-text-field>
                 </div>
@@ -166,16 +160,11 @@
                     <strong>These fields are here as suggestions for your Professional Profile. Any fields left
                         blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
                     <hr>
-                    <vaadin-upload
-                            id="vaadinUpload"
-                            max-files="1"
-                            accept="image/*"
-                            files="{{profileImg}}"
-                            max-file-size="4000000"
+                    <vaadin-upload id="vaadinUpload" max-files="1" accept="image/*" max-file-size="4000000"
                             on-files-changed="_onFileUpload">
                         <vaadin-progress-bar></vaadin-progress-bar>
-                        <span><img src="[[profileIMG]]"></span>
                     </vaadin-upload>
+                    <img src="{{item.downloadUrl}}">
 
                     <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
                                        id="displayName"></vaadin-text-field>
@@ -190,12 +179,32 @@
                     </vaadin-radio-group>
                     <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
                                       id="headline"></vaadin-text-area>
-                    <vaadin-text-field style="width: 100%" label="Education" id="education"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="College Attended"
+                                       id="collegeAttended"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="High School Attended"
+                                       id="highSchoolAttended"></vaadin-text-field>
+                    <vaadin-text-area style="width: 100%; min-height: 100px" label="Organizations You're a Member of"
+                                       id="organizations"></vaadin-text-area>
                     <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
+                    <vaadin-radio-group id="geoLocOrFixed" value="{{geoLocOrFixed}}" on-value-changed="_geoOrFixed">
+                        <p>Would you like to use your Geo Location for this Beeqin? Or a fixed address?</p>
+                        <vaadin-radio-button value="Geo Location" id="geoLocRadio">Geo Location</vaadin-radio-button>
+                        <vaadin-radio-button value="Fixed Address" id="fixedAddressRadio">Fixed Address
+                        </vaadin-radio-button>
+                    </vaadin-radio-group>
+                    <div id="fixedAddressDiv" class="hide">
+                        <p>What address?</p>
+                        <vaadin-text-field style="width: 100%" label="Street" id="addressStreet"></vaadin-text-field>
+                        <vaadin-text-field style="width: 100%" label="City" id="addressCity"></vaadin-text-field>
+                        <vaadin-text-field style="width: 100%" label="State" id="addressState"></vaadin-text-field>
+                        <vaadin-text-field style="width: 100%" label="Zip Code" id="addressZipCode"></vaadin-text-field>
+                    </div>
                     <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
                                       id="summary"></vaadin-text-area>
                     <vaadin-text-field style="width: 100%" label="Website or Social Media links"
-                                       id="links"></vaadin-text-field>
+                                       id="links1"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="" id="links2"></vaadin-text-field>
+                    <vaadin-text-field style="width: 100%" label="" id="links3"></vaadin-text-field>
                     <vaadin-radio-group id="linkBeeqins" value="{{linkBeeqins}}">
                         <p>Would you like to link any of your other saved Beeqins to this one?</p>
                         <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
@@ -243,6 +252,15 @@
             </div>
 
             <!--<vaadin-combo-box
+                    id="coreType"
+                    label="Create Beeqin!  What would you like to be found?"
+                    items="[[foundlist]]"
+                    value="{{coreType}}"
+                    allow-custom-value
+                    style="width: 360px">
+            </vaadin-combo-box>-->
+
+            <!--<vaadin-combo-box
                     id="found2"
                     label="Unlock more filters"
                     items=""
@@ -265,12 +283,13 @@
                     value="{{beFoundDescription}}"
                     char-counter maxlength="140">
             </paper-input>-->
-        </div>
 
-        <!--<paper-button toggles raised class="custom beeqin">
+            <!--<paper-button toggles raised class="custom beeqin">
             <iron-icon icon="beacon-icons:save"></iron-icon>
             !Save Beeqin to Favorites
-        </paper-button>-->
+            </paper-button>-->
+        </div>
+
 
         <paper-dialog opened$="{{beaconCreated}}">
             <h2>Beacon Created!</h2>
@@ -287,10 +306,10 @@
 
             static get properties() {
                 return {
-                    foundlist: {
+                    /*foundlist: {
                         type: Array,
                         value: ['Your Profile', 'Your Business or Service', 'Classified Ad', 'Group Hangout', 'Custom', 'Garage Sale', 'Study Group'],
-                    },
+                    },*/
                     distancelist: {
                         type: Array,
                         value: ['Out 1 Mile', 'Out 5 Miles', 'Out 10 Miles', 'Out 25 Miles'],
@@ -299,7 +318,7 @@
                         type: Array,
                         value: ['Always On', 'Custom'],
                     },
-                    found1: {
+                    /*found1: {
                         type: Object,
                     },
                     found2: {
@@ -307,10 +326,10 @@
                     },
                     found3: {
                         type: Object,
-                    },
-                    beFoundDescription: {
+                    },*/
+                    /*beFoundDescription: {
                         type: String,
-                    },
+                    },*/
                     foundDistance: {
                         type: Object,
                     },
@@ -390,6 +409,22 @@
                         type: Object,
                         notify: true,
                     },
+                    fixedAddressRadio: {
+                        type: Object,
+                        notify: true,
+                    },
+                    fixedAddressDiv: {
+                        type: Object,
+                    },
+                    geoLocRadio: {
+                        type: Object,
+                        notify: true,
+                    },
+                    useGeoLoc: {
+                        type: Boolean,
+                        notify: true,
+                        value: true,
+                    },
                 };
             }
 
@@ -450,9 +485,28 @@
                 }
             }
 
+            _geoOrFixed() {
+                if (this.$.fixedAddressRadio.checked === false) {
+                    this.$.fixedAddressDiv.style.display = 'none';
+                }
+                if (this.$.geoLocRadio.checked === false) {
+                    this.useGeoLoc = false;
+                }
+                if (this.$.fixedAddressRadio.checked === true) {
+                    console.log("Use Fixed Address");
+                    this.$.fixedAddressDiv.style.display = 'block';
+                }
+                if (this.$.geoLocRadio.checked === true) {
+                    console.log("Use Geographical Location");
+                    this.useGeoLoc = true;
+                }
+            }
+
+
             //fill upload image
             _onFileUpload(e) {
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
+                console.log(this.$.vaadinUpload.files);
             }
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
