@@ -23,7 +23,8 @@
 <!--<link rel="import" href="../bower_components/paper-input/paper-input.html">-->
 <!--<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">-->
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
-
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/vaadin-lumo-styles/icons.html">
 
 <dom-module id="beacon-befound">
     <template>
@@ -98,22 +99,11 @@
         <firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
-                upload-tasks="{{uploadTasks}}">
+                files="{{vaadinUpload}}"
+                upload-tasks="{{uploadTasks}}"
+                on-error="catchError"
+                force-unique>
         </firebase-storage-multiupload>
-
-        <template is="dom-repeat" items="[[uploadTasks]]">
-            <firebase-storage-upload-task
-                    id="firebaseUploadTask"
-                    task="[[item]]"
-                    bytes-transferred="{{item.bytesTransferred}}"
-                    total-bytes="{{item.totalBytes}}"
-                    state="{{item.state}}"
-                    download-url="{{item.downloadUrl}}"
-                    metadata="{{item.metadata}}"
-                    path="{{item.path}}">
-            </firebase-storage-upload-task>
-        </template>
-
 
         <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
@@ -160,11 +150,67 @@
                     <strong>These fields are here as suggestions for your Professional Profile. Any fields left
                         blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
                     <hr>
-                    <vaadin-upload id="vaadinUpload" max-files="1" accept="image/*" max-file-size="4000000"
-                            on-files-changed="_onFileUpload">
-                        <vaadin-progress-bar></vaadin-progress-bar>
+                    <h3>Add a Profile Image</h3>
+                    <vaadin-upload id="vaadinUpload"
+                                   files="{{vaadinUpload}}"
+                                   form-data-name="profile-img"
+                                   max-files="1"
+                                   max-file-size="4000000"
+                                   accept="image/*"
+                                   on-files-changed="_preview">
+                        <template is="dom-repeat" items="{{vaadinUpload}}">
+                            <iron-image id="preview"
+                                        style="width:200px; height:200px; background-color: lightgray;"
+                                        sizing="cover"
+                                        preload fade>
+                            </iron-image>
+                        </template>
                     </vaadin-upload>
-                    <img src="{{item.downloadUrl}}">
+                    <vaadin-button on-tap="_upload">
+                        <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
+                        Upload
+                    </vaadin-button>
+                    <br>
+
+                    <template is="dom-repeat" items="[[uploadTasks]]">
+                        <firebase-storage-upload-task
+                                id="firebaseUploadTask"
+                                task="[[item]]"
+                                bytes-transferred="{{item.bytesTransferred}}"
+                                total-bytes="{{item.totalBytes}}"
+                                state="{{item.state}}"
+                                download-url="{{item.downloadUrl}}"
+                                metadata="{{item.metadata}}"
+                                path="{{item.path}}">
+                        </firebase-storage-upload-task>
+
+                        <template is="dom-if" if="[[!isEqual(item.state, 'success')]]">
+                            <vaadin-progress-bar
+                                    value="{{item.bytesTransferred}}"
+                                    min="0"
+                                    max="{{item.totalBytes}}">
+                            </vaadin-progress-bar>
+                        </template>
+
+                        <template is="dom-if" if="{{isEqual(item.state, 'success')}}">
+                            <firebase-storage-ref
+                                    path="{{item.path}}"
+                                    storage-uri="{{gsUri}}"
+                                    id="ref-[[index]]"
+                                    metadata="{{item.refMetadata}}"
+                                    download-url="{{item.refDownloadUrl}}">
+                            </firebase-storage-ref>
+
+                            <iron-image style="width:200px; height:200px; background-color: lightgray;"
+                                        sizing="cover"
+                                        preload fade
+                                        src="{{item.refDownloadUrl}}"
+                                        alt="{{item.metadata.name}}">
+                            </iron-image>
+
+                            <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
+                        </template>
+                    </template>
 
                     <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
                                        id="displayName"></vaadin-text-field>
@@ -184,7 +230,7 @@
                     <vaadin-text-field style="width: 100%" label="High School Attended"
                                        id="highSchoolAttended"></vaadin-text-field>
                     <vaadin-text-area style="width: 100%; min-height: 100px" label="Organizations You're a Member of"
-                                       id="organizations"></vaadin-text-area>
+                                      id="organizations"></vaadin-text-area>
                     <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
                     <vaadin-radio-group id="geoLocOrFixed" value="{{geoLocOrFixed}}" on-value-changed="_geoOrFixed">
                         <p>Would you like to use your Geo Location for this Beeqin? Or a fixed address?</p>
@@ -425,6 +471,14 @@
                         notify: true,
                         value: true,
                     },
+                    uploadTasks: {
+                        type: Array,
+                        observer: '_uploadTasksChanged'
+                    },
+
+                    uploadedFiles: {
+                        type: Array,
+                    },
                 };
             }
 
@@ -502,11 +556,32 @@
                 }
             }
 
+            _preview(e) {
+                this.$.preview.src = URL.createObjectURL(e.target.files[0]);
+            }
+
+            _uploadTasksChanged(uploadTasks) {
+                console.log("Upload Tasks Array", uploadTasks);
+                console.log("Vaadin Upload Array", this.$.vaadinUpload.files);
+            }
+
+            _uploadedFilesChanged(uploadedFiles) {
+                console.log("Uploaded Files", uploadedFiles);
+            }
+
+            isEqual(a, b) {
+                return a === b;
+            }
+
+            deleteFile(e) {
+                this.shadowRoot.querySelector('#ref-' + e.target.value).delete().then(function (d) {
+                    console.log(d)
+                })
+            }
 
             //fill upload image
-            _onFileUpload(e) {
+            _upload() {
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
-                console.log(this.$.vaadinUpload.files);
             }
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
