@@ -157,19 +157,12 @@
                                    max-files="1"
                                    max-file-size="4000000"
                                    accept="image/*"
-                                   on-files-changed="_preview">
-                        <template is="dom-repeat" items="{{vaadinUpload}}">
-                            <iron-image id="preview"
-                                        style="width:200px; height:200px; background-color: lightgray;"
-                                        sizing="cover"
-                                        preload fade>
-                            </iron-image>
-                        </template>
+                                   on-max-files-reached-changed="_upload">
                     </vaadin-upload>
-                    <vaadin-button on-tap="_upload">
+                    <!--<vaadin-button on-tap="_upload">
                         <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
                         Upload
-                    </vaadin-button>
+                    </vaadin-button>-->
                     <br>
 
                     <template is="dom-repeat" items="[[uploadTasks]]">
@@ -207,7 +200,7 @@
                                         src="{{item.refDownloadUrl}}"
                                         alt="{{item.metadata.name}}">
                             </iron-image>
-
+                            <br>
                             <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
                         </template>
                     </template>
@@ -556,10 +549,6 @@
                 }
             }
 
-            _preview(e) {
-                this.$.preview.src = URL.createObjectURL(e.target.files[0]);
-            }
-
             _uploadTasksChanged(uploadTasks) {
                 console.log("Upload Tasks Array", uploadTasks);
                 console.log("Vaadin Upload Array", this.$.vaadinUpload.files);
@@ -581,6 +570,15 @@
 
             //fill upload image
             _upload() {
+                var upload = this.$.vaadinUpload;
+                upload.addEventListener('upload-before', function(event) {
+                    event.preventDefault(); // prevents the uploading request
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        // reader.result
+                    };
+                    reader.readAsDataURL(event.detail.file);
+                });
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
             }
 
