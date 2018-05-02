@@ -25,6 +25,7 @@
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/vaadin-lumo-styles/icons.html">
+<link rel="import" href="../bower_components/granite-file-reader/granite-file-reader.html">
 
 <dom-module id="beacon-befound">
     <template>
@@ -151,6 +152,7 @@
                         blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
                     <hr>
                     <h3>Add a Profile Image</h3>
+
                     <vaadin-upload id="vaadinUpload"
                                    files="{{vaadinUpload}}"
                                    form-data-name="profile-img"
@@ -158,7 +160,18 @@
                                    max-file-size="4000000"
                                    accept="image/*"
                                    on-max-files-reached-changed="_upload">
+                        <template is="dom-repeat" items="{{vaadinUpload}}">
+
+                            <!--<iron-image id="previewUpload"
+                                        style="width:200px; height:200px; background-color: lightgray;"
+                                        sizing="cover"
+                                        preload fade
+                                        src="#"
+                                        alt="">-->
+                            </iron-image>
+                        </template>
                     </vaadin-upload>
+
                     <!--<vaadin-button on-tap="_upload">
                         <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
                         Upload
@@ -472,6 +485,10 @@
                     uploadedFiles: {
                         type: Array,
                     },
+                    previewUpload: {
+                        type: Object,
+                        notify: true,
+                    },
                 };
             }
 
@@ -552,6 +569,33 @@
             _uploadTasksChanged(uploadTasks) {
                 console.log("Upload Tasks Array", uploadTasks);
                 console.log("Vaadin Upload Array", this.$.vaadinUpload.files);
+
+                /*function readUrl(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        console.log("hello there!");
+
+                        reader.onload = function (e) {
+                            this.$.preview.attr('src', e.target.result);
+                        }
+                        console.log("Hello to you too!");
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                /!*$("#imgInp").change(function() {
+                    readURL(this);
+                    });*!/
+                /!*addEventHandler(document, 'DOMContentLoaded', function() {
+                    addEventHandler(document.getElementById('vaadinUpload'), 'change', function() {
+                        readURL(this);
+                    });
+                });*!/
+
+                this.$.vaadinUpload.addEventListener('change',function(){
+                    readURL(this);
+                });*/
             }
 
             _uploadedFilesChanged(uploadedFiles) {
@@ -570,15 +614,12 @@
 
             //fill upload image
             _upload() {
-                var upload = this.$.vaadinUpload;
-                upload.addEventListener('upload-before', function(event) {
-                    event.preventDefault(); // prevents the uploading request
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        // reader.result
-                    };
-                    reader.readAsDataURL(event.detail.file);
-                });
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // reader.result
+                };
+                reader.readAsDataURL(event.detail.file);
+
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
             }
 
