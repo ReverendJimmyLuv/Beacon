@@ -117,6 +117,7 @@
         <div class="card">
 
             <h1 style="font-size:200%">Be Found/ Create Beeqin</h1>
+            <h3>What would you like to be found?</h3>
 
             <vaadin-radio-group id="coreType" value="{{coreType}}" on-value-changed="_identifyCoreBeFoundType">
                 <vaadin-radio-button value="Your Profile" id="coreType1">Your Profile</vaadin-radio-button>
@@ -159,7 +160,7 @@
                                        accept="image/*"
                                        on-max-files-reached-changed="_previewUpload"
                                        on-files-changed="">
-
+                            <br>
                             <iron-image id="imgPreview"
                                         style="width:200px; height:200px; background-color: lightgray;"
                                         sizing="cover"
@@ -169,7 +170,7 @@
                             </iron-image>
 
                         </vaadin-upload>
-
+                        <br>
                         <vaadin-button on-tap="_upload">
                             <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
                             Upload
@@ -212,6 +213,7 @@
                                 </iron-image>-->
                                 <br>
                                 <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
+                                <br>
                             </template>
                         </template>
 
@@ -580,12 +582,12 @@
             }
 
             //Show image preview before uploading
-            _previewUpload() {
-                var preview = this.shadowRoot.querySelector('#imgPreview');
-                var file = this.$.vaadinUpload.files[0];
-                var reader = new FileReader();
+             _previewUpload() {
+                let preview = this.shadowRoot.querySelector('#imgPreview');
+                let file = this.$.vaadinUpload.files[0];
+                let reader = new FileReader();
 
-                /*file.addEventListener('files-changed', function() {
+                /*file.addEventListener("file-remove", function() {
                     preview.src = "";
             });*/
                 reader.addEventListener("load", function () {
