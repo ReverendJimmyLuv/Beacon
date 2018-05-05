@@ -21,6 +21,8 @@
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/vaadin-lumo-styles/icons.html">
 <link rel="import" href="../bower_components/vaadin-form-layout/vaadin-form-layout.html">
+<link rel="import" href="../src/befound-personal-profile.html">
+<link rel="import" href="../src/befound-professional-profile.html">
 
 <dom-module id="beacon-befound">
     <template>
@@ -47,35 +49,8 @@
                 font-size: 22px;
             }
 
-            /*paper-button.orange {
-                background-color: var(--paper-orange-500);
-                color: white;
-                --paper-button-raised-keyboard-focus: {
-                    background-color: var(--paper-pink-a200) !important;
-                    color: white !important;
-                };
-            }*/
-
-            .hide {
-                display: none;
-            }
         </style>
-        <custom-style>
-            <style is="custom-style">
-                paper-button.beeqin {
-                    position: absolute;
-                    bottom: 0;
-                    right: 0;
-                    background-color: #000000;
-                    color: #F8C945;
-                }
 
-                paper-button.beeqin[active] {
-                    background-color: #F29737;
-                    color: #000000;
-                }
-            </style>
-        </custom-style>
 
         <firebase-auth user="{{user}}"></firebase-auth>
 
@@ -119,227 +94,58 @@
             <h1 style="font-size:200%">Be Found/ Create Beeqin</h1>
             <h3>What would you like to be found?</h3>
 
-            <vaadin-radio-group id="coreType" value="{{coreType}}" on-value-changed="_identifyCoreBeFoundType">
-                <vaadin-radio-button value="Your Profile" id="coreType1">Your Profile</vaadin-radio-button>
-                <vaadin-radio-button value="Your Business or Service" id="coreType2">Your Business or Service
-                </vaadin-radio-button>
-                <vaadin-radio-button value="Classified Ad" id="coreType3">Classified Ad</vaadin-radio-button>
-                <vaadin-radio-button value="Group Hangout" id="coreType4">Group Hangout</vaadin-radio-button>
-                <vaadin-radio-button value="Custom" id="coreType5">Custom</vaadin-radio-button>
+            <!--Use radio buttons to identify Be Found Type-->
+            <vaadin-radio-group id="coreType" value="{{coreType}}">
+                <vaadin-radio-button value="Your Profile">Your Profile</vaadin-radio-button>
+                <vaadin-radio-button value="Your Business or Service">Your Business or Service</vaadin-radio-button>
+                <vaadin-radio-button value="Classified Ad">Classified Ad</vaadin-radio-button>
+                <vaadin-radio-button value="Group Hangout">Group Hangout</vaadin-radio-button>
+                <vaadin-radio-button value="Custom">Custom</vaadin-radio-button>
                 <!--<vaadin-radio-button value="Garage Sale">Garage Sale</vaadin-radio-button>
                 <vaadin-radio-button value="Study Group">Study Group</vaadin-radio-button>-->
             </vaadin-radio-group>
 
-            <div id="coreType1Div" class="hide">
+            <!--Identify Type of Profile Be Found to create-->
+            <template id="yourProfile" is="dom-if" if="[[isEqual(coreType, 'Your Profile')]]">
                 <hr>
-                <vaadin-radio-group id="yourProfileType" value="{{yourProfileType}}"
-                                    on-value-changed="_identifyYourProfileType">
-                    <vaadin-radio-button value="Personal Profile" id="personalProfile">Personal Profile
-                    </vaadin-radio-button>
-                    <vaadin-radio-button value="Professional Profile" id="professionalProfile">Professional Profile
-                    </vaadin-radio-button>
+                <vaadin-radio-group id="yourProfileType" value="{{yourProfileType}}">
+                    <vaadin-radio-button value="Personal Profile">Personal Profile</vaadin-radio-button>
+                    <vaadin-radio-button value="Professional Profile">Professional Profile</vaadin-radio-button>
                 </vaadin-radio-group>
 
+                <!--Personal Profile Fields-->
+                <template is="dom-if" if="[[isEqual(yourProfileType, 'Personal Profile')]]">
+                    <befound-personal-profile></befound-personal-profile>
+                </template>
+
                 <!--Professional Profile Fields-->
-                <div id="personalProfileDiv" class="hide">
-                    <vaadin-text-field label="Personal Profile Beeqin"></vaadin-text-field>
-                </div>
-                <div id="professionalProfileDiv" class="hide">
-                    <vaadin-form-layout>
-                        <strong>These fields are here as suggestions for your Professional Profile. Any fields left
-                            blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
-                        <hr>
-                        <h3>Add a Profile Image</h3>
+                <template id="proProfile" is="dom-if" if="[[isEqual(yourProfileType, 'Professional Profile')]]">
+                    <befound-professional-profile></befound-professional-profile>
+                </template>
+            </template>
 
-                        <vaadin-upload id="vaadinUpload"
-                                       style="width:100%"
-                                       files="{{vaadinUpload}}"
-                                       form-data-name="profile-img"
-                                       max-files="1"
-                                       max-file-size="4000000"
-                                       accept="image/*"
-                                       on-max-files-reached-changed="_previewUpload"
-                                       on-files-changed="">
-                            <br>
-                            <iron-image id="imgPreview"
-                                        style="width:200px; height:200px; background-color: lightgray;"
-                                        sizing="cover"
-                                        preload fade
-                                        src=""
-                                        alt="Upload Preview">
-                            </iron-image>
-
-                        </vaadin-upload>
-                        <br>
-                        <vaadin-button on-tap="_upload">
-                            <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
-                            Upload
-                        </vaadin-button>
-                        <br>
-                        <template is="dom-repeat" items="[[uploadTasks]]">
-                            <firebase-storage-upload-task
-                                    id="firebaseUploadTask"
-                                    task="[[item]]"
-                                    bytes-transferred="{{item.bytesTransferred}}"
-                                    total-bytes="{{item.totalBytes}}"
-                                    state="{{item.state}}"
-                                    download-url="{{item.downloadUrl}}"
-                                    metadata="{{item.metadata}}"
-                                    path="{{item.path}}">
-                            </firebase-storage-upload-task>
-
-                            <template is="dom-if" if="[[!isEqual(item.state, 'success')]]">
-                                <vaadin-progress-bar
-                                        value="{{item.bytesTransferred}}"
-                                        min="0"
-                                        max="{{item.totalBytes}}">
-                                </vaadin-progress-bar>
-                            </template>
-
-                            <template is="dom-if" if="{{isEqual(item.state, 'success')}}">
-                                <firebase-storage-ref
-                                        path="{{item.path}}"
-                                        storage-uri="{{gsUri}}"
-                                        id="ref-[[index]]"
-                                        metadata="{{item.refMetadata}}"
-                                        download-url="{{item.refDownloadUrl}}">
-                                </firebase-storage-ref>
-
-                                <!--<iron-image style="width:200px; height:200px; background-color: lightgray;"
-                                            sizing="cover"
-                                            preload fade
-                                            src="{{item.refDownloadUrl}}"
-                                            alt="{{item.metadata.name}}">
-                                </iron-image>-->
-                                <br>
-                                <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
-                                <br>
-                            </template>
-                        </template>
-
-
-                        <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
-                                           id="displayName"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="Phone Number"
-                                           id="phoneNumber"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="Email Address"
-                                           id="emailAddress"></vaadin-text-field>
-                        <vaadin-radio-group id="messagePermission" value="{{messagePermission}}">
-                            <p>Would you like people to be able to message you in app for this Beeqin?</p>
-                            <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
-                            <vaadin-radio-button value="No">No</vaadin-radio-button>
-                        </vaadin-radio-group>
-                        <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
-                                          id="headline"></vaadin-text-area>
-                        <vaadin-text-field style="width: 100%" label="College Attended"
-                                           id="collegeAttended"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="High School Attended"
-                                           id="highSchoolAttended"></vaadin-text-field>
-                        <vaadin-text-area style="width: 100%; min-height: 100px"
-                                          label="Organizations You're a Member of"
-                                          id="organizations"></vaadin-text-area>
-                        <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
-                        <vaadin-radio-group id="geoLocOrFixed" value="{{geoLocOrFixed}}" on-value-changed="_geoOrFixed">
-                            <p>Would you like to use your Geo Location for this Beeqin? Or a fixed address?</p>
-                            <vaadin-radio-button value="Geo Location" id="geoLocRadio">Geo Location
-                            </vaadin-radio-button>
-                            <vaadin-radio-button value="Fixed Address" id="fixedAddressRadio">Fixed Address
-                            </vaadin-radio-button>
-                        </vaadin-radio-group>
-                        <div id="fixedAddressDiv" class="hide">
-                            <strong>What address?</strong>
-                            <vaadin-text-field style="width: 100%" label="Street"
-                                               id="addressStreet"></vaadin-text-field>
-                            <vaadin-text-field style="width: 100%" label="City" id="addressCity"></vaadin-text-field>
-                            <vaadin-text-field style="width: 100%" label="State" id="addressState"></vaadin-text-field>
-                            <vaadin-text-field style="width: 100%" label="Zip Code"
-                                               id="addressZipCode"></vaadin-text-field>
-                        </div>
-                        <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
-                                          id="summary"></vaadin-text-area>
-                        <vaadin-text-field style="width: 100%" label="Website or Social Media links"
-                                           id="links1"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="" id="links2"></vaadin-text-field>
-                        <vaadin-text-field style="width: 100%" label="" id="links3"></vaadin-text-field>
-                        <vaadin-radio-group id="linkBeeqins" value="{{linkBeeqins}}">
-                            <p>Would you like to link any of your other saved Beeqins to this one?</p>
-                            <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
-                            <vaadin-radio-button value="No">No</vaadin-radio-button>
-                        </vaadin-radio-group>
-                        <br>
-                        <vaadin-combo-box
-                                style="width: 17em; padding-right: 10px"
-                                id="foundDistance"
-                                label="How Far to Broadcast?"
-                                items="[[distancelist]]"
-                                value="{{foundDistance}}">
-                        </vaadin-combo-box>
-                        <vaadin-combo-box
-                                style="width: 17em; padding-bottom: 150px"
-                                id="foundTime"
-                                label="When do you want to broadcast?"
-                                items="[[timelist]]"
-                                value="{{foundTime}}">
-                        </vaadin-combo-box>
-                    </vaadin-form-layout>
-                    <br>
-                    <div style="position: relative">
-                        <paper-button raised class="custom beeqin" on-tap="_createBeacon">
-                            <iron-icon icon="beacon-icons:search"></iron-icon>
-                            !Create Beeqin
-                        </paper-button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="coreType2Div" class="hide">
+            <template is="dom-if" if="[[isEqual(coreType, 'Your Business or Service')]]">
+                <br>
                 <vaadin-text-field label="Business or Service Name"></vaadin-text-field>
-            </div>
+            </template>
 
-            <div id="coreType3Div" class="hide">
+            <template is="dom-if" if="[[isEqual(coreType, 'Classified Ad')]]">
+                <br>
                 <vaadin-text-field label="Classified Ad"></vaadin-text-field>
-            </div>
+            </template>
 
-            <div id="coreType4Div" class="hide">
+            <template is="dom-if" if="[[isEqual(coreType, 'Group Hangout')]]">
+                <br>
                 <vaadin-text-field label="Group Hangout"></vaadin-text-field>
-            </div>
+            </template>
 
-            <div id="coreType5Div" class="hide">
+            <template is="dom-if" if="[[isEqual(coreType, 'Custom')]]">
+                <br>
                 <vaadin-text-field label="Custom"></vaadin-text-field>
-            </div>
-
-            <!--<vaadin-combo-box
-                    id="coreType"
-                    label="Create Beeqin!  What would you like to be found?"
-                    items="[[foundlist]]"
-                    value="{{coreType}}"
-                    allow-custom-value
-                    style="width: 360px">
-            </vaadin-combo-box>-->
-
-            <!--<vaadin-combo-box
-                    id="found2"
-                    label="Unlock more filters"
-                    items=""
-                    value="{{found2}}"
-                    disabled>
-            </vaadin-combo-box>
+            </template>
 
 
-            <vaadin-combo-box
-                    id="found3"
-                    label="Unlock more filters"
-                    items=""
-                    value="{{found3}}"
-                    disabled>
-            </vaadin-combo-box>-->
-
-            <!--<paper-button toggles raised class="custom beeqin">
-            <iron-icon icon="beacon-icons:save"></iron-icon>
-            !Save Beeqin to Favorites
-            </paper-button>-->
+            <!--End of main card div-->
         </div>
 
 
@@ -358,10 +164,6 @@
 
             static get properties() {
                 return {
-                    /*foundlist: {
-                        type: Array,
-                        value: ['Your Profile', 'Your Business or Service', 'Classified Ad', 'Group Hangout', 'Custom', 'Garage Sale', 'Study Group'],
-                    },*/
                     distancelist: {
                         type: Array,
                         value: ['Out 1 Mile', 'Out 5 Miles', 'Out 10 Miles', 'Out 25 Miles'],
@@ -370,18 +172,6 @@
                         type: Array,
                         value: ['Always On', 'Custom'],
                     },
-                    /*found1: {
-                        type: Object,
-                    },
-                    found2: {
-                        type: Object,
-                    },
-                    found3: {
-                        type: Object,
-                    },*/
-                    /*beFoundDescription: {
-                        type: String,
-                    },*/
                     foundDistance: {
                         type: Object,
                     },
@@ -403,41 +193,6 @@
                         type: Object,
                         notify: true,
                     },
-                    coreType1: {
-                        type: Object,
-                        notify: true,
-                    },
-                    coreType2: {
-                        type: Object,
-                        notify: true,
-                    },
-                    coreType3: {
-                        type: Object,
-                        notify: true,
-                    },
-                    coreType4: {
-                        type: Object,
-                        notify: true,
-                    },
-                    coreType5: {
-                        type: Object,
-                        notify: true,
-                    },
-                    coreType1Div: {
-                        type: Object,
-                    },
-                    coreType2Div: {
-                        type: Object,
-                    },
-                    coreType3Div: {
-                        type: Object,
-                    },
-                    coreType4Div: {
-                        type: Object,
-                    },
-                    coreType5Div: {
-                        type: Object,
-                    },
                     personalProfile: {
                         type: Object,
                         notify: true,
@@ -445,12 +200,6 @@
                     professionalProfile: {
                         type: Object,
                         notify: true,
-                    },
-                    personalProfileDiv: {
-                        type: Object,
-                    },
-                    professionalProfileDiv: {
-                        type: Object,
                     },
                     vaadinUpload: {
                         type: Array,
@@ -461,149 +210,17 @@
                         type: Object,
                         notify: true,
                     },
-                    fixedAddressRadio: {
-                        type: Object,
-                        notify: true,
-                    },
-                    fixedAddressDiv: {
-                        type: Object,
-                    },
-                    geoLocRadio: {
-                        type: Object,
-                        notify: true,
-                    },
-                    useGeoLoc: {
-                        type: Boolean,
-                        notify: true,
-                        value: true,
-                    },
-                    uploadTasks: {
-                        type: Array,
-                        observer: '_uploadTasksChanged'
-                    },
 
-                    uploadedFiles: {
-                        type: Array,
-                    },
                 };
             }
 
-            //identify which core type of Beeqin was selected in radio button
-            _identifyCoreBeFoundType() {
-                if (this.$.coreType1.checked === false) {
-                    this.$.coreType1Div.style.display = 'none';
-                }
-                if (this.$.coreType2.checked === false) {
-                    this.$.coreType2Div.style.display = 'none';
-                }
-                if (this.$.coreType3.checked === false) {
-                    this.$.coreType3Div.style.display = 'none';
-                }
-                if (this.$.coreType4.checked === false) {
-                    this.$.coreType4Div.style.display = 'none';
-                }
-                if (this.$.coreType5.checked === false) {
-                    this.$.coreType5Div.style.display = 'none';
-                }
-                if (this.$.coreType1.checked === true) {
-                    console.log("Your Profile");
-                    this.$.coreType1Div.style.display = 'block';
 
-                } else if (this.$.coreType2.checked === true) {
-                    console.log("Your Business or Service");
-                    this.$.coreType2Div.style.display = 'block';
-
-                } else if (this.$.coreType3.checked === true) {
-                    console.log("Classified Ad");
-                    this.$.coreType3Div.style.display = 'block';
-
-                } else if (this.$.coreType4.checked === true) {
-                    console.log("Group Hangout");
-                    this.$.coreType4Div.style.display = 'block';
-
-                } else {
-                    console.log("Custom");
-                    this.$.coreType5Div.style.display = 'block';
-                }
-            }
-
-            //identify which profile type was selected in radio buttons
-            _identifyYourProfileType() {
-                if (this.$.personalProfile.checked === false) {
-                    this.$.personalProfileDiv.style.display = 'none';
-                }
-                if (this.$.professionalProfile.checked === false) {
-                    this.$.professionalProfileDiv.style.display = 'none';
-                }
-                if (this.$.personalProfile.checked === true) {
-                    console.log("Personal Profile");
-                    this.$.personalProfileDiv.style.display = 'block';
-                }
-                if (this.$.professionalProfile.checked === true) {
-                    console.log("Professional Profile");
-                    this.$.professionalProfileDiv.style.display = 'block';
-                }
-            }
-
-            _geoOrFixed() {
-                if (this.$.fixedAddressRadio.checked === false) {
-                    this.$.fixedAddressDiv.style.display = 'none';
-                }
-                if (this.$.geoLocRadio.checked === false) {
-                    this.useGeoLoc = false;
-                }
-                if (this.$.fixedAddressRadio.checked === true) {
-                    console.log("Use Fixed Address");
-                    this.$.fixedAddressDiv.style.display = 'block';
-                }
-                if (this.$.geoLocRadio.checked === true) {
-                    console.log("Use Geographical Location");
-                    this.useGeoLoc = true;
-                }
-            }
-
-            _uploadTasksChanged(uploadTasks) {
-                console.log("Upload Tasks Array", uploadTasks);
-                console.log("Vaadin Upload Array", this.$.vaadinUpload.files);
-            }
-
-            _uploadedFilesChanged(uploadedFiles) {
-                console.log("Uploaded Files", uploadedFiles);
-            }
 
             isEqual(a, b) {
                 return a === b;
             }
 
-            deleteFile(e) {
-                this.shadowRoot.querySelector('#ref-' + e.target.value).delete().then(function (d) {
-                    console.log(d)
-                })
-            }
 
-            //Show image preview before uploading
-             _previewUpload() {
-                let preview = this.shadowRoot.querySelector('#imgPreview');
-                let file = this.$.vaadinUpload.files[0];
-                let reader = new FileReader();
-
-                /*file.addEventListener("file-remove", function() {
-                    preview.src = "";
-            });*/
-                reader.addEventListener("load", function () {
-                    preview.src = reader.result;
-                }, false);
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            }
-
-
-            //Upload image to Firebase
-            _upload() {
-                this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
-            }
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
             _createBeacon() {

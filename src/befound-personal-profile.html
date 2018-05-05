@@ -1,0 +1,44 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/vaadin-text-field/vaadin-text-field.html">
+
+<dom-module id="befound-personal-profile">
+    <template>
+        <style></style>
+        <custom-style>
+            <style is="custom-style">
+                paper-button.beeqin {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    background-color: #000000;
+                    color: #F8C945;
+                }
+
+                paper-button.beeqin[active] {
+                    background-color: #F29737;
+                    color: #000000;
+                }
+            </style>
+        </custom-style>
+
+        <br>
+        <vaadin-text-field label="Personal Profile Beeqin"></vaadin-text-field>
+
+    </template>
+
+    <script>
+        class BeFoundPersonalProfile extends Polymer.Element {
+            static get is() {
+                return 'befound-personal-profile';
+            }
+
+            static get properties() {
+                return {
+
+                };
+            }
+        }
+
+        window.customElements.define(BeFoundPersonalProfile.is, BeFoundPersonalProfile);
+    </script>
+</dom-module>
