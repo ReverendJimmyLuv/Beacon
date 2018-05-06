@@ -68,14 +68,14 @@
                 data="{{beFoundBeacons}}">
         </firebase-query>
 
-        <firebase-storage-multiupload
+        <!--<firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
                 files="{{vaadinUpload}}"
                 upload-tasks="{{uploadTasks}}"
                 on-error="catchError"
                 force-unique>
-        </firebase-storage-multiupload>
+        </firebase-storage-multiupload>-->
 
         <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
@@ -124,21 +124,25 @@
                 </template>
             </template>
 
+            <!--Business or Service Fields-->
             <template is="dom-if" if="[[isEqual(coreType, 'Your Business or Service')]]">
                 <br>
                 <vaadin-text-field label="Business or Service Name"></vaadin-text-field>
             </template>
 
+            <!--Classified Ad Fields-->
             <template is="dom-if" if="[[isEqual(coreType, 'Classified Ad')]]">
                 <br>
                 <vaadin-text-field label="Classified Ad"></vaadin-text-field>
             </template>
 
+            <!--Group Hangout Fields-->
             <template is="dom-if" if="[[isEqual(coreType, 'Group Hangout')]]">
                 <br>
                 <vaadin-text-field label="Group Hangout"></vaadin-text-field>
             </template>
 
+            <!--Custom Beeqin Fields-->
             <template is="dom-if" if="[[isEqual(coreType, 'Custom')]]">
                 <br>
                 <vaadin-text-field label="Custom"></vaadin-text-field>
