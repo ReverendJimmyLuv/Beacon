@@ -28,6 +28,8 @@
             </style>
         </custom-style>
 
+        <!--<firebase-auth user="{{user}}"></firebase-auth>-->
+
         <firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
@@ -53,6 +55,7 @@
                        accept="image/*"
                        on-max-files-reached-changed="_previewUpload">
             <br>
+            <!--<template is="dom-if" if="[[isEqual(on-max-files-reached-changed, false)]]">-->
             <iron-image id="imgPreview"
                         style="width:200px; height:200px; background-color: lightgray;"
                         sizing="cover"
@@ -60,6 +63,7 @@
                         src=""
                         alt="Upload Preview">
             </iron-image>
+            <!--</template>-->
         </vaadin-upload>
         <br>
 

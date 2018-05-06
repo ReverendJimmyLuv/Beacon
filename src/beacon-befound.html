@@ -68,14 +68,14 @@
                 data="{{beFoundBeacons}}">
         </firebase-query>
 
-        <firebase-storage-multiupload
+        <!--<firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
                 files="{{vaadinUpload}}"
                 upload-tasks="{{uploadTasks}}"
                 on-error="catchError"
                 force-unique>
-        </firebase-storage-multiupload>
+        </firebase-storage-multiupload>-->
 
         <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
@@ -120,7 +120,7 @@
 
                 <!--Professional Profile Fields-->
                 <template id="proProfile" is="dom-if" if="[[isEqual(yourProfileType, 'Professional Profile')]]">
-                    <befound-professional-profile></befound-professional-profile>
+                    <befound-professional-profile user="{{user}}"></befound-professional-profile>
                 </template>
             </template>
 
