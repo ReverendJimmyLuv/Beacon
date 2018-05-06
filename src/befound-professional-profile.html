@@ -28,7 +28,7 @@
             </style>
         </custom-style>
 
-        <!--<firebase-auth user="{{user}}"></firebase-auth>-->
+        <firebase-auth user="{{user}}"></firebase-auth>
 
         <firebase-storage-multiupload
                 id="firebaseStorage"
@@ -39,6 +39,10 @@
                 force-unique>
         </firebase-storage-multiupload>
 
+        <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+        <input id="latitude" value="{{latitude}}" hidden>
+        <input id="longitude" value="{{longitude}}" hidden>
+
         <!--Main Professional Profile Fields-->
         <br>
         <strong>These fields are here as suggestions for your Professional Profile. Any fields left
@@ -46,6 +50,7 @@
         <hr>
         <h3>Add a Profile Image</h3>
 
+        <!--on-max-files-reached-changed="_previewUpload"-->
         <vaadin-upload id="vaadinUpload"
                        style="width:100%"
                        files="{{vaadinUpload}}"
@@ -53,9 +58,9 @@
                        max-files="1"
                        max-file-size="4000000"
                        accept="image/*"
-                       on-max-files-reached-changed="_previewUpload">
+                       on-files-changed="_previewUpload">
             <br>
-            <!--<template is="dom-if" if="[[isEqual(on-max-files-reached-changed, false)]]">-->
+            
             <iron-image id="imgPreview"
                         style="width:200px; height:200px; background-color: lightgray;"
                         sizing="cover"
@@ -63,7 +68,7 @@
                         src=""
                         alt="Upload Preview">
             </iron-image>
-            <!--</template>-->
+
         </vaadin-upload>
         <br>
 
@@ -172,14 +177,14 @@
                 style="width: 17em; padding-right: 10px"
                 id="foundDistance"
                 label="How Far to Broadcast?"
-                items="[[distancelist]]"
+                items="[[distanceList]]"
                 value="{{foundDistance}}">
         </vaadin-combo-box>
         <vaadin-combo-box
                 style="width: 17em; padding-bottom: 150px"
                 id="foundTime"
                 label="When do you want to broadcast?"
-                items="[[timelist]]"
+                items="[[timeList]]"
                 value="{{foundTime}}">
         </vaadin-combo-box>
 
@@ -202,6 +207,14 @@
 
             static get properties() {
                 return {
+                    distanceList: {
+                        type: Array,
+                        value: ['Out 1 Mile', 'Out 5 Miles', 'Out 10 Miles', 'Out 25 Miles'],
+                    },
+                    timeList: {
+                        type: Array,
+                        value: ['Always On', 'Custom'],
+                    },
                     uploadTasks: {
                         type: Array,
                         observer: '_uploadTasksChanged'
@@ -250,9 +263,7 @@
                 let file = this.$.vaadinUpload.files[0];
                 let reader = new FileReader();
 
-                /*file.addEventListener("file-remove", function() {
-                    preview.src = "";
-            });*/
+
                 reader.addEventListener("load", function () {
                     preview.src = reader.result;
                 }, false);

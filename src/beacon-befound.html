@@ -77,10 +77,10 @@
                 force-unique>
         </firebase-storage-multiupload>-->
 
-        <geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
+        <!--<geo-location watch-pos high-accuracy latitude="{{latitude}}" longitude="{{longitude}}"></geo-location>
 
         <input id="latitude" value="{{latitude}}" hidden>
-        <input id="longitude" value="{{longitude}}" hidden>
+        <input id="longitude" value="{{longitude}}" hidden>-->
 
         <div style="position: absolute; left: 50%">
             <a href="[[rootPath]]home">
@@ -120,7 +120,7 @@
 
                 <!--Professional Profile Fields-->
                 <template id="proProfile" is="dom-if" if="[[isEqual(yourProfileType, 'Professional Profile')]]">
-                    <befound-professional-profile user="{{user}}"></befound-professional-profile>
+                    <befound-professional-profile></befound-professional-profile>
                 </template>
             </template>
 
@@ -168,15 +168,7 @@
 
             static get properties() {
                 return {
-                    distancelist: {
-                        type: Array,
-                        value: ['Out 1 Mile', 'Out 5 Miles', 'Out 10 Miles', 'Out 25 Miles'],
-                    },
-                    timelist: {
-                        type: Array,
-                        value: ['Always On', 'Custom'],
-                    },
-                    foundDistance: {
+                    /*foundDistance: {
                         type: Object,
                     },
                     foundTime: {
@@ -187,7 +179,7 @@
                     },
                     longitude: {
                         type: Number,
-                    },
+                    },*/
                     beaconCreated: {
                         type: Boolean,
                         notify: true,
