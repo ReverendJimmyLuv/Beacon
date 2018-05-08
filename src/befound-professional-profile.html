@@ -269,7 +269,6 @@
                 let file = this.$.vaadinUpload.files[0];
                 let reader = new FileReader();
 
-
                 reader.addEventListener("load", function () {
                     preview.src = reader.result;
                 }, false);
@@ -280,7 +279,9 @@
             }
 
             _submitForm() {
-                this.$.professionalBeeqinForm.addEventListener('iron-form-submit', function (event) {
+                let form = this.shadowRoot.querySelector('#professionalBeeqinForm');
+
+                form.addEventListener('iron-form-submit', function (event) {
                     this.shadowRoot.querySelector('.output').innerHTML = JSON.stringify(event.detail);
                 });
             }
