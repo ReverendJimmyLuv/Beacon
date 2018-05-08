@@ -9,6 +9,7 @@
 <link rel="import" href="../bower_components/vaadin-combo-box/vaadin-combo-box.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
 
 <dom-module id="befound-professional-profile">
     <template>
@@ -22,6 +23,7 @@
                     background-color: #000000;
                     color: #F8C945;
                 }
+
                 paper-button.beeqin[active] {
                     background-color: #F29737;
                     color: #000000;
@@ -34,7 +36,7 @@
         <firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
-                files="{{vaadinUpload}}"
+                files="{{vaadinUploadFiles}}"
                 upload-tasks="{{uploadTasks}}"
                 on-error="catchError"
                 force-unique>
@@ -45,6 +47,7 @@
         <input id="longitude" value="{{longitude}}" hidden>
 
         <!--Main Professional Profile Fields-->
+        <iron-form id="professionalBeeqin">
         <br>
         <strong>These fields are here as suggestions for your Professional Profile. Any fields left
             blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
@@ -54,30 +57,32 @@
         <!--on-max-files-reached-changed="_previewUpload"-->
         <vaadin-upload id="vaadinUpload"
                        style="width:100%"
-                       files="{{vaadinUpload}}"
+                       files="{{vaadinUploadFiles}}"
                        form-data-name="profile-img"
                        max-files="1"
                        max-file-size="4000000"
                        accept="image/*"
+                       max-files-reached="{{filesFull}}"
+                       on-upload-success="_previewUpload"
                        on-files-changed="_previewUpload">
             <br>
-            
-            <iron-image id="imgPreview"
-                        style="width:200px; height:200px; background-color: lightgray;"
-                        sizing="cover"
-                        preload fade
-                        src=""
-                        alt="Upload Preview">
-            </iron-image>
-
+            <div hidden$="{{!filesFull}}">
+                <iron-image id="imgPreview"
+                            style="width:200px; height:200px; background-color: lightgray;"
+                            sizing="cover"
+                            preload fade
+                            src=""
+                            alt="Upload Preview">
+                </iron-image>
+            </div>
         </vaadin-upload>
         <br>
 
-        <vaadin-button on-tap="_upload">
+        <!--<vaadin-button on-tap="_upload">
             <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
             Upload
         </vaadin-button>
-        <br>
+        <br>-->
 
         <template is="dom-repeat" items="[[uploadTasks]]">
             <firebase-storage-upload-task
@@ -121,7 +126,7 @@
         </template>
 
 
-        <vaadin-text-field style="width: 100%" label="Beeqin Display Name"
+        <vaadin-text-field style="width: 100%" label="Beeqin Title"
                            id="displayName"></vaadin-text-field>
         <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
         <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
@@ -188,6 +193,7 @@
                 items="[[timeList]]"
                 value="{{foundTime}}">
         </vaadin-combo-box>
+        </iron-form>
 
         <br>
         <div style="position: relative">
@@ -223,7 +229,7 @@
                     uploadedFiles: {
                         type: Array,
                     },
-                    vaadinUpload: {
+                    vaadinUploadFiles: {
                         type: Array,
                         notify: true,
                         value: [],
@@ -242,6 +248,10 @@
             isEqual(a, b) {
                 return a === b;
             }
+
+            /*hasData(data) {
+                return !!data;
+            }*/
 
             _uploadTasksChanged(uploadTasks) {
                 console.log("Upload Tasks Array", uploadTasks);
