@@ -47,152 +47,147 @@
         <input id="longitude" value="{{longitude}}" hidden>
 
         <!--Main Professional Profile Fields-->
-        <iron-form id="professionalBeeqin">
-        <br>
-        <strong>These fields are here as suggestions for your Professional Profile. Any fields left
-            blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
-        <hr>
-        <h3>Add a Profile Image</h3>
-
-        <!--on-max-files-reached-changed="_previewUpload"-->
-        <vaadin-upload id="vaadinUpload"
-                       style="width:100%"
-                       files="{{vaadinUploadFiles}}"
-                       form-data-name="profile-img"
-                       max-files="1"
-                       max-file-size="4000000"
-                       accept="image/*"
-                       max-files-reached="{{filesFull}}"
-                       on-upload-success="_previewUpload"
-                       on-files-changed="_previewUpload">
+        <iron-form id="professionalBeeqinForm">
+            <form action="/form/handler">
             <br>
-            <div hidden$="{{!filesFull}}">
-                <iron-image id="imgPreview"
-                            style="width:200px; height:200px; background-color: lightgray;"
-                            sizing="cover"
-                            preload fade
-                            src=""
-                            alt="Upload Preview">
-                </iron-image>
-            </div>
-        </vaadin-upload>
-        <br>
-
-        <!--<vaadin-button on-tap="_upload">
-            <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
-            Upload
-        </vaadin-button>
-        <br>-->
-
-        <template is="dom-repeat" items="[[uploadTasks]]">
-            <firebase-storage-upload-task
-                    id="firebaseUploadTask"
-                    task="[[item]]"
-                    bytes-transferred="{{item.bytesTransferred}}"
-                    total-bytes="{{item.totalBytes}}"
-                    state="{{item.state}}"
-                    download-url="{{item.downloadUrl}}"
-                    metadata="{{item.metadata}}"
-                    path="{{item.path}}">
-            </firebase-storage-upload-task>
-
-            <template is="dom-if" if="[[!isEqual(item.state, 'success')]]">
-                <vaadin-progress-bar
-                        value="{{item.bytesTransferred}}"
-                        min="0"
-                        max="{{item.totalBytes}}">
-                </vaadin-progress-bar>
-            </template>
-
-            <template is="dom-if" if="{{isEqual(item.state, 'success')}}">
-                <firebase-storage-ref
-                        path="{{item.path}}"
-                        storage-uri="{{gsUri}}"
-                        id="ref-[[index]]"
-                        metadata="{{item.refMetadata}}"
-                        download-url="{{item.refDownloadUrl}}">
-                </firebase-storage-ref>
-
-                <!--<iron-image style="width:200px; height:200px; background-color: lightgray;"
-                            sizing="cover"
-                            preload fade
-                            src="{{item.refDownloadUrl}}"
-                            alt="{{item.metadata.name}}">
-                </iron-image>-->
-                <br>
-                <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
-                <br>
-            </template>
-        </template>
-
-
-        <vaadin-text-field style="width: 100%" label="Beeqin Title"
-                           id="displayName"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="First Name" id="firstName"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="Last Name" id="lastName"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="Phone Number"
-                           id="phoneNumber"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="Email Address"
-                           id="emailAddress"></vaadin-text-field>
-        <vaadin-radio-group id="messagePermission" value="{{messagePermission}}">
-            <p>Would you like people to be able to message you in app for this Beeqin?</p>
-            <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
-            <vaadin-radio-button value="No">No</vaadin-radio-button>
-        </vaadin-radio-group>
-        <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"
-                          id="headline"></vaadin-text-area>
-        <vaadin-text-field style="width: 100%" label="College Attended"
-                           id="collegeAttended"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="High School Attended"
-                           id="highSchoolAttended"></vaadin-text-field>
-        <vaadin-text-area style="width: 100%; min-height: 100px"
-                          label="Organizations You're a Member of"
-                          id="organizations"></vaadin-text-area>
-        <vaadin-text-field style="width: 100%" label="Industry" id="industry"></vaadin-text-field>
-        <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"
-                          id="summary"></vaadin-text-area>
-
-        <vaadin-radio-group id="geoLocOrFixed" value="{{geoLocOrFixed}}">
-            <p>Would you like to use your Geo Location for this Beeqin? Or a fixed address?</p>
-            <vaadin-radio-button value="Geo Location">Geo Location</vaadin-radio-button>
-            <vaadin-radio-button value="Fixed Address">Fixed Address</vaadin-radio-button>
-        </vaadin-radio-group>
-
-        <template is="dom-if" if="[[isEqual(geoLocOrFixed, 'Fixed Address')]]">
-            <strong>What address?</strong>
-            <vaadin-text-field style="width: 100%" label="Street"
-                               id="addressStreet"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="City" id="addressCity"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="State" id="addressState"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="Zip Code"
-                               id="addressZipCode"></vaadin-text-field>
+            <strong>These fields are here as suggestions for your Professional Profile. Any fields left
+                blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
             <hr>
-        </template>
+            <h3>Add a Profile Image</h3>
 
-        <vaadin-text-field style="width: 100%" label="Website or Social Media links"
-                           id="links1"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="" id="links2"></vaadin-text-field>
-        <vaadin-text-field style="width: 100%" label="" id="links3"></vaadin-text-field>
-        <vaadin-radio-group id="linkBeeqins" value="{{linkBeeqins}}">
-            <p>Would you like to link any of your other saved Beeqins to this one?</p>
-            <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
-            <vaadin-radio-button value="No">No</vaadin-radio-button>
-        </vaadin-radio-group>
-        <br>
-        <vaadin-combo-box
-                style="width: 17em; padding-right: 10px"
-                id="foundDistance"
-                label="How Far to Broadcast?"
-                items="[[distanceList]]"
-                value="{{foundDistance}}">
-        </vaadin-combo-box>
-        <vaadin-combo-box
-                style="width: 17em; padding-bottom: 150px"
-                id="foundTime"
-                label="When do you want to broadcast?"
-                items="[[timeList]]"
-                value="{{foundTime}}">
-        </vaadin-combo-box>
+            <!--on-max-files-reached-changed="_previewUpload"-->
+            <vaadin-upload id="vaadinUpload"
+                           style="width:100%"
+                           files="{{vaadinUploadFiles}}"
+                           form-data-name="profile-img"
+                           max-files="1"
+                           max-file-size="4000000"
+                           accept="image/*"
+                           max-files-reached="{{filesFull}}"
+                           on-upload-success="_previewUpload"
+                           on-files-changed="_previewUpload">
+                <br>
+                <div hidden$="{{!filesFull}}">
+                    <iron-image id="imgPreview"
+                                style="width:200px; height:200px; background-color: lightgray;"
+                                sizing="cover"
+                                preload fade
+                                src=""
+                                alt="Upload Preview">
+                    </iron-image>
+                </div>
+            </vaadin-upload>
+            <br>
+
+            <!--<vaadin-button on-tap="_upload">
+                <iron-icon icon="lumo:upload" slot="suffix"></iron-icon>
+                Upload
+            </vaadin-button>
+            <br>-->
+
+            <template is="dom-repeat" items="[[uploadTasks]]">
+                <firebase-storage-upload-task
+                        id="firebaseUploadTask"
+                        task="[[item]]"
+                        bytes-transferred="{{item.bytesTransferred}}"
+                        total-bytes="{{item.totalBytes}}"
+                        state="{{item.state}}"
+                        download-url="{{item.downloadUrl}}"
+                        metadata="{{item.metadata}}"
+                        path="{{item.path}}">
+                </firebase-storage-upload-task>
+
+                <template is="dom-if" if="[[!isEqual(item.state, 'success')]]">
+                    <vaadin-progress-bar
+                            value="{{item.bytesTransferred}}"
+                            min="0"
+                            max="{{item.totalBytes}}">
+                    </vaadin-progress-bar>
+                </template>
+
+                <template is="dom-if" if="{{isEqual(item.state, 'success')}}">
+                    <firebase-storage-ref
+                            path="{{item.path}}"
+                            storage-uri="{{gsUri}}"
+                            id="ref-[[index]]"
+                            metadata="{{item.refMetadata}}"
+                            download-url="{{item.refDownloadUrl}}">
+                    </firebase-storage-ref>
+
+                    <!--<iron-image style="width:200px; height:200px; background-color: lightgray;"
+                                sizing="cover"
+                                preload fade
+                                src="{{item.refDownloadUrl}}"
+                                alt="{{item.metadata.name}}">
+                    </iron-image>-->
+                    <br>
+                    <vaadin-button on-tap="deleteFile" value="{{index}}">Remove</vaadin-button>
+                    <br>
+                </template>
+            </template>
+
+
+            <vaadin-text-field style="width: 100%" label="Beeqin Title"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="First Name"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="Last Name"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="Phone Number"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="Email Address"></vaadin-text-field>
+            <vaadin-radio-group id="messagePermission" value="{{messagePermission}}">
+                <p>Would you like people to be able to message you in app for this Beeqin?</p>
+                <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
+                <vaadin-radio-button value="No">No</vaadin-radio-button>
+            </vaadin-radio-group>
+            <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"></vaadin-text-area>
+            <vaadin-text-field style="width: 100%" label="College Attended"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="High School Attended"></vaadin-text-field>
+            <vaadin-text-area style="width: 100%; min-height: 100px"
+                              label="Organizations You're a Member of"></vaadin-text-area>
+            <vaadin-text-field style="width: 100%" label="Industry"></vaadin-text-field>
+            <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"></vaadin-text-area>
+
+            <vaadin-radio-group id="geoLocOrFixed" value="{{geoLocOrFixed}}">
+                <p>Would you like to use your Geo Location for this Beeqin? Or a fixed address?</p>
+                <vaadin-radio-button value="Geo Location">Geo Location</vaadin-radio-button>
+                <vaadin-radio-button value="Fixed Address">Fixed Address</vaadin-radio-button>
+            </vaadin-radio-group>
+
+            <template is="dom-if" if="[[isEqual(geoLocOrFixed, 'Fixed Address')]]">
+                <strong>What address?</strong>
+                <vaadin-text-field style="width: 100%" label="Street"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" label="City"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" label="State"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" label="Zip Code"></vaadin-text-field>
+                <hr>
+            </template>
+
+            <vaadin-text-field style="width: 100%" label="Website or Social Media links"
+                               id="links1"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="" id="links2"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" label="" id="links3"></vaadin-text-field>
+            <vaadin-radio-group id="linkBeeqins" value="{{linkBeeqins}}">
+                <p>Would you like to link any of your other saved Beeqins to this one?</p>
+                <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
+                <vaadin-radio-button value="No">No</vaadin-radio-button>
+            </vaadin-radio-group>
+            <br>
+            <vaadin-combo-box
+                    style="width: 17em; padding-right: 10px"
+                    id="foundDistance"
+                    label="How Far to Broadcast?"
+                    items="[[distanceList]]"
+                    value="{{foundDistance}}">
+            </vaadin-combo-box>
+            <vaadin-combo-box
+                    style="width: 17em; padding-bottom: 150px"
+                    id="foundTime"
+                    label="When do you want to broadcast?"
+                    items="[[timeList]]"
+                    value="{{foundTime}}">
+            </vaadin-combo-box>
+                <paper-button raised on-click="_submitForm">Submit</paper-button>
+            </form>
+            <br>
+            <div class="output"></div>
         </iron-form>
 
         <br>
@@ -284,6 +279,11 @@
                 }
             }
 
+            _submitForm() {
+                this.$.professionalBeeqinForm.addEventListener('iron-form-submit', function (event) {
+                    this.shadowRoot.querySelector('.output').innerHTML = JSON.stringify(event.detail);
+                });
+            }
 
             //Upload image to Firebase
             _upload() {
