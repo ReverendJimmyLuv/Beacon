@@ -279,10 +279,8 @@
             }
 
             _submitForm() {
-                let form = this.$.professionalBeeqinForm;
-
-                form.addEventListener('ironFormSubmit', function (event) {
-                    this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
+                this.$.professionalBeeqinForm.addEventListener('iron-form-submit', function (event) {
+                    this.shadowRoot.querySelector('.output').innerHTML = JSON.stringify(event.detail);
                 });
             }
 
