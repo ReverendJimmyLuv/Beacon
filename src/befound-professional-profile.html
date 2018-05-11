@@ -47,7 +47,7 @@
         <input id="longitude" value="{{longitude}}" hidden>
 
         <!--Main Professional Profile Fields-->
-        <iron-form id="professionalBeeqinForm">
+        <iron-form id="proBeeqinForm">
             <form action="/form/handler">
             <br>
             <strong>These fields are here as suggestions for your Professional Profile. Any fields left
@@ -279,7 +279,10 @@
             }
 
             _submitForm() {
-                this.$.professionalBeeqinForm.addEventListener('iron-form-submit', function (event) {
+                this.$.proBeeqinForm.submit();
+                let form = this.shadowRoot.querySelector('#proBeeqinForm');
+
+                form.addEventListener('iron-form-submit', function (event) {
                     this.shadowRoot.querySelector('.output').innerHTML = JSON.stringify(event.detail);
                 });
             }
