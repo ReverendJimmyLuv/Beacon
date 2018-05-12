@@ -33,6 +33,12 @@
 
         <firebase-auth user="{{user}}"></firebase-auth>
 
+        <firebase-query
+                id="befound"
+                path="/users/userReadable/accounts/[[user.uid]]/beFoundBeacons"
+                data="{{beFoundBeacons}}">
+        </firebase-query>
+
         <firebase-storage-multiupload
                 id="firebaseStorage"
                 path="/users/[[user.uid]]/images"
@@ -47,15 +53,14 @@
         <input id="longitude" value="{{longitude}}" hidden>
 
         <!--Main Professional Profile Fields-->
-        <iron-form id="proBeeqinForm">
-            <form action="/form/handler">
+        <!--<iron-form id="proBeeqinForm">
+            <form action="/form/handler">-->
             <br>
             <strong>These fields are here as suggestions for your Professional Profile. Any fields left
                 blank will be omitted on your displayed Beeqin. Only share what you want!</strong>
             <hr>
             <h3>Add a Profile Image</h3>
 
-            <!--on-max-files-reached-changed="_previewUpload"-->
             <vaadin-upload id="vaadinUpload"
                            style="width:100%"
                            files="{{vaadinUploadFiles}}"
@@ -127,20 +132,20 @@
             </template>
 
 
-            <vaadin-text-field style="width: 100%" label="Beeqin Title"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="First Name"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="Last Name"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="Phone Number"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="Email Address"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="title" label="Beeqin Title"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="firstName" label="First Name"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="lastName" label="Last Name"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="phone" label="Phone Number"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="email" label="Email Address"></vaadin-text-field>
             <vaadin-radio-group id="messagePermission" value="{{messagePermission}}">
                 <p>Would you like people to be able to message you in app for this Beeqin?</p>
                 <vaadin-radio-button value="Yes">Yes</vaadin-radio-button>
                 <vaadin-radio-button value="No">No</vaadin-radio-button>
             </vaadin-radio-group>
-            <vaadin-text-area style="width: 100%; min-height: 100px" label="Headline"></vaadin-text-area>
-            <vaadin-text-field style="width: 100%" label="College Attended"></vaadin-text-field>
-            <vaadin-text-field style="width: 100%" label="High School Attended"></vaadin-text-field>
-            <vaadin-text-area style="width: 100%; min-height: 100px"
+            <vaadin-text-area style="width: 100%; min-height: 100px" id="headline" label="Headline"></vaadin-text-area>
+            <vaadin-text-field style="width: 100%" id="college" label="College Attended"></vaadin-text-field>
+            <vaadin-text-field style="width: 100%" id="highSchool" label="High School Attended"></vaadin-text-field>
+            <vaadin-text-area style="width: 100%; min-height: 100px" id="organizations"
                               label="Organizations You're a Member of"></vaadin-text-area>
             <vaadin-text-field style="width: 100%" label="Industry"></vaadin-text-field>
             <vaadin-text-area style="width: 100%; min-height: 200px" label="Summary"></vaadin-text-area>
@@ -153,10 +158,10 @@
 
             <template is="dom-if" if="[[isEqual(geoLocOrFixed, 'Fixed Address')]]">
                 <strong>What address?</strong>
-                <vaadin-text-field style="width: 100%" label="Street"></vaadin-text-field>
-                <vaadin-text-field style="width: 100%" label="City"></vaadin-text-field>
-                <vaadin-text-field style="width: 100%" label="State"></vaadin-text-field>
-                <vaadin-text-field style="width: 100%" label="Zip Code"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" id="street" label="Street"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" id="city" label="City"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" id="state" label="State"></vaadin-text-field>
+                <vaadin-text-field style="width: 100%" id="zip" label="Zip Code"></vaadin-text-field>
                 <hr>
             </template>
 
@@ -171,30 +176,30 @@
             </vaadin-radio-group>
             <br>
             <vaadin-combo-box
-                    style="width: 17em; padding-right: 10px"
+                    style="width: 20em; padding-right: 10px"
                     id="foundDistance"
-                    label="How Far to Broadcast?"
+                    label="How Far to Broadcast this Beeqin?"
                     items="[[distanceList]]"
                     value="{{foundDistance}}">
             </vaadin-combo-box>
             <vaadin-combo-box
-                    style="width: 17em; padding-bottom: 150px"
+                    style="width: 20em; padding-bottom: 150px"
                     id="foundTime"
-                    label="When do you want to broadcast?"
+                    label="When do you want to broadcast this Beeqin?"
                     items="[[timeList]]"
                     value="{{foundTime}}">
             </vaadin-combo-box>
-                <paper-button raised on-click="_submitForm">Submit</paper-button>
+                <!--<paper-button raised on-click="_submitForm">Submit</paper-button>
             </form>
             <br>
             <div class="output"></div>
         </iron-form>
-
+-->
         <br>
         <div style="position: relative">
-            <paper-button raised class="custom beeqin" on-tap="_createBeacon">
+            <paper-button raised class="custom beeqin" on-tap="_previewBeeqin">
                 <iron-icon icon="beacon-icons:search"></iron-icon>
-                !Create Beeqin
+                Preview Beeqin
             </paper-button>
         </div>
 
@@ -235,6 +240,10 @@
                     },
                     firebaseStorage: {
                         type: Array,
+                        notify: true,
+                    },
+                    coreType: {
+                        type: Object,
                         notify: true,
                     },
                 };
@@ -293,25 +302,47 @@
             }
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
-            _createBeacon() {
+            _previewBeeqin() {
+                let ref = firebase.database().ref('/users/userReadable/accounts/[[user.uid]]/beFoundBeacons');
+                let imageRef = ref.child('images');
+
+                this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
+
                 this.$.befound.ref.push({
                     user: this.user.uid,
-                    coreType: this.$.coreType.value,
-                    found2: this.$.found2.value,
-                    found3: this.$.found3.value,
-                    beFoundDescription: this.$.beFoundDescription.value,
+                    coreType: this.coreType.value,
+                    image: this.shadowRoot.querySelector('item.refDownloadUrl'),
+                    title: this.$.title.value,
+                    firstName: this.$.firstName.value,
+                    lastName: this.$.lastName.value,
+                    phone: this.$.phone.value,
+                    email: this.$.email.value,
+                    messagePermission: this.$.messagePermission.value,
+                    headline: this.$.headline.value,
+                    college: this.$.college.value,
+                    highSchool: this.$.highSchool.value,
+                    organizations: this.$.organizations.value,
+                    geoLocOrFixed: this.$.geoLocOrFixed.value,
+                    street: this.$.street.value,
+                    city: this.$.city.value,
+                    state: this.$.state.value,
+                    zip: this.$.zip.value,
+                    links1: this.$.links1.value,
+                    links2: this.$.links2.value,
+                    links3: this.$.links3.value,
+                    linkBeeqins: this.$.linkBeeqins.value,
                     foundDistance: this.$.foundDistance.value,
                     foundTime: this.$.foundTime.value,
                     latitude: this.$.latitude.value,
                     longitude: this.$.longitude.value
                 });
-                this.$.coreType.value = null;
+                /*this.$.coreType.value = null;
                 this.$.found2.value = null;
                 this.$.found3.value = null;
                 this.$.beFoundDescription.value = null;
                 this.$.foundDistance.value = null;
                 this.$.foundTime.value = null;
-                this.beaconCreated = true;
+                this.beaconCreated = true;*/
             }
 
         }

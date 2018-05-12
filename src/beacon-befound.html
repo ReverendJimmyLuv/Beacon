@@ -64,11 +64,11 @@
             <h2>create Beeqin</h2>
         </paper-dialog>
 
-        <firebase-query
+        <!--<firebase-query
                 id="befound"
                 path="/beFoundBeacons"
                 data="{{beFoundBeacons}}">
-        </firebase-query>
+        </firebase-query>-->
 
         <!--<firebase-storage-multiupload
                 id="firebaseStorage"
@@ -122,7 +122,7 @@
 
                 <!--Professional Profile Fields-->
                 <template id="proProfile" is="dom-if" if="[[isEqual(yourProfileType, 'Professional Profile')]]">
-                    <befound-professional-profile></befound-professional-profile>
+                    <befound-professional-profile coreType="[[coreType]]"></befound-professional-profile>
                 </template>
             </template>
 
