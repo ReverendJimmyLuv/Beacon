@@ -246,6 +246,10 @@
                         type: Object,
                         notify: true,
                     },
+                    user: {
+                        type: Object,
+                        notify: true,
+                    },
                 };
             }
 
@@ -303,10 +307,61 @@
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
             _previewBeeqin() {
-                let ref = firebase.database().ref('/users/userReadable/accounts/[[user.uid]]/beFoundBeacons');
-                let imageRef = ref.child('images');
-
+                let befoundRef = firebase.database().ref('/users/userWriteable/beFound');
+                let userBeFoundRef = befoundRef.child(user.uid);
+                console.log(useBeFoundRef.toString(), user);
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
+                userBeFoundRef.set({
+                    user: this.user.uid,
+                    coreType: this.coreType.value,
+                    image: this.shadowRoot.querySelector('item.refDownloadUrl'),
+                    title: this.$.title.value,
+                    firstName: this.$.firstName.value,
+                    lastName: this.$.lastName.value,
+                    phone: this.$.phone.value,
+                    email: this.$.email.value,
+                    messagePermission: this.$.messagePermission.value,
+                    headline: this.$.headline.value,
+                    college: this.$.college.value,
+                    highSchool: this.$.highSchool.value,
+                    organizations: this.$.organizations.value,
+                    geoLocOrFixed: this.$.geoLocOrFixed.value,
+                    street: this.$.street.value,
+                    city: this.$.city.value,
+                    state: this.$.state.value,
+                    zip: this.$.zip.value,
+                    links1: this.$.links1.value,
+                    links2: this.$.links2.value,
+                    links3: this.$.links3.value,
+                    linkBeeqins: this.$.linkBeeqins.value,
+                    foundDistance: this.$.foundDistance.value,
+                    foundTime: this.$.foundTime.value,
+                    latitude: this.$.latitude.value,
+                    longitude: this.$.longitude.value
+                })
+                    .catch(function (e) {
+                        console.log('server error', e);
+                    });
+
+                var ref = firebase.database().ref('/users');
+                var befoundWrite = ref.child('userWriteable/befound');
+                var befoundRead = ref.child('userReadable/accounts/[[user.uid]]');
+
+                befoundWrite.on('child_added', function (snap) {
+                    console.log('Beeqin received', snap.val());
+                    var beeqin = snap.val();
+                    var beeqinRef = snap.ref;
+
+                    beeqin.lastLogin = Date.now();
+
+                    befoundRead.child('beFoundBeacons').update(beeqin)
+                        .then(function () {
+                            return beeqinRef.remove();
+                        });
+                });
+
+                /*let ref = firebase.database().ref('/users/userReadable/accounts/[[user.uid]]/beFoundBeacons');
+                let imageRef = ref.child('images');
 
                 this.$.befound.ref.push({
                     user: this.user.uid,
@@ -335,7 +390,7 @@
                     foundTime: this.$.foundTime.value,
                     latitude: this.$.latitude.value,
                     longitude: this.$.longitude.value
-                });
+                });*/
                 /*this.$.coreType.value = null;
                 this.$.found2.value = null;
                 this.$.found3.value = null;
