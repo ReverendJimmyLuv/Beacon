@@ -31,7 +31,7 @@
             </style>
         </custom-style>
 
-        <firebase-auth user="{{user}}"></firebase-auth>
+        <firebase-auth id="auth" user="{{user}}"></firebase-auth>
 
         <firebase-query
                 id="befound"
@@ -307,9 +307,10 @@
 
             //create beeqin and push to firebase.  need to adjust to a preview view first
             _previewBeeqin() {
+                let user = this.$.auth;
                 let befoundRef = firebase.database().ref('/users/userWriteable/beFound');
                 let userBeFoundRef = befoundRef.child(user.uid);
-                console.log(useBeFoundRef.toString(), user);
+                console.log(userBeFoundRef.toString(), user);
                 this.$.firebaseStorage.upload(this.$.vaadinUpload.files);
                 userBeFoundRef.set({
                     user: this.user.uid,
