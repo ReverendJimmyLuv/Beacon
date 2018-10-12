@@ -1,6 +1,8 @@
 bower_components/
 build/
 node_modules/
+functions/
+test/
 *.xml
 *.iml
 firebase-debug.log
